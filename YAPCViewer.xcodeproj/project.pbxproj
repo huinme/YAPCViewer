@@ -7,20 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD4B92538743D6A39888F7 /* libPods.a */; };
+		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
 		C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
 		C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90117AD02E100EE6F0A /* Foundation.framework */; };
 		C53EF90417AD02E100EE6F0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90317AD02E100EE6F0A /* CoreGraphics.framework */; };
 		C53EF90A17AD02E100EE6F0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C53EF90817AD02E100EE6F0A /* InfoPlist.strings */; };
 		C53EF90C17AD02E100EE6F0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF90B17AD02E100EE6F0A /* main.m */; };
 		C53EF91017AD02E100EE6F0A /* YVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF90F17AD02E100EE6F0A /* YVAppDelegate.m */; };
-		C53EF91217AD02E100EE6F0A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C53EF91117AD02E100EE6F0A /* Default.png */; };
-		C53EF91417AD02E100EE6F0A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53EF91317AD02E100EE6F0A /* Default@2x.png */; };
-		C53EF91617AD02E100EE6F0A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53EF91517AD02E100EE6F0A /* Default-568h@2x.png */; };
 		C53EF91E17AD02E100EE6F0A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF91D17AD02E100EE6F0A /* SenTestingKit.framework */; };
 		C53EF91F17AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
 		C53EF92017AD02E100EE6F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90117AD02E100EE6F0A /* Foundation.framework */; };
 		C53EF92817AD02E100EE6F0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C53EF92617AD02E100EE6F0A /* InfoPlist.strings */; };
 		C53EF92B17AD02E100EE6F0A /* YAPCViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */; };
+		C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */; };
+		C5F2CE0217AD042E00EAD980 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */; };
+		C5F2CE0717AD046800EAD980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CE0417AD046800EAD980 /* Default-568h@2x.png */; };
+		C5F2CE0817AD046800EAD980 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CE0517AD046800EAD980 /* Default.png */; };
+		C5F2CE0917AD046800EAD980 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CE0617AD046800EAD980 /* Default@2x.png */; };
+		C5F2CE0C17AD063400EAD980 /* YVAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0B17AD063400EAD980 /* YVAbstract.m */; };
+		C5F2CE0F17AD064E00EAD980 /* YVSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */; };
+		C5F2CE1217AD066C00EAD980 /* YVTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE1117AD066C00EAD980 /* YVTalk.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53EF8FC17AD02E100EE6F0A /* YAPCViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAPCViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53EF8FF17AD02E100EE6F0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C53EF90117AD02E100EE6F0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,15 +54,24 @@
 		C53EF90D17AD02E100EE6F0A /* YAPCViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YAPCViewer-Prefix.pch"; sourceTree = "<group>"; };
 		C53EF90E17AD02E100EE6F0A /* YVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVAppDelegate.h; sourceTree = "<group>"; };
 		C53EF90F17AD02E100EE6F0A /* YVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVAppDelegate.m; sourceTree = "<group>"; };
-		C53EF91117AD02E100EE6F0A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C53EF91317AD02E100EE6F0A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		C53EF91517AD02E100EE6F0A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C53EF91C17AD02E100EE6F0A /* YAPCViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YAPCViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53EF91D17AD02E100EE6F0A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C53EF92517AD02E100EE6F0A /* YAPCViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YAPCViewerTests-Info.plist"; sourceTree = "<group>"; };
 		C53EF92717AD02E100EE6F0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C53EF92917AD02E100EE6F0A /* YAPCViewerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YAPCViewerTests.h; sourceTree = "<group>"; };
 		C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAPCViewerTests.m; sourceTree = "<group>"; };
+		C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPhone.storyboard; path = Resources/iPhone.storyboard; sourceTree = "<group>"; };
+		C5F2CE0117AD042E00EAD980 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		C5F2CE0417AD046800EAD980 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C5F2CE0517AD046800EAD980 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C5F2CE0617AD046800EAD980 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C5F2CE0A17AD063400EAD980 /* YVAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVAbstract.h; path = YAPCViewer/Classes/Models/ManagedObjects/YVAbstract.h; sourceTree = "<group>"; };
+		C5F2CE0B17AD063400EAD980 /* YVAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVAbstract.m; path = YAPCViewer/Classes/Models/ManagedObjects/YVAbstract.m; sourceTree = "<group>"; };
+		C5F2CE0D17AD064E00EAD980 /* YVSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVSpeaker.h; path = YAPCViewer/Classes/Models/ManagedObjects/YVSpeaker.h; sourceTree = "<group>"; };
+		C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVSpeaker.m; path = YAPCViewer/Classes/Models/ManagedObjects/YVSpeaker.m; sourceTree = "<group>"; };
+		C5F2CE1017AD066C00EAD980 /* YVTalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalk.h; path = YAPCViewer/Classes/Models/ManagedObjects/YVTalk.h; sourceTree = "<group>"; };
+		C5F2CE1117AD066C00EAD980 /* YVTalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalk.m; path = YAPCViewer/Classes/Models/ManagedObjects/YVTalk.m; sourceTree = "<group>"; };
+		CDDD4B92538743D6A39888F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +82,7 @@
 				C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */,
 				C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */,
 				C53EF90417AD02E100EE6F0A /* CoreGraphics.framework in Frameworks */,
+				226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +93,7 @@
 				C53EF91E17AD02E100EE6F0A /* SenTestingKit.framework in Frameworks */,
 				C53EF91F17AD02E100EE6F0A /* UIKit.framework in Frameworks */,
 				C53EF92017AD02E100EE6F0A /* Foundation.framework in Frameworks */,
+				23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +107,8 @@
 				C53EF92317AD02E100EE6F0A /* YAPCViewerTests */,
 				C53EF8FE17AD02E100EE6F0A /* Frameworks */,
 				C53EF8FD17AD02E100EE6F0A /* Products */,
+				39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */,
+				2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +128,8 @@
 				C53EF90117AD02E100EE6F0A /* Foundation.framework */,
 				C53EF90317AD02E100EE6F0A /* CoreGraphics.framework */,
 				C53EF91D17AD02E100EE6F0A /* SenTestingKit.framework */,
+				CDDD4B92538743D6A39888F7 /* libPods.a */,
+				590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,8 +137,10 @@
 		C53EF90517AD02E100EE6F0A /* YAPCViewer */ = {
 			isa = PBXGroup;
 			children = (
-				C53EF90E17AD02E100EE6F0A /* YVAppDelegate.h */,
-				C53EF90F17AD02E100EE6F0A /* YVAppDelegate.m */,
+				C5F2CDFA17AD037600EAD980 /* AppDelegate */,
+				C5F2CDFB17AD038400EAD980 /* ViewControllers */,
+				C5F2CDFD17AD039300EAD980 /* Models */,
+				C5F2CDFC17AD038D00EAD980 /* Resources */,
 				C53EF90617AD02E100EE6F0A /* Supporting Files */,
 			);
 			path = YAPCViewer;
@@ -126,9 +153,6 @@
 				C53EF90817AD02E100EE6F0A /* InfoPlist.strings */,
 				C53EF90B17AD02E100EE6F0A /* main.m */,
 				C53EF90D17AD02E100EE6F0A /* YAPCViewer-Prefix.pch */,
-				C53EF91117AD02E100EE6F0A /* Default.png */,
-				C53EF91317AD02E100EE6F0A /* Default@2x.png */,
-				C53EF91517AD02E100EE6F0A /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,6 +176,57 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C5F2CDFA17AD037600EAD980 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C53EF90E17AD02E100EE6F0A /* YVAppDelegate.h */,
+				C53EF90F17AD02E100EE6F0A /* YVAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		C5F2CDFB17AD038400EAD980 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C5F2CDFC17AD038D00EAD980 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C5F2CE0317AD046800EAD980 /* images */,
+				C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */,
+				C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C5F2CDFD17AD039300EAD980 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5F2CE1017AD066C00EAD980 /* YVTalk.h */,
+				C5F2CE1117AD066C00EAD980 /* YVTalk.m */,
+				C5F2CE0D17AD064E00EAD980 /* YVSpeaker.h */,
+				C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */,
+				C5F2CE0A17AD063400EAD980 /* YVAbstract.h */,
+				C5F2CE0B17AD063400EAD980 /* YVAbstract.m */,
+			);
+			name = Models;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		C5F2CE0317AD046800EAD980 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C5F2CE0417AD046800EAD980 /* Default-568h@2x.png */,
+				C5F2CE0517AD046800EAD980 /* Default.png */,
+				C5F2CE0617AD046800EAD980 /* Default@2x.png */,
+			);
+			name = images;
+			path = Resources/images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,9 +234,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C53EF92E17AD02E100EE6F0A /* Build configuration list for PBXNativeTarget "YAPCViewer" */;
 			buildPhases = (
+				08A12F63147D494BAF08AE39 /* Check Pods Manifest.lock */,
 				C53EF8F817AD02E100EE6F0A /* Sources */,
 				C53EF8F917AD02E100EE6F0A /* Frameworks */,
 				C53EF8FA17AD02E100EE6F0A /* Resources */,
+				407169B9F2EF48E094B75005 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,10 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C53EF93117AD02E100EE6F0A /* Build configuration list for PBXNativeTarget "YAPCViewerTests" */;
 			buildPhases = (
+				9B5014AF7E37489EB64588BC /* Check Pods Manifest.lock */,
 				C53EF91717AD02E100EE6F0A /* Sources */,
 				C53EF91817AD02E100EE6F0A /* Frameworks */,
 				C53EF91917AD02E100EE6F0A /* Resources */,
 				C53EF91A17AD02E100EE6F0A /* ShellScript */,
+				75D417D4111845919347227B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,9 +304,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C53EF90A17AD02E100EE6F0A /* InfoPlist.strings in Resources */,
-				C53EF91217AD02E100EE6F0A /* Default.png in Resources */,
-				C53EF91417AD02E100EE6F0A /* Default@2x.png in Resources */,
-				C53EF91617AD02E100EE6F0A /* Default-568h@2x.png in Resources */,
+				C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */,
+				C5F2CE0717AD046800EAD980 /* Default-568h@2x.png in Resources */,
+				C5F2CE0817AD046800EAD980 /* Default.png in Resources */,
+				C5F2CE0917AD046800EAD980 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +322,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08A12F63147D494BAF08AE39 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		407169B9F2EF48E094B75005 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75D417D4111845919347227B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-YAPCViewerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B5014AF7E37489EB64588BC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C53EF91A17AD02E100EE6F0A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +404,10 @@
 			files = (
 				C53EF90C17AD02E100EE6F0A /* main.m in Sources */,
 				C53EF91017AD02E100EE6F0A /* YVAppDelegate.m in Sources */,
+				C5F2CE0217AD042E00EAD980 /* Models.xcdatamodeld in Sources */,
+				C5F2CE0C17AD063400EAD980 /* YVAbstract.m in Sources */,
+				C5F2CE0F17AD064E00EAD980 /* YVSpeaker.m in Sources */,
+				C5F2CE1217AD066C00EAD980 /* YVTalk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +474,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -354,7 +498,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -363,6 +507,7 @@
 		};
 		C53EF92F17AD02E100EE6F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
@@ -374,6 +519,7 @@
 		};
 		C53EF93017AD02E100EE6F0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
@@ -385,6 +531,7 @@
 		};
 		C53EF93217AD02E100EE6F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YAPCViewer.app/YAPCViewer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -402,6 +549,7 @@
 		};
 		C53EF93317AD02E100EE6F0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YAPCViewer.app/YAPCViewer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -436,6 +584,7 @@
 				C53EF93017AD02E100EE6F0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C53EF93117AD02E100EE6F0A /* Build configuration list for PBXNativeTarget "YAPCViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -444,8 +593,23 @@
 				C53EF93317AD02E100EE6F0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C5F2CE0117AD042E00EAD980 /* Models.xcdatamodel */,
+			);
+			currentVersion = C5F2CE0117AD042E00EAD980 /* Models.xcdatamodel */;
+			name = Models.xcdatamodeld;
+			path = Resources/Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C53EF8F417AD02E100EE6F0A /* Project object */;
 }

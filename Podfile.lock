@@ -1,0 +1,20 @@
+PODS:
+  - HIDataStoreManager (1.0.0)
+  - Kiwi (2.2)
+  - Nocilla (0.6)
+
+DEPENDENCIES:
+  - HIDataStoreManager (from `https://github.com/kshuin/HIDateStoreManager.git`)
+  - Kiwi
+  - Nocilla
+
+EXTERNAL SOURCES:
+  HIDataStoreManager:
+    :git: https://github.com/kshuin/HIDateStoreManager.git
+
+SPEC CHECKSUMS:
+  HIDataStoreManager: 1ab868f61e01438a99055d90a637e0f64fd751f8
+  Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
+  Nocilla: 8eb1de5a53f8567ca529d144880525448c6e713c
+
+COCOAPODS: 0.22.2
