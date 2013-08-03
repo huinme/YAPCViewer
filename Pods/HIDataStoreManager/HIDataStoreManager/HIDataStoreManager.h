@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#warning - Replace to your managed object model file's name ('.momd' files name)
+static NSString *const HIManagedObjectModelName = @"Models";
+
 @interface HIDataStoreManager : NSObject
 
 + (HIDataStoreManager *)sharedManager;

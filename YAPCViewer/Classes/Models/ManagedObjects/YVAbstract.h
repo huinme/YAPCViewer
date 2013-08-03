@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class YVTalk;
 
 @interface YVAbstract : NSManagedObject
 
 @property (nonatomic, retain) NSString * abstract;
-@property (nonatomic, retain) NSManagedObject *talk;
+@property (nonatomic, retain) YVTalk *talk;
 
 @end

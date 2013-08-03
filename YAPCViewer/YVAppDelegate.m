@@ -8,10 +8,15 @@
 
 #import "YVAppDelegate.h"
 
+#import "HIDataStoreManager.h"
+#import "YVTalks.h"
+
 @implementation YVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [HIDataStoreManager sharedManager];
+
     return YES;
 }
 

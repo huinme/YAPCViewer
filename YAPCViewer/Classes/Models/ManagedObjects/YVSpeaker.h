@@ -9,12 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class YVTalk;
 
 @interface YVSpeaker : NSManagedObject
 
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * service;
-@property (nonatomic, retain) NSManagedObject *talks;
+@property (nonatomic, retain) NSSet *talks;
 
 @end
+
+@interface YVSpeaker (CoreDataGeneratedAccessors)
+
+- (void)addTalksObject:(YVTalk *)value;
+- (void)removeTalksObject:(YVTalk *)value;
+- (void)addTalks:(NSSet *)values;
+- (void)removeTalks:(NSSet *)values;
+
+@end
+
+

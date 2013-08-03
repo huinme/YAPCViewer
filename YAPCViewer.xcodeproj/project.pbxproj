@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD4B92538743D6A39888F7 /* libPods.a */; };
 		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
+		C518A05117AD08C100B0E4B7 /* YVTalks.m in Sources */ = {isa = PBXBuildFile; fileRef = C518A05017AD08C100B0E4B7 /* YVTalks.m */; };
 		C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
 		C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90117AD02E100EE6F0A /* Foundation.framework */; };
 		C53EF90417AD02E100EE6F0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90317AD02E100EE6F0A /* CoreGraphics.framework */; };
@@ -20,6 +21,10 @@
 		C53EF92017AD02E100EE6F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90117AD02E100EE6F0A /* Foundation.framework */; };
 		C53EF92817AD02E100EE6F0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C53EF92617AD02E100EE6F0A /* InfoPlist.strings */; };
 		C53EF92B17AD02E100EE6F0A /* YAPCViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */; };
+		C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54624DA17AD20FE00B7361B /* CoreData.framework */; };
+		C54624DF17AD26AD00B7361B /* YVTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C54624DE17AD26AD00B7361B /* YVTalkCell.m */; };
+		C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */; };
+		C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */; };
 		C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */; };
 		C5F2CE0217AD042E00EAD980 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */; };
 		C5F2CE0717AD046800EAD980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CE0417AD046800EAD980 /* Default-568h@2x.png */; };
@@ -44,6 +49,8 @@
 		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C518A04F17AD08C100B0E4B7 /* YVTalks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalks.h; path = YAPCViewer/Classes/Models/YVTalks.h; sourceTree = "<group>"; };
+		C518A05017AD08C100B0E4B7 /* YVTalks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalks.m; path = YAPCViewer/Classes/Models/YVTalks.m; sourceTree = "<group>"; };
 		C53EF8FC17AD02E100EE6F0A /* YAPCViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAPCViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53EF8FF17AD02E100EE6F0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C53EF90117AD02E100EE6F0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +67,14 @@
 		C53EF92717AD02E100EE6F0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C53EF92917AD02E100EE6F0A /* YAPCViewerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YAPCViewerTests.h; sourceTree = "<group>"; };
 		C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAPCViewerTests.m; sourceTree = "<group>"; };
+		C54624DA17AD20FE00B7361B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C54624DC17AD235D00B7361B /* YVModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YVModels.h; path = YAPCViewer/Classes/Models/YVModels.h; sourceTree = "<group>"; };
+		C54624DD17AD26AD00B7361B /* YVTalkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkCell.h; path = Classes/Views/YVTalkCell.h; sourceTree = "<group>"; };
+		C54624DE17AD26AD00B7361B /* YVTalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkCell.m; path = Classes/Views/YVTalkCell.m; sourceTree = "<group>"; };
+		C5BC910517AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+SafetyMapping.h"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.h"; sourceTree = "<group>"; };
+		C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+SafetyMapping.m"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.m"; sourceTree = "<group>"; };
+		C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkListViewController.h; path = Classes/ViewControlleres/YVTalkListViewController.h; sourceTree = "<group>"; };
+		C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkListViewController.m; path = Classes/ViewControlleres/YVTalkListViewController.m; sourceTree = "<group>"; };
 		C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPhone.storyboard; path = Resources/iPhone.storyboard; sourceTree = "<group>"; };
 		C5F2CE0117AD042E00EAD980 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
 		C5F2CE0417AD046800EAD980 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -79,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */,
 				C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */,
 				C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */,
 				C53EF90417AD02E100EE6F0A /* CoreGraphics.framework in Frameworks */,
@@ -100,9 +116,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C518A04E17AD089A00B0E4B7 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C54624DC17AD235D00B7361B /* YVModels.h */,
+				C5F2CE1017AD066C00EAD980 /* YVTalk.h */,
+				C5F2CE1117AD066C00EAD980 /* YVTalk.m */,
+				C5F2CE0D17AD064E00EAD980 /* YVSpeaker.h */,
+				C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */,
+				C5F2CE0A17AD063400EAD980 /* YVAbstract.h */,
+				C5F2CE0B17AD063400EAD980 /* YVAbstract.m */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		C53EF8F317AD02E100EE6F0A = {
 			isa = PBXGroup;
 			children = (
+				C54624DA17AD20FE00B7361B /* CoreData.framework */,
 				C53EF90517AD02E100EE6F0A /* YAPCViewer */,
 				C53EF92317AD02E100EE6F0A /* YAPCViewerTests */,
 				C53EF8FE17AD02E100EE6F0A /* Frameworks */,
@@ -188,6 +219,10 @@
 		C5F2CDFB17AD038400EAD980 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C54624DD17AD26AD00B7361B /* YVTalkCell.h */,
+				C54624DE17AD26AD00B7361B /* YVTalkCell.m */,
+				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
+				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -205,12 +240,11 @@
 		C5F2CDFD17AD039300EAD980 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C5F2CE1017AD066C00EAD980 /* YVTalk.h */,
-				C5F2CE1117AD066C00EAD980 /* YVTalk.m */,
-				C5F2CE0D17AD064E00EAD980 /* YVSpeaker.h */,
-				C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */,
-				C5F2CE0A17AD063400EAD980 /* YVAbstract.h */,
-				C5F2CE0B17AD063400EAD980 /* YVAbstract.m */,
+				C5BC910517AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.h */,
+				C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */,
+				C518A04F17AD08C100B0E4B7 /* YVTalks.h */,
+				C518A05017AD08C100B0E4B7 /* YVTalks.m */,
+				C518A04E17AD089A00B0E4B7 /* ManagedObjects */,
 			);
 			name = Models;
 			path = ..;
@@ -408,6 +442,10 @@
 				C5F2CE0C17AD063400EAD980 /* YVAbstract.m in Sources */,
 				C5F2CE0F17AD064E00EAD980 /* YVSpeaker.m in Sources */,
 				C5F2CE1217AD066C00EAD980 /* YVTalk.m in Sources */,
+				C518A05117AD08C100B0E4B7 /* YVTalks.m in Sources */,
+				C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */,
+				C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */,
+				C54624DF17AD26AD00B7361B /* YVTalkCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +550,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -524,6 +563,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

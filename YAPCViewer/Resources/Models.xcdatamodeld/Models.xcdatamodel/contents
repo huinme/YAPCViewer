@@ -8,7 +8,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="talks" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="speaker" inverseEntity="YVTalk" syncable="YES"/>
+        <relationship name="talks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="speaker" inverseEntity="YVTalk" syncable="YES"/>
     </entity>
     <entity name="YVTalk" representedClassName="YVTalk" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,11 +24,11 @@
         <attribute name="video_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="video_url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abstract" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVAbstract" inverseName="talk" inverseEntity="YVAbstract" syncable="YES"/>
-        <relationship name="speaker" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
+        <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
     </entity>
     <elements>
-        <element name="YVTalk" positionX="160" positionY="192" width="128" height="255"/>
-        <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="105"/>
         <element name="YVAbstract" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="YVTalk" positionX="160" positionY="192" width="128" height="255"/>
     </elements>
 </model>

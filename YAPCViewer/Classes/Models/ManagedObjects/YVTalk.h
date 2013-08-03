@@ -25,15 +25,7 @@
 @property (nonatomic, retain) NSString * category;
 @property (nonatomic, retain) NSString * start_on;
 @property (nonatomic, retain) NSString * subtitles;
-@property (nonatomic, retain) NSSet *speaker;
 @property (nonatomic, retain) YVAbstract *abstract;
-@end
-
-@interface YVTalk (CoreDataGeneratedAccessors)
-
-- (void)addSpeakerObject:(YVSpeaker *)value;
-- (void)removeSpeakerObject:(YVSpeaker *)value;
-- (void)addSpeaker:(NSSet *)values;
-- (void)removeSpeaker:(NSSet *)values;
+@property (nonatomic, retain) YVSpeaker *speaker;
 
 @end
