@@ -27,6 +27,7 @@
 		C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */; };
 		C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */; };
 		C5A8DE0017AE3F2000EDB97D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */; };
+		C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */; };
 		C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */; };
 		C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */; };
 		C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */; };
@@ -82,6 +83,8 @@
 		C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVSectionHeader.h; path = Classes/Views/YVSectionHeader.h; sourceTree = "<group>"; };
 		C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVSectionHeader.m; path = Classes/Views/YVSectionHeader.m; sourceTree = "<group>"; };
 		C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkDetailViewController.h; path = Classes/ViewControlleres/YVTalkDetailViewController.h; sourceTree = "<group>"; };
+		C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkDetailViewController.m; path = Classes/ViewControlleres/YVTalkDetailViewController.m; sourceTree = "<group>"; };
 		C5BC910517AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+SafetyMapping.h"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.h"; sourceTree = "<group>"; };
 		C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+SafetyMapping.m"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.m"; sourceTree = "<group>"; };
 		C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkListViewController.h; path = Classes/ViewControlleres/YVTalkListViewController.h; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */,
 				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
+				C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */,
+				C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				C5A8DDF417AE19BB00EDB97D /* YVDateFormatManager.m in Sources */,
 				C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */,
 				C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */,
+				C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

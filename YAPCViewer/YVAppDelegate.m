@@ -39,15 +39,16 @@
                                                     UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
                                                                     forState:UIControlStateSelected];
 
-    UIBarButtonItem *searchBarButton = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
-    [searchBarButton setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#666666"],
-                                               UITextAttributeTextShadowColor : [UIColor whiteColor],
-                                               UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
-                                   forState:UIControlStateNormal];
-    [searchBarButton setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
-            UITextAttributeTextShadowColor : [UIColor whiteColor],
-           UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
-                                   forState:UIControlStateHighlighted];
+//    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], [UINavigationBar class], nil];
+    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
+    [barButtonItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#666666"],
+                                             UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                            UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                 forState:UIControlStateNormal];
+    [barButtonItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
+                                             UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                             UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                 forState:UIControlStateHighlighted];
 
 
     return YES;

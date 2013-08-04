@@ -12,12 +12,16 @@
 #import "YVModels.h"
 #import "YVTalks.h"
 
+#import "YVTalkDetailViewController.h"
+
 #import "YVEventDayView.h"
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
+
+static NSString *const kYVTalkListPushToDetailSegueIdentifier = @"PushToTalkDetailView";
 
 static NSString *const kYVTalkListFirstDateString   = @"2013-09-19";
 static NSString *const kYVTalkListSecondDateString  = @"2013-09-20";
@@ -45,11 +49,11 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.tabBarController.tabBar.clipsToBounds = YES;
     self.view.backgroundColor = [YVTalkCell backgroundColor];
 
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
     self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
-
 
     NSArray *eventDays = @[kYVTalkListFirstDateString,
                            kYVTalkListSecondDateString,
@@ -94,6 +98,17 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
+        NSAssert([sender isKindOfClass:[YVTalk class]], @"");
+
+        YVTalkDetailViewController *vc;
+        vc = (YVTalkDetailViewController *)segue.destinationViewController;
+        vc.talk = (YVTalk *)sender;
+    }
 }
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query
@@ -197,6 +212,16 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    YVTalk *talk;
+    if(self.tableView == tableView){
+        talk = [self.frController objectAtIndexPath:indexPath];
+    }else{
+        talk = [self.filteredItems objectAtIndex:indexPath.row];
+    }
+
+    [self performSegueWithIdentifier:@"PushToTalkDetailView"
+                              sender:talk];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
