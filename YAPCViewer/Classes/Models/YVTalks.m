@@ -11,6 +11,7 @@
 #import "HIDataStoreManager.h"
 
 #import "YVModels.h"
+#import "YVDateFormatManager.h"
 
 NSString *const YVTalksSerivceErrorDomain = @"YVTalksSerivceErrorDomain";
 
@@ -40,6 +41,23 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
 {
     NSFetchRequest *fr = [self _defaultYVTalkFetchRequest];
 
+    NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"event_date" ascending:YES];
+    [fr setSortDescriptors:@[dateSorter]];
+
+    return fr;
+}
+
++ (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate
+{
+    NSParameterAssert(eventDate);
+
+    NSFetchRequest *fr = [self _defaultYVTalkFetchRequest];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start_on contains[cd] %@", eventDate];
+    [fr setPredicate:predicate];
+
+    NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"event_date" ascending:YES];
+    [fr setSortDescriptors:@[dateSorter]];
 
     return fr;
 }
@@ -192,6 +210,23 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
 
         talk.abstract = abstract;
         abstract.talk = talk;
+    }
+
+    if(talk.start_on){
+        NSDateFormatter *df = [YVDateFormatManager sharedManager].defaultFormatter;
+        NSRange range = [YVDateFormatManager sharedManager].HHmmRange;
+
+        talk.event_date = [df dateFromString:talk.start_on];
+        talk.start_time = [talk.start_on substringWithRange:range];
+
+        NSCalendarUnit unit = (NSHourCalendarUnit|NSMinuteCalendarUnit);
+        NSCalendar *calendar = [YVDateFormatManager sharedManager].defaultCalendar;
+        NSDateComponents *components = [calendar components:unit
+                                                   fromDate:talk.event_date];
+
+        components.minute += [talk.duration intValue];
+        NSDate *endDate = [calendar dateFromComponents:components];
+        talk.end_time = [[df stringFromDate:endDate] substringWithRange:range];
     }
 
     return talk;

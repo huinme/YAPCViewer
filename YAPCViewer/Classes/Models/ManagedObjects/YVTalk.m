@@ -10,6 +10,7 @@
 #import "YVAbstract.h"
 #import "YVSpeaker.h"
 
+#import "YVDateFormatManager.h"
 
 @implementation YVTalk
 
@@ -27,5 +28,10 @@
 @dynamic subtitles;
 @dynamic speaker;
 @dynamic abstract;
+
+@dynamic event_date;
+@dynamic start_date;
+@dynamic start_time;
+@dynamic end_time;
 
 @end

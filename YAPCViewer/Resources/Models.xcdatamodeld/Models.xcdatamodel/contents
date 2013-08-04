@@ -13,11 +13,15 @@
     <entity name="YVTalk" representedClassName="YVTalk" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="end_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="material_level" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="slide_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="start_on" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitles" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title_en" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,6 +33,6 @@
     <elements>
         <element name="YVAbstract" positionX="160" positionY="192" width="128" height="75"/>
         <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="YVTalk" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="YVTalk" positionX="160" positionY="192" width="128" height="315"/>
     </elements>
 </model>

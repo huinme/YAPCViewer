@@ -23,6 +23,10 @@
 		C53EF92B17AD02E100EE6F0A /* YAPCViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */; };
 		C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54624DA17AD20FE00B7361B /* CoreData.framework */; };
 		C54624DF17AD26AD00B7361B /* YVTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C54624DE17AD26AD00B7361B /* YVTalkCell.m */; };
+		C5A8DDF417AE19BB00EDB97D /* YVDateFormatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */; };
+		C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */; };
+		C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */; };
+		C5A8DE0017AE3F2000EDB97D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */; };
 		C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */; };
 		C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */; };
 		C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */; };
@@ -71,6 +75,13 @@
 		C54624DC17AD235D00B7361B /* YVModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YVModels.h; path = YAPCViewer/Classes/Models/YVModels.h; sourceTree = "<group>"; };
 		C54624DD17AD26AD00B7361B /* YVTalkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkCell.h; path = Classes/Views/YVTalkCell.h; sourceTree = "<group>"; };
 		C54624DE17AD26AD00B7361B /* YVTalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkCell.m; path = Classes/Views/YVTalkCell.m; sourceTree = "<group>"; };
+		C5A8DDF217AE19BB00EDB97D /* YVDateFormatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVDateFormatManager.h; path = Classes/Others/YVDateFormatManager.h; sourceTree = "<group>"; };
+		C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVDateFormatManager.m; path = Classes/Others/YVDateFormatManager.m; sourceTree = "<group>"; };
+		C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVEventDayView.h; path = Classes/Views/YVEventDayView.h; sourceTree = "<group>"; };
+		C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVEventDayView.m; path = Classes/Views/YVEventDayView.m; sourceTree = "<group>"; };
+		C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVSectionHeader.h; path = Classes/Views/YVSectionHeader.h; sourceTree = "<group>"; };
+		C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVSectionHeader.m; path = Classes/Views/YVSectionHeader.m; sourceTree = "<group>"; };
+		C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C5BC910517AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+SafetyMapping.h"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.h"; sourceTree = "<group>"; };
 		C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+SafetyMapping.m"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.m"; sourceTree = "<group>"; };
 		C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkListViewController.h; path = Classes/ViewControlleres/YVTalkListViewController.h; sourceTree = "<group>"; };
@@ -94,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A8DE0017AE3F2000EDB97D /* QuartzCore.framework in Frameworks */,
 				C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */,
 				C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */,
 				C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */,
@@ -133,7 +145,6 @@
 		C53EF8F317AD02E100EE6F0A = {
 			isa = PBXGroup;
 			children = (
-				C54624DA17AD20FE00B7361B /* CoreData.framework */,
 				C53EF90517AD02E100EE6F0A /* YAPCViewer */,
 				C53EF92317AD02E100EE6F0A /* YAPCViewerTests */,
 				C53EF8FE17AD02E100EE6F0A /* Frameworks */,
@@ -155,6 +166,8 @@
 		C53EF8FE17AD02E100EE6F0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */,
+				C54624DA17AD20FE00B7361B /* CoreData.framework */,
 				C53EF8FF17AD02E100EE6F0A /* UIKit.framework */,
 				C53EF90117AD02E100EE6F0A /* Foundation.framework */,
 				C53EF90317AD02E100EE6F0A /* CoreGraphics.framework */,
@@ -171,6 +184,7 @@
 				C5F2CDFA17AD037600EAD980 /* AppDelegate */,
 				C5F2CDFB17AD038400EAD980 /* ViewControllers */,
 				C5F2CDFD17AD039300EAD980 /* Models */,
+				C5A8DDF517AE19BF00EDB97D /* Othres */,
 				C5F2CDFC17AD038D00EAD980 /* Resources */,
 				C53EF90617AD02E100EE6F0A /* Supporting Files */,
 			);
@@ -207,6 +221,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C5A8DDF517AE19BF00EDB97D /* Othres */ = {
+			isa = PBXGroup;
+			children = (
+				C5A8DDF217AE19BB00EDB97D /* YVDateFormatManager.h */,
+				C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */,
+			);
+			name = Othres;
+			sourceTree = "<group>";
+		};
 		C5F2CDFA17AD037600EAD980 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +244,10 @@
 			children = (
 				C54624DD17AD26AD00B7361B /* YVTalkCell.h */,
 				C54624DE17AD26AD00B7361B /* YVTalkCell.m */,
+				C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */,
+				C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */,
+				C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */,
+				C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */,
 				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
 			);
@@ -446,6 +473,9 @@
 				C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */,
 				C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */,
 				C54624DF17AD26AD00B7361B /* YVTalkCell.m in Sources */,
+				C5A8DDF417AE19BB00EDB97D /* YVDateFormatManager.m in Sources */,
+				C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */,
+				C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

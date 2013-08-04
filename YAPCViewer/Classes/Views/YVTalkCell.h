@@ -13,6 +13,7 @@
 @interface YVTalkCell : UITableViewCell
 
 + (CGFloat)cellHeight;
++ (UIColor *)backgroundColor;
 
 - (void)loadDataFromTalk:(YVTalk *)talk;
 

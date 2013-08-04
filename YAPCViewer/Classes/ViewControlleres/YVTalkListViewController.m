@@ -12,16 +12,29 @@
 #import "YVModels.h"
 #import "YVTalks.h"
 
+#import "YVEventDayView.h"
 #import "YVTalkCell.h"
+#import "YVSectionHeader.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
 
+static NSString *const kYVTalkListFirstDateString   = @"2013-09-19";
+static NSString *const kYVTalkListSecondDateString  = @"2013-09-20";
+static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
+
 @interface YVTalkListViewController ()
-<NSFetchedResultsControllerDelegate>
+< NSFetchedResultsControllerDelegate,
+  UISearchDisplayDelegate,
+  YVEventDayViewDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *frController;
+@property (nonatomic, strong) UISearchDisplayController *searchController;
+
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
+
+- (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query;
 
 @end
 
@@ -30,15 +43,29 @@ static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [YVTalkCell backgroundColor];
+
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
+
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 44.0f);
+    searchBar.tintColor = [UIColor colorForHex:@"#d5d5d5"];
+    self.tableView.tableHeaderView = searchBar;
+
+    NSArray *eventDays = @[kYVTalkListFirstDateString,
+                           kYVTalkListSecondDateString,
+                           kYVTalkListThirdDateString];
+
+    [self.eventDayView setEventDays:eventDays];
+    self.eventDayView.delegate = self;
+
+    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar
+                                                              contentsController:self];
+
 
     if(!self.frController){
-        NSFetchRequest *fr = [YVTalks allTalksFetchRequest];
-        NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
-        self.frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
-                                                                managedObjectContext:moc
-                                                                  sectionNameKeyPath:nil
-                                                                           cacheName:kYVTalkListTalksCacheName];
-        self.frController.delegate = self;
+        self.frController = [self _frControllerForQuery:eventDays[0]];
     }
 
     NSError *fetchError = nil;
@@ -59,6 +86,40 @@ static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query
+{
+    [NSFetchedResultsController deleteCacheWithName:kYVTalkListTalksCacheName];
+    
+    NSFetchRequest *fr = [YVTalks talksRequestForDate:query];
+    NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+
+    NSFetchedResultsController *frController = nil;
+    frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
+                                                       managedObjectContext:moc
+                                                         sectionNameKeyPath:@"start_time"
+                                                                  cacheName:kYVTalkListTalksCacheName];
+    frController.delegate = self;
+
+    return frController;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVEventDayViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)eventDayView:(YVEventDayView *)eventDayView
+       dayDidChanged:(NSString *)dayString
+{
+    self.frController = [self _frControllerForQuery:dayString];
+
+    NSError *fetchError = nil;
+    if(![self.frController performFetch:&fetchError]){
+        NSLog(@"FETCH ERROR : %@", fetchError);
+    }
+
+    [self.tableView reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +170,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return [YVTalkCell cellHeight];
 }
 
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section
+{
+    id<NSFetchedResultsSectionInfo> sectionInfo;
+    sectionInfo = self.frController.sections[section];
+
+    YVSectionHeader *header = [[YVSectionHeader alloc] initWithFrame:CGRectZero];
+    header.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 23.0f);
+
+    [header setSectionTitle:[sectionInfo name]];
+    return header;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSFethedResultsControllerDelegate
 ////////////////////////////////////////////////////////////////////////////////
@@ -140,5 +214,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView endUpdates];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UISearchDispalyDelegate
+////////////////////////////////////////////////////////////////////////////////
 
 @end

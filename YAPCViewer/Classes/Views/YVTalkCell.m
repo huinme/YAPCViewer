@@ -10,12 +10,15 @@
 
 #import "YVModels.h"
 
-static const CGFloat kYVTalkCellHeight = 65.0f;
+static const CGFloat kYVTalkCellHeight = 60.0f;
+
+static NSString *const kYVTalkCellNormalBackgroundColor         = @"#fefefe";
+static NSString *const kYVTalkCellTalkTitleNormalTextColor      = @"#0f0f0f";
+static NSString *const kYVTalkCellTalkTitleSelectedTextColor    = @"#ffffff";
+static NSString *const kYVTalkCellTimeNormalTextColor           = @"#5f5f5f";
+static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
 
 @interface YVTalkCell()
-
-@property (nonatomic, strong) UILabel *talkTitleLabel;
-@property (nonatomic, strong) UILabel *timeLabel;
 
 - (void)_setupViews;
 
@@ -28,10 +31,15 @@ static const CGFloat kYVTalkCellHeight = 65.0f;
     return kYVTalkCellHeight;
 }
 
++ (UIColor *)backgroundColor
+{
+    return [UIColor colorForHex:kYVTalkCellNormalBackgroundColor];
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style
     reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
         [self _setupViews];
     }
@@ -46,41 +54,23 @@ static const CGFloat kYVTalkCellHeight = 65.0f;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)_setupViews
 {
-    self.textLabel.hidden = YES;
-
-    self.talkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0f,
-                                                                   5.0f,
-                                                                   CGRectGetWidth(self.bounds) - 30.0f,
-                                                                   30.0f)];
-    self.talkTitleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-    self.talkTitleLabel.numberOfLines = 2;
-    [self.contentView addSubview:self.talkTitleLabel];
-
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0f,
-                                                               40.0f,
-                                                               CGRectGetWidth(self.bounds) - 30.0f,
-                                                               13.0f)];
-    self.timeLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.timeLabel.textColor = [UIColor lightGrayColor];
-    self.timeLabel.numberOfLines = 1;
-    [self.contentView addSubview:self.timeLabel];
+    self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.backgroundView.backgroundColor = [[self class] backgroundColor];
 }
 
 - (void)loadDataFromTalk:(YVTalk *)talk
 {
     if(talk.title.length > 0){
-        self.talkTitleLabel.text = talk.title;
+        self.textLabel.text = talk.title;
     }else{
-        self.talkTitleLabel.text = talk.title_en;
+        self.textLabel.text = talk.title_en;
     }
 
-    self.timeLabel.text = talk.start_on;
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", talk.start_time, talk.end_time];
 }
 
 @end

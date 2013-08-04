@@ -9,13 +9,19 @@
 #import "YVAppDelegate.h"
 
 #import "HIDataStoreManager.h"
-#import "YVTalks.h"
 
 @implementation YVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [HIDataStoreManager sharedManager];
+
+    UINavigationBar *barAppearance = [UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil];
+    barAppearance.tintColor = [UIColor colorForHex:@"#eaeaea"];
+    [barAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:20.0f],
+                                             UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
+                                             UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                             UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.5f)]}];
 
     return YES;
 }

@@ -28,4 +28,9 @@
 @property (nonatomic, retain) YVAbstract *abstract;
 @property (nonatomic, retain) YVSpeaker *speaker;
 
+@property (nonatomic, retain) NSDate *event_date;
+@property (nonatomic, retain) NSString *start_date;
+@property (nonatomic, retain) NSString *start_time;
+@property (nonatomic, retain) NSString *end_time;
+
 @end

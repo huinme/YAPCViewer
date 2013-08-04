@@ -15,6 +15,7 @@ typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 @interface YVTalks : NSObject
 
 + (NSFetchRequest *)allTalksFetchRequest;
++ (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate;
 
 - (void)fetchAllTalksWithHandler:(YVTalksHandler)handler;
 
