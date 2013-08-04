@@ -1,0 +1,8 @@
+- MCUIColorUtils
+  (https://github.com/mirego/MCUIColorUtils)
+
+- TTTAttributedLabel
+  (https://github.com/mattt/TTTAttributedLabel)
+
+- HIDataStoreManager
+  (https://github.com/kshuin/HIDataStoreManager)

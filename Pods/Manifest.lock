@@ -3,12 +3,14 @@ PODS:
   - Kiwi (2.2)
   - MCUIColorUtils (1.0.0)
   - Nocilla (0.6)
+  - TTTAttributedLabel (1.7.1)
 
 DEPENDENCIES:
   - HIDataStoreManager (from `https://github.com/kshuin/HIDateStoreManager.git`)
   - Kiwi
   - MCUIColorUtils
   - Nocilla
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   HIDataStoreManager:
@@ -19,5 +21,6 @@ SPEC CHECKSUMS:
   Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
   MCUIColorUtils: 339761b4aedb0c2cfaf8ce1cd441bcceee115ea1
   Nocilla: 8eb1de5a53f8567ca529d144880525448c6e713c
+  TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
 
 COCOAPODS: 0.20.2

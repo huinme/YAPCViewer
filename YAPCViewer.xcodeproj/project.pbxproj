@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD4B92538743D6A39888F7 /* libPods.a */; };
 		2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2300E78217AE7F78008F3585 /* YVLoadingView.m */; };
+		23733D1617AE998000244F01 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23733D1517AE998000244F01 /* MapKit.framework */; };
+		23733D1917AE9A8200244F01 /* YVMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23733D1817AE9A8200244F01 /* YVMapsViewController.m */; };
+		23733D1B17AE9B6600244F01 /* Acknowledgement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23733D1A17AE9B6600244F01 /* Acknowledgement.txt */; };
+		23733D1E17AE9C0600244F01 /* YVMiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23733D1D17AE9C0600244F01 /* YVMiscViewController.m */; };
 		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
 		C518A05117AD08C100B0E4B7 /* YVTalks.m in Sources */ = {isa = PBXBuildFile; fileRef = C518A05017AD08C100B0E4B7 /* YVTalks.m */; };
 		C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
@@ -54,6 +58,12 @@
 /* Begin PBXFileReference section */
 		2300E78117AE7F78008F3585 /* YVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVLoadingView.h; path = Classes/Views/YVLoadingView.h; sourceTree = "<group>"; };
 		2300E78217AE7F78008F3585 /* YVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVLoadingView.m; path = Classes/Views/YVLoadingView.m; sourceTree = "<group>"; };
+		23733D1517AE998000244F01 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		23733D1717AE9A8200244F01 /* YVMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVMapsViewController.h; path = Classes/ViewControlleres/YVMapsViewController.h; sourceTree = "<group>"; };
+		23733D1817AE9A8200244F01 /* YVMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVMapsViewController.m; path = Classes/ViewControlleres/YVMapsViewController.m; sourceTree = "<group>"; };
+		23733D1A17AE9B6600244F01 /* Acknowledgement.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Acknowledgement.txt; path = Resources/Acknowledgement.txt; sourceTree = "<group>"; };
+		23733D1C17AE9C0600244F01 /* YVMiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVMiscViewController.h; path = Classes/ViewControlleres/YVMiscViewController.h; sourceTree = "<group>"; };
+		23733D1D17AE9C0600244F01 /* YVMiscViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVMiscViewController.m; path = Classes/ViewControlleres/YVMiscViewController.m; sourceTree = "<group>"; };
 		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23733D1617AE998000244F01 /* MapKit.framework in Frameworks */,
 				C5A8DE0017AE3F2000EDB97D /* QuartzCore.framework in Frameworks */,
 				C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */,
 				C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */,
@@ -187,6 +198,7 @@
 		C53EF8FE17AD02E100EE6F0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23733D1517AE998000244F01 /* MapKit.framework */,
 				C5A8DDFF17AE3F2000EDB97D /* QuartzCore.framework */,
 				C54624DA17AD20FE00B7361B /* CoreData.framework */,
 				C53EF8FF17AD02E100EE6F0A /* UIKit.framework */,
@@ -268,6 +280,10 @@
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
 				C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */,
 				C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */,
+				23733D1717AE9A8200244F01 /* YVMapsViewController.h */,
+				23733D1817AE9A8200244F01 /* YVMapsViewController.m */,
+				23733D1C17AE9C0600244F01 /* YVMiscViewController.h */,
+				23733D1D17AE9C0600244F01 /* YVMiscViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -278,6 +294,7 @@
 				C5F2CE0317AD046800EAD980 /* images */,
 				C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */,
 				C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */,
+				23733D1A17AE9B6600244F01 /* Acknowledgement.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -387,6 +404,7 @@
 				C5F2CE0717AD046800EAD980 /* Default-568h@2x.png in Resources */,
 				C5F2CE0817AD046800EAD980 /* Default.png in Resources */,
 				C5F2CE0917AD046800EAD980 /* Default@2x.png in Resources */,
+				23733D1B17AE9B6600244F01 /* Acknowledgement.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +514,8 @@
 				C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */,
 				C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */,
 				2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */,
+				23733D1917AE9A8200244F01 /* YVMapsViewController.m in Sources */,
+				23733D1E17AE9C0600244F01 /* YVMiscViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

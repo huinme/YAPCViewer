@@ -9,15 +9,17 @@
 #import "YVTalkDetailViewController.h"
 
 #import "YVDateFormatManager.h"
+#import "TTTAttributedLabel.h"
 
 @interface YVTalkDetailViewController ()
+<TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
-@property (nonatomic, weak) IBOutlet UITextView *abstractTextView;
+@property (nonatomic, weak) IBOutlet TTTAttributedLabel *abstractLabel;
 
 - (void)_loadDataFromTalk:(YVTalk *)talk;
 
@@ -64,20 +66,28 @@
                            talk.start_time,
                            talk.end_time,
                            talk.duration];
-
-    NSString *abstractText = talk.abstract.abstract;
-    CGSize textSize = [abstractText sizeWithFont:[UIFont systemFontOfSize:14.0f]
-                               constrainedToSize:CGSizeMake(260.0f, INT_MAX)
-                                   lineBreakMode:NSLineBreakByWordWrapping];
-    self.abstractTextView.contentSize = textSize;
-
-    self.abstractTextView.text = abstractText;
+    
+    self.abstractLabel.dataDetectorTypes = NSTextCheckingTypeLink;
+    self.abstractLabel.text = talk.abstract.abstract;
+    [self.abstractLabel sizeToFit];
 
     CGSize contentSize = self.scrollView.contentSize;
-    contentSize.height = self.abstractTextView.frame.origin.y
-                            + CGRectGetHeight(self.abstractTextView.bounds)
+    contentSize.height = CGRectGetMinY(self.abstractLabel.frame)
+                            + CGRectGetHeight(self.abstractLabel.frame)
                             + 20.0f;
-    self.abstractTextView.contentSize = contentSize;
+    self.scrollView.contentSize = contentSize;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - TTTAttributedLabelDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)attributedLabel:(TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url
+{
+    if([[UIApplication sharedApplication] canOpenURL:url]){
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 @end
