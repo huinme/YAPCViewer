@@ -17,7 +17,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel *abstractLabel;
+@property (nonatomic, weak) IBOutlet UITextView *abstractTextView;
 
 - (void)_loadDataFromTalk:(YVTalk *)talk;
 
@@ -65,16 +65,19 @@
                            talk.end_time,
                            talk.duration];
 
+    NSString *abstractText = talk.abstract.abstract;
+    CGSize textSize = [abstractText sizeWithFont:[UIFont systemFontOfSize:14.0f]
+                               constrainedToSize:CGSizeMake(260.0f, INT_MAX)
+                                   lineBreakMode:NSLineBreakByWordWrapping];
+    self.abstractTextView.contentSize = textSize;
 
-
-    self.abstractLabel.text = talk.abstract.abstract;
-    [self.abstractLabel sizeToFit];
+    self.abstractTextView.text = abstractText;
 
     CGSize contentSize = self.scrollView.contentSize;
-    contentSize.height = CGRectGetMinY(self.abstractLabel.frame)
-    + CGRectGetHeight(self.abstractLabel.frame)
-    + 20.0f;
-    self.scrollView.contentSize = contentSize;
+    contentSize.height = self.abstractTextView.frame.origin.y
+                            + CGRectGetHeight(self.abstractTextView.bounds)
+                            + 20.0f;
+    self.abstractTextView.contentSize = contentSize;
 }
 
 @end

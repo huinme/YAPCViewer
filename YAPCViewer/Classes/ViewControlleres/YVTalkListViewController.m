@@ -17,6 +17,7 @@
 #import "YVEventDayView.h"
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
+#import "YVLoadingView.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
@@ -85,11 +86,18 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    YVLoadingView *loadingView;
+    if([[self.frController fetchedObjects] count] == 0){
+        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
+        [loadingView showInSuperView:self.navigationController.view animated:YES];
+    }
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[YVTalks new] fetchAllTalksWithHandler:^(NSDictionary *dataDict, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [loadingView hideWithAnimated:YES];
         });
     }];
 }
@@ -267,6 +275,21 @@ viewForHeaderInSection:(NSInteger)section
     }else if(type == NSFetchedResultsChangeDelete){
         [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
+    if(type == NSFetchedResultsChangeInsert) {
+        [self.tableView insertSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeDelete){
+        [self.tableView deleteSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 

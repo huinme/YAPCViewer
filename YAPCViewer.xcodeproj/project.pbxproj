@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD4B92538743D6A39888F7 /* libPods.a */; };
+		2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2300E78217AE7F78008F3585 /* YVLoadingView.m */; };
 		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
 		C518A05117AD08C100B0E4B7 /* YVTalks.m in Sources */ = {isa = PBXBuildFile; fileRef = C518A05017AD08C100B0E4B7 /* YVTalks.m */; };
 		C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2300E78117AE7F78008F3585 /* YVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVLoadingView.h; path = Classes/Views/YVLoadingView.h; sourceTree = "<group>"; };
+		2300E78217AE7F78008F3585 /* YVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVLoadingView.m; path = Classes/Views/YVLoadingView.m; sourceTree = "<group>"; };
 		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +134,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2300E78417AE7F7D008F3585 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C54624DD17AD26AD00B7361B /* YVTalkCell.h */,
+				C54624DE17AD26AD00B7361B /* YVTalkCell.m */,
+				C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */,
+				C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */,
+				C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */,
+				C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */,
+				2300E78117AE7F78008F3585 /* YVLoadingView.h */,
+				2300E78217AE7F78008F3585 /* YVLoadingView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C518A04E17AD089A00B0E4B7 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,12 +263,7 @@
 		C5F2CDFB17AD038400EAD980 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C54624DD17AD26AD00B7361B /* YVTalkCell.h */,
-				C54624DE17AD26AD00B7361B /* YVTalkCell.m */,
-				C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */,
-				C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */,
-				C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */,
-				C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */,
+				2300E78417AE7F7D008F3585 /* Views */,
 				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
 				C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */,
@@ -482,6 +495,7 @@
 				C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */,
 				C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */,
 				C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */,
+				2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
