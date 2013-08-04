@@ -23,6 +23,33 @@
                                              UITextAttributeTextShadowColor : [UIColor whiteColor],
                                              UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.5f)]}];
 
+    UITabBar *tabBarAppearance = [UITabBar appearanceWhenContainedIn:[UITabBarController class], nil];
+    tabBarAppearance.tintColor = [UIColor colorForHex:@"#eaeaea"];
+    tabBarAppearance.shadowImage = nil;
+
+    UITabBarItem *tabBarItemAppearance = [UITabBarItem appearanceWhenContainedIn:[UITabBar class], nil];
+    [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:12.0f],
+                                                    UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
+                                                    UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                                    UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                        forState:UIControlStateNormal];
+    [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:12.0f],
+                                                    UITextAttributeTextColor : [UIColor colorForHex:@"#1d6ed2"],
+                                                    UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                                    UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                                                    forState:UIControlStateSelected];
+
+    UIBarButtonItem *searchBarButton = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
+    [searchBarButton setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#666666"],
+                                               UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                               UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                   forState:UIControlStateNormal];
+    [searchBarButton setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
+            UITextAttributeTextShadowColor : [UIColor whiteColor],
+           UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
+                                   forState:UIControlStateHighlighted];
+
+
     return YES;
 }
 

@@ -30,11 +30,13 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 @property (nonatomic, strong) NSFetchedResultsController *frController;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) NSArray *filteredItems;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query;
+- (NSArray *)_filteredItemForQuery:(NSString *)query;
 
 @end
 
@@ -48,10 +50,6 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
     self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    searchBar.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 44.0f);
-    searchBar.tintColor = [UIColor colorForHex:@"#d5d5d5"];
-    self.tableView.tableHeaderView = searchBar;
 
     NSArray *eventDays = @[kYVTalkListFirstDateString,
                            kYVTalkListSecondDateString,
@@ -60,9 +58,16 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     [self.eventDayView setEventDays:eventDays];
     self.eventDayView.delegate = self;
 
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 44.0f);
+    searchBar.tintColor = [UIColor colorForHex:@"#d5d5d5"];
+    self.tableView.tableHeaderView = searchBar;
+
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar
                                                               contentsController:self];
-
+    self.searchController.delegate = self;
+    self.searchController.searchResultsDataSource = self;
+    self.searchController.searchResultsDelegate = self;
 
     if(!self.frController){
         self.frController = [self _frControllerForQuery:eventDays[0]];
@@ -78,7 +83,10 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[YVTalks new] fetchAllTalksWithHandler:^(NSDictionary *dataDict, NSError *error) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -105,6 +113,18 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     return frController;
 }
 
+- (NSArray *)_filteredItemForQuery:(NSString *)query
+{
+    NSParameterAssert(query);
+
+    NSArray *items = [self.frController fetchedObjects];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[cd] %@ OR title_en contains[cd] %@", query, query];
+    items = [items filteredArrayUsingPredicate:predicate];
+
+    return items;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - YVEventDayViewDelegate
 ////////////////////////////////////////////////////////////////////////////////
@@ -128,14 +148,22 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.frController.sections.count;
+    if(self.tableView == tableView){
+        return self.frController.sections.count;
+    }
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id<NSFetchedResultsSectionInfo> sectionInfo;
-    sectionInfo = self.frController.sections[section];
-    return [[sectionInfo objects] count];
+    if(self.tableView == tableView){
+        id<NSFetchedResultsSectionInfo> sectionInfo;
+        sectionInfo = self.frController.sections[section];
+        return [[sectionInfo objects] count];
+    }
+
+    return [self.filteredItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -148,7 +176,14 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
                                  reuseIdentifier:kYVTalkListTalkCellIdentifier];
     }
 
-    YVTalk *talk = [self.frController objectAtIndexPath:indexPath];
+    YVTalk *talk = nil;
+    if(self.tableView == tableView){
+        talk = [self.frController objectAtIndexPath:indexPath];
+    }else{
+        talk = [self.filteredItems objectAtIndex:indexPath.row];
+    }
+    
+    NSParameterAssert(talk);
     [cell loadDataFromTalk:talk];
 
     return cell;
@@ -218,5 +253,19 @@ viewForHeaderInSection:(NSInteger)section
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UISearchDispalyDelegate
 ////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+    shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSString *query = controller.searchBar.text;
+    query = [query stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    if(query < 0){
+        return NO;
+    }
+
+    self.filteredItems = [self _filteredItemForQuery:query];
+    return YES;
+}
 
 @end
