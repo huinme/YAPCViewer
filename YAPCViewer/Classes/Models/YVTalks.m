@@ -137,7 +137,7 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
             [self _saveTalkWithDict:talkDict inMoc:moc];
         }];
 
-        [[HIDataStoreManager sharedManager] saveChildContext:moc];
+        [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
         handler(dataDict, nil);
     };
 
