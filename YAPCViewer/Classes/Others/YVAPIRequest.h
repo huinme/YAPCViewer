@@ -14,6 +14,10 @@ typedef void (^YVAPIRequestHandler)(NSDictionary *dataDict, NSError *error);
 
 @interface YVAPIRequest : NSObject
 
+// Not implemented yet.
+//+ (NSURLRequest *)getRequestWithURL:(NSURL *)url
+//                             params:(NSDictionary *)params;
+
 + (void)sendRequest:(NSURLRequest *)request
   completionHandler:(YVAPIRequestHandler)handler;
 

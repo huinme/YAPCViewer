@@ -118,7 +118,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
 {
     if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
         NSAssert([sender isKindOfClass:[YVTalk class]], @"");
