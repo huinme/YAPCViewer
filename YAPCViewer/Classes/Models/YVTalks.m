@@ -13,8 +13,10 @@
 #import "YVModels.h"
 #import "YVDateFormatManager.h"
 
+// Extern Constants
 NSString *const YVTalksSerivceErrorDomain = @"YVTalksSerivceErrorDomain";
 
+// Static Constants
 static NSString *const kYVTalksAPIScheme  = @"http";
 static NSString *const kYVTalksAPIBaseURL = @"yapcasia.org";
 static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";

@@ -1,22 +1,22 @@
 //
-//  YVMapsViewController.m
+//  YVTabBarController.m
 //  YAPCViewer
 //
-//  Created by huin on 8/4/13.
+//  Created by Koichi Sakata on 8/25/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
-#import "YVMapsViewController.h"
+#import "YVTabBarController.h"
 
-@interface YVMapsViewController ()
+@interface YVTabBarController ()
 
 @end
 
-@implementation YVMapsViewController
+@implementation YVTabBarController
 
 - (void)awakeFromNib
 {
-    [super awakeFromNib];
+    self.tabBar.clipsToBounds = YES;
 }
 
 - (void)viewDidLoad

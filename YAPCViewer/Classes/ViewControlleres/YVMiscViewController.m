@@ -13,9 +13,16 @@
 @interface YVMiscViewController ()
 <TTTAttributedLabelDelegate>
 
+@property (nonatomic, strong) TTTAttributedLabel *acknowledgementLabel;
+
 @end
 
 @implementation YVMiscViewController
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+}
 
 - (void)viewDidLoad
 {
@@ -33,7 +40,9 @@
     label.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [label sizeToFit];
     label.backgroundColor = self.view.backgroundColor;
-    [self.view addSubview:label];
+
+    self.acknowledgementLabel = label;
+    [self.view addSubview:self.acknowledgementLabel];
 }
 
 - (void)didReceiveMemoryWarning

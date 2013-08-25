@@ -27,6 +27,11 @@
 
 @implementation YVTalkDetailViewController
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

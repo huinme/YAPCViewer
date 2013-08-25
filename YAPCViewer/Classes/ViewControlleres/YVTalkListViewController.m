@@ -47,14 +47,17 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 @implementation YVTalkListViewController
 
+- (void)awakeFromNib
+{
+  self.view.backgroundColor = [YVTalkCell backgroundColor];
+
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+  self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.tabBarController.tabBar.clipsToBounds = YES;
-    self.view.backgroundColor = [YVTalkCell backgroundColor];
-
-    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 
     NSArray *eventDays = @[kYVTalkListFirstDateString,
                            kYVTalkListSecondDateString,
@@ -86,7 +89,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    YVLoadingView *loadingView;
+    YVLoadingView *loadingView = nil;
     if([[self.frController fetchedObjects] count] == 0){
         loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
         [loadingView showInSuperView:self.navigationController.view animated:YES];
@@ -100,6 +103,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
             [loadingView hideWithAnimated:YES];
         });
     }];
+
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
