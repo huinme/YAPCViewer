@@ -12,6 +12,7 @@
 #import "YVTalk.h"
 #import "YVSpeaker.h"
 #import "YVAbstract.h"
+#import "YVVenue.h"
 
 #import "NSManagedObject+SafetyMapping.h"
 

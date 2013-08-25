@@ -37,7 +37,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013-01-01 00:00 - 00:00 (000分)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SRz-x6-Jov">
-                                <rect key="frame" x="20" y="68" width="280" height="20"/>
+                                <rect key="frame" x="20" y="97" width="280" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Hall" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Mh-HR-OZ0" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="20" y="68" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -45,7 +53,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OnR-4h-vaQ" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="20" y="96" width="280" height="220"/>
+                                <rect key="frame" x="20" y="125" width="280" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -65,6 +73,7 @@
                         <outlet property="scrollView" destination="rMM-zc-i7j" id="dKL-u4-TvE"/>
                         <outlet property="timeLabel" destination="SRz-x6-Jov" id="N5v-fH-wTx"/>
                         <outlet property="titleLabel" destination="XwD-2k-0Fp" id="gc2-qB-9mG"/>
+                        <outlet property="venueLabel" destination="8Mh-HR-OZ0" id="jdV-o5-49Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaE-ra-mMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -301,6 +310,7 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="venueLabel" candidateClass="TTTAttributedLabel"/>
             </relationships>
         </class>
         <class className="YVTalkListViewController" superclassName="UIViewController">

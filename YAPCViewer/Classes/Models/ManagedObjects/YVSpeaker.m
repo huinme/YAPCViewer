@@ -11,6 +11,7 @@
 
 @implementation YVSpeaker
 
+@dynamic id;
 @dynamic nickname;
 @dynamic name;
 @dynamic service;

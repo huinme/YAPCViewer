@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class YVAbstract, YVSpeaker;
+@class YVAbstract, YVSpeaker, YVVenue;
 
 @interface YVTalk : NSManagedObject
 
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSString * subtitles;
 @property (nonatomic, retain) YVAbstract *abstract;
 @property (nonatomic, retain) YVSpeaker *speaker;
+@property (nonatomic, retain) YVVenue *venue;
 
 @property (nonatomic, retain) NSDate *event_date;
 @property (nonatomic, retain) NSString *start_date;

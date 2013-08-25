@@ -12,6 +12,8 @@ static NSString *const kYVAPIEndpointScheme  = @"http";
 static NSString *const kYVAPIEndpointBaseURL = @"yapcasia.org";
 static NSString *const kYVAPIEndpointTalkListPath = @"/2013/api/talk/list";
 
+static NSString *const kTalkListPathFormat = @"/2013/talk/schedule?date=%@&format=json";
+
 @interface YVAPIEndpoint()
 
 + (NSString *)_baseURL;
@@ -37,6 +39,14 @@ static NSString *const kYVAPIEndpointTalkListPath = @"/2013/api/talk/list";
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [self _baseURL], [self _talkListPath]];
 
     return [NSURL URLWithString:urlString];
+}
+
++ (NSURL *)urlForTalkListWithDate:(NSString *)dateString
+{
+    NSString *baseURLString = [self _baseURL];
+    NSString *apiURLString = [baseURLString stringByAppendingFormat:kTalkListPathFormat, dateString];
+
+    return [NSURL URLWithString:apiURLString];
 }
 
 @end

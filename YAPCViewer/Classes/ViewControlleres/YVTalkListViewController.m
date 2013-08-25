@@ -33,6 +33,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
   UISearchDisplayDelegate,
   YVEventDayViewDelegate>
 
+@property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
 @property (nonatomic, strong) NSArray *filteredItems;
@@ -61,11 +62,10 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     [super viewDidLoad];
 
-    NSArray *eventDays = @[kYVTalkListFirstDateString,
-                           kYVTalkListSecondDateString,
-                           kYVTalkListThirdDateString];
-
-    [self.eventDayView setEventDays:eventDays];
+    self.eventDays = @[kYVTalkListFirstDateString,
+                       kYVTalkListSecondDateString,
+                       kYVTalkListThirdDateString];
+    [self.eventDayView setEventDays:self.eventDays];
     self.eventDayView.delegate = self;
 
     UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -80,35 +80,39 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDelegate = self;
 
     if(!self.frController){
-        self.frController = [self _frControllerForQuery:eventDays[0]];
+        self.frController = [self _frControllerForQuery:self.eventDays[0]];
     }
 
     NSError *fetchError = nil;
     if(![self.frController performFetch:&fetchError]){
         NSLog(@"FETCH ERROR : %@", fetchError);
     }
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+
     YVLoadingView *loadingView = nil;
     if([[self.frController fetchedObjects] count] == 0){
         loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
         [loadingView showInSuperView:self.navigationController.view animated:YES];
     }
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [[YVTalks new] fetchAllTalksWithHandler:^(NSDictionary *dataDict, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(error){
-                [self _alertError:error];
-            }
+    [[YVTalks new] fetchTalksForDate:@"2013-09-19"
+                         withHandler:
+     ^(NSDictionary *dataDict, NSError *error) {
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if(error){
+                 [self _alertError:error];
+             }
 
-            [loadingView hideWithAnimated:YES];
-        });
-    }];
+             [loadingView hideWithAnimated:YES];
+         });
+     }];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 }
 

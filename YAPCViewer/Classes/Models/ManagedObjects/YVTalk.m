@@ -28,6 +28,7 @@
 @dynamic subtitles;
 @dynamic speaker;
 @dynamic abstract;
+@dynamic venue;
 
 @dynamic event_date;
 @dynamic start_date;
