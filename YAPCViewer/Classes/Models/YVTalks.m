@@ -13,13 +13,8 @@
 #import "YVModels.h"
 #import "YVDateFormatManager.h"
 
-// Extern Constants
-NSString *const YVTalksSerivceErrorDomain = @"YVTalksSerivceErrorDomain";
-
-// Static Constants
-static NSString *const kYVTalksAPIScheme  = @"http";
-static NSString *const kYVTalksAPIBaseURL = @"yapcasia.org";
-static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
+#import "YVAPIEndpoint.h"
+#import "YVAPIRequest.h"
 
 @interface YVTalks()
 
@@ -29,8 +24,7 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
 + (YVSpeaker *)emptySpeakerInMoc:(NSManagedObjectContext *)moc;
 + (YVAbstract *)emptyAbstractInMoc:(NSManagedObjectContext *)moc;
 
-- (void)_fetchRemoteTalksWithHandler:(YVTalksHandler)handler;
-- (YVTalk *)_saveTalkWithDict:(NSDictionary *)dict
+- (YVTalk *)_insertTalkWithDict:(NSDictionary *)dict
                         inMoc:(NSManagedObjectContext *)moc;
 
 - (void)_deleteAllMangagedObjectsInMoc:(NSManagedObjectContext *)moc;
@@ -115,81 +109,41 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
 
 - (void)fetchAllTalksWithHandler:(YVTalksHandler)handler
 {
-    void (^saveDataBlock)(NSDictionary *, NSError *) = ^(NSDictionary *dataDict, NSError *error) {
-        if(error){
-            handler(nil, error);
-            return ;
-        }
-
-        NSArray *talksArray = [dataDict valueForKey:@"talks"];
-        if(!talksArray || [talksArray isEqual:[NSNull null]]) {
-            error = [NSError errorWithDomain:YVTalksSerivceErrorDomain
-                                        code:0
-                                    userInfo:nil];
-            handler(nil, error);
-            return;
-        }
-
-        NSAssert(![NSThread isMainThread], @"This process must be executed on sub thread.");
-
-        NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].subThreadMOC;
-        [self _deleteAllMangagedObjectsInMoc:moc]; // data not be saved in this method.
-
-        [talksArray enumerateObjectsUsingBlock:^(NSDictionary *talkDict, NSUInteger idx, BOOL *stop) {
-            [self _saveTalkWithDict:talkDict inMoc:moc];
-        }];
-
-        [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
-        handler(dataDict, nil);
-    };
-
-    [self _fetchRemoteTalksWithHandler:saveDataBlock];
-}
-
-- (void)_fetchRemoteTalksWithHandler:(YVTalksHandler)handler
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@%@",
-                                                     kYVTalksAPIScheme,
-                                                     kYVTalksAPIBaseURL,
-                                                     kYVTalksAPITalkListPath];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSURL *url = [YVAPIEndpoint urlForTalkList];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[[NSOperationQueue alloc] init]
-                           completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *error) {
-         if(error){
-             handler(nil, error);
+    [YVAPIRequest sendRequest:request
+            completionHandler:
+     ^(NSDictionary *dataDict, NSError *error) {
+         if(error) {
+             handler ? handler(nil, error) : nil;
              return ;
          }
 
-         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-         if(httpResponse.statusCode >= 400){
-             error = [NSError errorWithDomain:YVTalksSerivceErrorDomain
-                                         code:httpResponse.statusCode
-                                     userInfo:nil];
-             handler(nil, error);
-             return;
-         }
-
-         NSError *jsonError = nil;
-         NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data
-                                                                  options:0
-                                                                    error:&jsonError];
-         if(jsonError || nil == dataDict){
+         NSArray *talksArray = [dataDict valueForKey:@"talks"];
+         if(!talksArray || [talksArray isEqual:[NSNull null]]) {
              error = [NSError errorWithDomain:YVTalksSerivceErrorDomain
                                          code:0
                                      userInfo:nil];
-             handler(nil, error);
+             handler ? handler(nil, error) : nil;
              return;
          }
 
-         handler(dataDict, nil);
+         NSAssert(![NSThread isMainThread], @"This process must be executed on sub thread.");
+
+         NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].subThreadMOC;
+         [self _deleteAllMangagedObjectsInMoc:moc]; // data not be saved in this method.
+
+         [talksArray enumerateObjectsUsingBlock:^(NSDictionary *talkDict, NSUInteger idx, BOOL *stop) {
+             [self _insertTalkWithDict:talkDict inMoc:moc];
+         }];
+         [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
+         
+         handler ? handler(dataDict, nil) : nil;
      }];
 }
 
-- (YVTalk *)_saveTalkWithDict:(NSDictionary *)dict
+- (YVTalk *)_insertTalkWithDict:(NSDictionary *)dict
                         inMoc:(NSManagedObjectContext *)moc
 {
     NSParameterAssert(dict);
@@ -233,6 +187,7 @@ static NSString *const kYVTalksAPITalkListPath = @"/2013/api/talk/list";
         talk.end_time = [[df stringFromDate:endDate] substringWithRange:range];
     }
 
+    [moc insertObject:talk];
     return talk;
 }
 

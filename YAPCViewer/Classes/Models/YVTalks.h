@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const YVTalksSerivceErrorDomain;
-
 typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 
 @interface YVTalks : NSObject

@@ -40,6 +40,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
 
+- (void)_alertError:(NSError *)error;
+
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query;
 - (NSArray *)_filteredItemForQuery:(NSString *)query;
 
@@ -98,8 +100,11 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[YVTalks new] fetchAllTalksWithHandler:^(NSDictionary *dataDict, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
         dispatch_async(dispatch_get_main_queue(), ^{
+            if(error){
+                [self _alertError:error];
+            }
+
             [loadingView hideWithAnimated:YES];
         });
     }];
@@ -122,6 +127,17 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_alertError:(NSError *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                    message:@"データの取得に失敗しました。"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+
+    [alert show];
 }
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query
@@ -147,7 +163,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
     NSArray *items = [self.frController fetchedObjects];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[cd] %@ OR title_en contains[cd] %@", query, query];
+    NSString *predicateString = @"title contains[cd] %@ OR title_en contains[cd] %@";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, query, query];
     items = [items filteredArrayUsingPredicate:predicate];
 
     return items;
@@ -183,7 +200,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     if(self.tableView == tableView){
         id<NSFetchedResultsSectionInfo> sectionInfo;
