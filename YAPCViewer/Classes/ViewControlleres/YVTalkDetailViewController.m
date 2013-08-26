@@ -13,11 +13,14 @@
 #import "UIImageView+WebCache.h"
 #import "YVDateFormatManager.h"
 #import "TTTAttributedLabel.h"
+#import "YVDogEarView.h"
 
 @interface YVTalkDetailViewController ()
 <TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, weak) IBOutlet YVDogEarView *dogYearView;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
@@ -51,6 +54,13 @@
         line.layer.shadowOpacity = 0.5f;
         line.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     }];
+
+    CGRect dogYearFrame = self.dogYearView.frame;
+    self.dogYearView.frame = CGRectMake(CGRectGetWidth(self.view.bounds)
+                                         - CGRectGetWidth(dogYearFrame),
+                                        0.0f,
+                                        CGRectGetWidth(dogYearFrame),
+                                        CGRectGetHeight(dogYearFrame));
 }
 
 - (void)viewWillAppear:(BOOL)animated

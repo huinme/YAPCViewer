@@ -26,13 +26,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
-
         [self _setupViews];
 
         self.enabled = YES;
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [self _setupViews];
+    self.enabled = YES;
 }
 
 - (BOOL)isEnabled
@@ -47,6 +51,8 @@
 
 - (void)_setupViews
 {
+    self.backgroundColor = [UIColor clearColor];
+
     UIImage *bgImage = [self _backgroundImage];
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bgImage];
     bgImageView.frame = self.bounds;

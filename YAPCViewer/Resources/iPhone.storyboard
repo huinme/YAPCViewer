@@ -92,13 +92,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="R6r-Jz-U2z" customClass="YVDogEarView">
+                                <rect key="frame" x="288" y="0.0" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                        <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                     </scrollView>
                     <navigationItem key="navigationItem" title="Info" id="yud-W9-QI0"/>
                     <connections>
                         <outlet property="abstractLabel" destination="OnR-4h-vaQ" id="uVc-nE-bEq"/>
+                        <outlet property="dogYearView" destination="R6r-Jz-U2z" id="ViS-j9-aaG"/>
                         <outlet property="scrollView" destination="rMM-zc-i7j" id="dKL-u4-TvE"/>
                         <outlet property="speakerImageView" destination="fNn-sO-E0e" id="blP-7U-pEq"/>
                         <outlet property="speakerNameLabel" destination="Fwd-ms-ywN" id="V55-SO-4Vl"/>
@@ -322,6 +327,9 @@
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
+        <class className="YVDogEarView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YVDogEarView.h"/>
+        </class>
         <class className="YVEventDayView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YVEventDayView.h"/>
             <relationships>
@@ -340,6 +348,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YVTalkDetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="abstractLabel" candidateClass="TTTAttributedLabel"/>
+                <relationship kind="outlet" name="dogYearView" candidateClass="YVDogEarView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="speakerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="speakerNameLabel" candidateClass="UILabel"/>
