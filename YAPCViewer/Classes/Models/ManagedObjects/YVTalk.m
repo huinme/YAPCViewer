@@ -14,6 +14,7 @@
 
 @implementation YVTalk
 
+@dynamic id;
 @dynamic language;
 @dynamic slide_url;
 @dynamic duration;

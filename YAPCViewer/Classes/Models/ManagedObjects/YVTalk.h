@@ -13,6 +13,7 @@
 
 @interface YVTalk : NSManagedObject
 
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * language;
 @property (nonatomic, retain) NSString * slide_url;
 @property (nonatomic, retain) NSNumber * duration;

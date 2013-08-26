@@ -32,6 +32,7 @@
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([YVVenue class])
                                               inManagedObjectContext:moc];
+
     YVVenue *venue = [[YVVenue alloc] initWithEntity:entity insertIntoManagedObjectContext:moc];
 
     return venue;
@@ -81,6 +82,10 @@
     [venuesArray enumerateObjectsUsingBlock:^(NSDictionary *venueDict, NSUInteger idx, BOOL *stop) {
         id venueID = venueDict[@"id"];
 
+        if (![venueID isKindOfClass:[NSNumber class]]) {
+            return ;
+        }
+
         YVVenue *venue = [self venueForID:venueID inMoc:moc];
         if(!venue){
             venue = [[self class] emptyVenueInMoc:moc];
@@ -88,14 +93,6 @@
 
         [venue setAttriutesWithDict:venueDict];
     }];
-
-    NSError *error = nil;
-    [[HIDataStoreManager sharedManager] saveContext:moc
-                                              error:&error];
-
-    if(error){
-        NSLog(@"SAVE ERROR : %@", [error description]);
-    }
 }
 
 @end

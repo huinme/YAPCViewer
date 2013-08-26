@@ -188,7 +188,6 @@
                                                       inMoc:moc];
         if(!speaker){
             speaker = [YVSpeakers emptySpeakerInMoc:moc];
-            [moc insertObject:speaker];
         }
         
         [speaker setAttriutesWithDict:speakerDict];

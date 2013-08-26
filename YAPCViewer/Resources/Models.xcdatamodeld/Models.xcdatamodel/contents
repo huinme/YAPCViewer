@@ -2,7 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="YVAbstract" representedClassName="YVAbstract" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="talk" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="abstract" inverseEntity="YVTalk" syncable="YES"/>
+        <relationship name="talk" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="YVTalk" inverseName="abstract" inverseEntity="YVTalk" syncable="YES"/>
     </entity>
     <entity name="YVSpeaker" representedClassName="YVSpeaker" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,7 +30,7 @@
         <attribute name="video_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="video_url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abstract" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVAbstract" inverseName="talk" inverseEntity="YVAbstract" syncable="YES"/>
-        <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
+        <relationship name="speaker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
         <relationship name="venue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVVenue" inverseName="talks" inverseEntity="YVVenue" syncable="YES"/>
     </entity>
     <entity name="YVVenue" representedClassName="YVVenue" syncable="YES">

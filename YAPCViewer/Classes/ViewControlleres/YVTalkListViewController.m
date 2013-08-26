@@ -89,7 +89,6 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     }
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
 
     YVLoadingView *loadingView = nil;
     if([[self.frController fetchedObjects] count] == 0){
@@ -97,7 +96,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         [loadingView showInSuperView:self.navigationController.view animated:YES];
     }
 
-    [[YVTalks new] fetchTalksForDate:@"2013-09-19"
+    [[YVTalks new] fetchTalksForDate:self.eventDays[0]
                          withHandler:
      ^(NSDictionary *dataDict, NSError *error) {
          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -189,7 +188,25 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         NSLog(@"FETCH ERROR : %@", fetchError);
     }
 
-    [self.tableView reloadData];
+    YVLoadingView *loadingView = nil;
+    if([[self.frController fetchedObjects] count] == 0){
+        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
+        [loadingView showInSuperView:self.navigationController.view animated:YES];
+    }
+
+    [[YVTalks new] fetchTalksForDate:dayString
+                         withHandler:
+     ^(NSDictionary *dataDict, NSError *error) {
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if(error){
+                 [self _alertError:error];
+             }
+
+             [loadingView hideWithAnimated:YES];
+             [self.tableView reloadData];
+         });
+     }];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
