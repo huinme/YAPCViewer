@@ -16,9 +16,8 @@
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * service;
+@property (nonatomic, retain) NSString * profile_image_url;
 @property (nonatomic, retain) NSSet *talks;
-
 
 @end
 

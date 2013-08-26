@@ -8,6 +8,9 @@
 
 #import "YVTalkDetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#import "UIImageView+WebCache.h"
 #import "YVDateFormatManager.h"
 #import "TTTAttributedLabel.h"
 
@@ -17,10 +20,16 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+
 @property (nonatomic, weak) IBOutlet TTTAttributedLabel *venueLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
+@property (nonatomic, weak) IBOutlet UIImageView *speakerImageView;
+@property (nonatomic, weak) IBOutlet UILabel *speakerNameLabel;
+
 @property (nonatomic, weak) IBOutlet TTTAttributedLabel *abstractLabel;
+
+@property (nonatomic, strong) IBOutletCollection(UIView) NSArray *separatorLines;
 
 - (void)_loadDataFromTalk:(YVTalk *)talk;
 
@@ -28,14 +37,20 @@
 
 @implementation YVTalkDetailViewController
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.speakerImageView.layer.cornerRadius = 3.0f;
+
+    [self.separatorLines enumerateObjectsUsingBlock:^(UIView *line, NSUInteger idx, BOOL *stop) {
+        line.layer.masksToBounds = NO;
+        line.layer.shadowPath = [UIBezierPath bezierPathWithRect:line.bounds].CGPath;
+        line.layer.shadowRadius = 0.0f;
+        line.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
+        line.layer.shadowOpacity = 0.5f;
+        line.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -69,11 +84,18 @@
     NSDateFormatter *df = [YVDateFormatManager sharedManager].defaultFormatter;
     df.dateFormat = YVDateFormatManagerJapaneseDateFormat;
 
-    self.timeLabel.text = [NSString stringWithFormat:@"%@ %@ - %@ (%@分)",
-                           [df stringFromDate:talk.event_date],
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@分)",
                            talk.start_time,
                            talk.end_time,
                            talk.duration];
+
+    self.speakerNameLabel.text = [NSString stringWithFormat:@"%@(%@)",
+                                                            talk.speaker.name,
+                                                            talk.speaker.nickname];
+    if(talk.speaker.profile_image_url){
+        NSURL *url = [NSURL URLWithString:talk.speaker.profile_image_url];
+        [self.speakerImageView setImageWithURL:url placeholderImage:nil];
+    }
     
     self.abstractLabel.dataDetectorTypes = NSTextCheckingTypeLink;
     self.abstractLabel.text = talk.abstract.abstract;

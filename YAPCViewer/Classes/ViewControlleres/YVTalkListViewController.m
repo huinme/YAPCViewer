@@ -109,11 +109,12 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)_fetchTalksForDateString:(NSString *)dateString
 {
     self.frController = [self _frControllerForQuery:dateString];
-
     NSError *fetchError = nil;
     if(![self.frController performFetch:&fetchError]){
         NSLog(@"FETCH ERROR : %@", fetchError);
     }
+
+    [self.tableView reloadData];
 
     YVLoadingView *loadingView = nil;
     if([[self.frController fetchedObjects] count] == 0){
@@ -131,7 +132,6 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
              }
 
              [loadingView hideWithAnimated:YES];
-             [self.tableView reloadData];
          });
      }];
 }
@@ -298,6 +298,8 @@ viewForHeaderInSection:(NSInteger)section
     }else if(type == NSFetchedResultsChangeDelete){
         [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeMove){
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
     }
 }
 
@@ -309,10 +311,13 @@ viewForHeaderInSection:(NSInteger)section
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
     if(type == NSFetchedResultsChangeInsert) {
         [self.tableView insertSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
+                      withRowAnimation:UITableViewRowAnimationNone];
+    }else if(type == NSFetchedResultsChangeUpdate){
+        [self.tableView reloadSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationNone];
     }else if(type == NSFetchedResultsChangeDelete){
         [self.tableView deleteSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
+                      withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
