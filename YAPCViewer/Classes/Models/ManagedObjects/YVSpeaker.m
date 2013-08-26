@@ -14,7 +14,7 @@
 @dynamic id;
 @dynamic nickname;
 @dynamic name;
-@dynamic service;
+@dynamic profile_image_url;
 @dynamic talks;
 
 @end
