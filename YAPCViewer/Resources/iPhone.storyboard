@@ -217,7 +217,7 @@
             </objects>
             <point key="canvasLocation" x="429" y="1052"/>
         </scene>
-        <!--Talk List View Controller - YAPC::ASIA-->
+        <!--Talk List View Controller-->
         <scene sceneID="Ble-kQ-jiQ">
             <objects>
                 <viewController id="XRZ-iU-N5x" customClass="YVTalkListViewController" sceneMemberID="viewController">
@@ -284,7 +284,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="YAPC::ASIA" id="gIg-zH-6jd">
+                    <navigationItem key="navigationItem" id="gIg-zH-6jd">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hEB-nH-9po">
+                            <rect key="frame" x="91" y="7" width="137" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Schedule"/>
+                                <segment title="Favorites"/>
+                            </segments>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Now" id="a8h-1M-khB"/>
                     </navigationItem>
                     <connections>
