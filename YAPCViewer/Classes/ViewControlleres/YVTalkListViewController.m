@@ -111,7 +111,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.frController = [self _frControllerForQuery:dateString];
     NSError *fetchError = nil;
     if(![self.frController performFetch:&fetchError]){
-        NSLog(@"FETCH ERROR : %@", fetchError);
+        YVLog(@"FETCH ERROR : %@", fetchError);
     }
 
     [self.tableView reloadData];

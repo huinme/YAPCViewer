@@ -15,3 +15,10 @@
 
     #import "UIColor+MCUIColorsUtils.h"
 #endif
+
+#if DEBUG
+    #define YVLog(...) NSLog(__VA_ARGS__)
+#else
+    #define YVLog(...)
+#endif
+

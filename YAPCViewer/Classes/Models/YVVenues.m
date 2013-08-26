@@ -66,7 +66,7 @@
     NSArray *fetchedObjects = [moc executeFetchRequest:fr
                                                  error:&fetchError];
     if(fetchError){
-        NSLog(@"FETCH ERROR : %@", [fetchError description]);
+        YVLog(@"FETCH ERROR : %@", [fetchError description]);
         return @[];
     }
 
@@ -93,13 +93,13 @@
 
         [venue setAttriutesWithDict:venueDict];
     }];
-//
-//    NSError *saveError = nil;
-//    [[HIDataStoreManager sharedManager] saveContext:moc
-//                                              error:&saveError];
-//    if(saveError){
-//        NSLog(@"SAVE ERROR : %@", saveError);
-//    }
+
+    NSError *saveError = nil;
+    [[HIDataStoreManager sharedManager] saveContext:moc
+                                              error:&saveError];
+    if(saveError){
+        YVLog(@"SAVE ERROR : %@", saveError);
+    }
 }
 
 @end

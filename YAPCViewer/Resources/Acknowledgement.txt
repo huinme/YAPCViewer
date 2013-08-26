@@ -6,3 +6,6 @@
 
 - HIDataStoreManager
   (https://github.com/kshuin/HIDataStoreManager)
+  
+- SDWebImage
+  (https://github.com/rs/SDWebImage)
