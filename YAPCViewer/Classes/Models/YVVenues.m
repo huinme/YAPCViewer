@@ -93,13 +93,13 @@
 
         [venue setAttriutesWithDict:venueDict];
     }];
-
-    NSError *saveError = nil;
-    [[HIDataStoreManager sharedManager] saveContext:moc
-                                              error:&saveError];
-    if(saveError){
-        NSLog(@"SAVE ERROR : %@", saveError);
-    }
+//
+//    NSError *saveError = nil;
+//    [[HIDataStoreManager sharedManager] saveContext:moc
+//                                              error:&saveError];
+//    if(saveError){
+//        NSLog(@"SAVE ERROR : %@", saveError);
+//    }
 }
 
 @end
