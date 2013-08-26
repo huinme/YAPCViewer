@@ -41,6 +41,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
 
+- (void)_fetchTalksForDateString:(NSString *)dateString;
 - (void)_alertError:(NSError *)error;
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query;
@@ -79,35 +80,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
 
-    if(!self.frController){
-        self.frController = [self _frControllerForQuery:self.eventDays[0]];
-    }
-
-    NSError *fetchError = nil;
-    if(![self.frController performFetch:&fetchError]){
-        NSLog(@"FETCH ERROR : %@", fetchError);
-    }
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-    YVLoadingView *loadingView = nil;
-    if([[self.frController fetchedObjects] count] == 0){
-        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
-        [loadingView showInSuperView:self.navigationController.view animated:YES];
-    }
-
-    [[YVTalks new] fetchTalksForDate:self.eventDays[0]
-                         withHandler:
-     ^(NSDictionary *dataDict, NSError *error) {
-         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             if(error){
-                 [self _alertError:error];
-             }
-
-             [loadingView hideWithAnimated:YES];
-         });
-     }];
+    [self _fetchTalksForDateString:self.eventDays[0]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -131,6 +104,36 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_fetchTalksForDateString:(NSString *)dateString
+{
+    self.frController = [self _frControllerForQuery:dateString];
+
+    NSError *fetchError = nil;
+    if(![self.frController performFetch:&fetchError]){
+        NSLog(@"FETCH ERROR : %@", fetchError);
+    }
+
+    YVLoadingView *loadingView = nil;
+    if([[self.frController fetchedObjects] count] == 0){
+        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
+        [loadingView showInSuperView:self.navigationController.view animated:YES];
+    }
+
+    [[YVTalks new] fetchTalksForDate:dateString
+                         withHandler:
+     ^(NSDictionary *dataDict, NSError *error) {
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if(error){
+                 [self _alertError:error];
+             }
+
+             [loadingView hideWithAnimated:YES];
+             [self.tableView reloadData];
+         });
+     }];
 }
 
 - (void)_alertError:(NSError *)error
@@ -181,32 +184,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)eventDayView:(YVEventDayView *)eventDayView
        dayDidChanged:(NSString *)dayString
 {
-    self.frController = [self _frControllerForQuery:dayString];
-
-    NSError *fetchError = nil;
-    if(![self.frController performFetch:&fetchError]){
-        NSLog(@"FETCH ERROR : %@", fetchError);
-    }
-
-    YVLoadingView *loadingView = nil;
-    if([[self.frController fetchedObjects] count] == 0){
-        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
-        [loadingView showInSuperView:self.navigationController.view animated:YES];
-    }
-
-    [[YVTalks new] fetchTalksForDate:dayString
-                         withHandler:
-     ^(NSDictionary *dataDict, NSError *error) {
-         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             if(error){
-                 [self _alertError:error];
-             }
-
-             [loadingView hideWithAnimated:YES];
-             [self.tableView reloadData];
-         });
-     }];
+    [self _fetchTalksForDateString:dayString];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
