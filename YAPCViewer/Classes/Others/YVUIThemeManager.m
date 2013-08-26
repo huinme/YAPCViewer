@@ -26,12 +26,12 @@
   }
 
   UITabBarItem *tabBarItemAppearance = [UITabBarItem appearanceWhenContainedIn:[UITabBar class], nil];
-  [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:12.0f],
+  [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:10.0f],
                      UITextAttributeTextColor : [UIColor colorForHex:@"#474747"],
                UITextAttributeTextShadowColor : [UIColor whiteColor],
               UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
                                       forState:UIControlStateNormal];
-  [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:12.0f],
+  [tabBarItemAppearance setTitleTextAttributes:@{ UITextAttributeFont : [UIFont boldSystemFontOfSize:10.0f],
                      UITextAttributeTextColor : [UIColor colorForHex:@"#1d6ed2"],
                UITextAttributeTextShadowColor : [UIColor whiteColor],
               UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
