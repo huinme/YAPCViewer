@@ -15,6 +15,7 @@
 		23733D1E17AE9C0600244F01 /* YVMiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23733D1D17AE9C0600244F01 /* YVMiscViewController.m */; };
 		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
 		C5122FA817CB2EA200E44552 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5122FA717CB2EA200E44552 /* CoreText.framework */; };
+		C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5122FAA17CB38D900E44552 /* YVDogEarView.m */; };
 		C518A05117AD08C100B0E4B7 /* YVTalks.m in Sources */ = {isa = PBXBuildFile; fileRef = C518A05017AD08C100B0E4B7 /* YVTalks.m */; };
 		C53EF90017AD02E100EE6F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF8FF17AD02E100EE6F0A /* UIKit.framework */; };
 		C53EF90217AD02E100EE6F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53EF90117AD02E100EE6F0A /* Foundation.framework */; };
@@ -77,6 +78,8 @@
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5122FA717CB2EA200E44552 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		C5122FA917CB38D900E44552 /* YVDogEarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVDogEarView.h; path = Classes/Views/YVDogEarView.h; sourceTree = "<group>"; };
+		C5122FAA17CB38D900E44552 /* YVDogEarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVDogEarView.m; path = Classes/Views/YVDogEarView.m; sourceTree = "<group>"; };
 		C518A04F17AD08C100B0E4B7 /* YVTalks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalks.h; path = YAPCViewer/Classes/Models/YVTalks.h; sourceTree = "<group>"; };
 		C518A05017AD08C100B0E4B7 /* YVTalks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalks.m; path = YAPCViewer/Classes/Models/YVTalks.m; sourceTree = "<group>"; };
 		C53EF8FC17AD02E100EE6F0A /* YAPCViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YAPCViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +179,8 @@
 			children = (
 				C54624DD17AD26AD00B7361B /* YVTalkCell.h */,
 				C54624DE17AD26AD00B7361B /* YVTalkCell.m */,
+				C5122FA917CB38D900E44552 /* YVDogEarView.h */,
+				C5122FAA17CB38D900E44552 /* YVDogEarView.m */,
 				C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */,
 				C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */,
 				C5A8DDFC17AE387D00EDB97D /* YVSectionHeader.h */,
@@ -575,6 +580,7 @@
 				C55A48D617CA0EE900CD759B /* YVVenue.m in Sources */,
 				C55A48D917CA0F0900CD759B /* YVVenues.m in Sources */,
 				C55A48DC17CA1BA800CD759B /* YVSpeakers.m in Sources */,
+				C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
