@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet TTTAttributedLabel *venueLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic, weak) IBOutlet TTTAttributedLabel *abstractLabel;
@@ -62,6 +63,8 @@
     }else{
         self.titleLabel.text = talk.title_en;
     }
+
+    self.venueLabel.text = talk.venue.name;
 
     NSDateFormatter *df = [YVDateFormatManager sharedManager].defaultFormatter;
     df.dateFormat = YVDateFormatManagerJapaneseDateFormat;

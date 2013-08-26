@@ -2,9 +2,10 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="YVAbstract" representedClassName="YVAbstract" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="talk" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="abstract" inverseEntity="YVTalk" syncable="YES"/>
+        <relationship name="talk" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="YVTalk" inverseName="abstract" inverseEntity="YVTalk" syncable="YES"/>
     </entity>
     <entity name="YVSpeaker" representedClassName="YVSpeaker" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +16,7 @@
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="end_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="material_level" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -28,11 +30,18 @@
         <attribute name="video_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="video_url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abstract" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVAbstract" inverseName="talk" inverseEntity="YVAbstract" syncable="YES"/>
-        <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
+        <relationship name="speaker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVSpeaker" inverseName="talks" inverseEntity="YVSpeaker" syncable="YES"/>
+        <relationship name="venue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVVenue" inverseName="talks" inverseEntity="YVVenue" syncable="YES"/>
+    </entity>
+    <entity name="YVVenue" representedClassName="YVVenue" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="talks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="venue" inverseEntity="YVTalk" syncable="YES"/>
     </entity>
     <elements>
         <element name="YVAbstract" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="YVTalk" positionX="160" positionY="192" width="128" height="315"/>
+        <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="YVTalk" positionX="160" positionY="192" width="128" height="345"/>
+        <element name="YVVenue" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
