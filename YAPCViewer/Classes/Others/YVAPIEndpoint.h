@@ -10,8 +10,6 @@
 
 @interface YVAPIEndpoint : NSObject
 
-+ (NSURL *)urlForTalkList;
-
 + (NSURL *)urlForTalkListWithDate:(NSString *)dateString;
 
 @end
