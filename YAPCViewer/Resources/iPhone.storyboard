@@ -37,24 +37,61 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013-01-01 00:00 - 00:00 (000分)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SRz-x6-Jov">
-                                <rect key="frame" x="20" y="68" width="280" height="20"/>
+                                <rect key="frame" x="20" y="85" width="280" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Hall" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Mh-HR-OZ0" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="20" y="65" width="280" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OnR-4h-vaQ" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="20" y="96" width="280" height="220"/>
+                                <rect key="frame" x="20" y="220" width="280" height="147"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outlet property="delegate" destination="505-nZ-zED" id="RPm-nc-zAC"/>
                                 </connections>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fNn-sO-E0e">
+                                <rect key="frame" x="20" y="130" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Speaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4P-E5-CHb">
+                                <rect key="frame" x="88" y="130" width="212" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Speaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fwd-ms-ywN">
+                                <rect key="frame" x="88" y="150" width="212" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="r9X-7S-Vu6">
+                                <rect key="frame" x="20" y="115" width="280" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="f5n-8X-zJi">
+                                <rect key="frame" x="20" y="205" width="280" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
@@ -63,8 +100,13 @@
                     <connections>
                         <outlet property="abstractLabel" destination="OnR-4h-vaQ" id="uVc-nE-bEq"/>
                         <outlet property="scrollView" destination="rMM-zc-i7j" id="dKL-u4-TvE"/>
+                        <outlet property="speakerImageView" destination="fNn-sO-E0e" id="blP-7U-pEq"/>
+                        <outlet property="speakerNameLabel" destination="Fwd-ms-ywN" id="V55-SO-4Vl"/>
                         <outlet property="timeLabel" destination="SRz-x6-Jov" id="N5v-fH-wTx"/>
                         <outlet property="titleLabel" destination="XwD-2k-0Fp" id="gc2-qB-9mG"/>
+                        <outlet property="venueLabel" destination="8Mh-HR-OZ0" id="jdV-o5-49Z"/>
+                        <outletCollection property="separatorLines" destination="r9X-7S-Vu6" id="0np-xz-PLv"/>
+                        <outletCollection property="separatorLines" destination="f5n-8X-zJi" id="HeY-xw-f1w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaE-ra-mMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,7 +194,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="B02-Q3-gO2">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="AMJ-fo-EhC" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="AMJ-fo-EhC" customClass="YVTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9PZ-Vz-w5a">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -291,13 +333,20 @@
         <class className="YVMiscViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YVMiscViewController.h"/>
         </class>
+        <class className="YVTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YVTabBarController.h"/>
+        </class>
         <class className="YVTalkDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YVTalkDetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="abstractLabel" candidateClass="TTTAttributedLabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="speakerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="speakerNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="venueLabel" candidateClass="TTTAttributedLabel"/>
+                <relationship kind="outletCollection" name="separatorLines" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="YVTalkListViewController" superclassName="UIViewController">

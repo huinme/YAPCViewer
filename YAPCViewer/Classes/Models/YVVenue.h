@@ -1,8 +1,8 @@
 //
-//  YVSpeaker.h
+//  YVVenue.h
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/3/13.
+//  Created by Koichi Sakata on 8/25/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -11,17 +11,14 @@
 
 @class YVTalk;
 
-@interface YVSpeaker : NSManagedObject
+@interface YVVenue : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * nickname;
+@property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * profile_image_url;
 @property (nonatomic, retain) NSSet *talks;
-
 @end
 
-@interface YVSpeaker (CoreDataGeneratedAccessors)
+@interface YVVenue (CoreDataGeneratedAccessors)
 
 - (void)addTalksObject:(YVTalk *)value;
 - (void)removeTalksObject:(YVTalk *)value;
@@ -29,5 +26,3 @@
 - (void)removeTalks:(NSSet *)values;
 
 @end
-
-

@@ -33,12 +33,16 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
   UISearchDisplayDelegate,
   YVEventDayViewDelegate>
 
+@property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
 @property (nonatomic, strong) NSArray *filteredItems;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
+
+- (void)_fetchTalksForDateString:(NSString *)dateString;
+- (void)_alertError:(NSError *)error;
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query;
 - (NSArray *)_filteredItemForQuery:(NSString *)query;
@@ -47,20 +51,22 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 @implementation YVTalkListViewController
 
+- (void)awakeFromNib
+{
+  self.view.backgroundColor = [YVTalkCell backgroundColor];
+
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+  self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.tabBarController.tabBar.clipsToBounds = YES;
-    self.view.backgroundColor = [YVTalkCell backgroundColor];
 
-    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
-
-    NSArray *eventDays = @[kYVTalkListFirstDateString,
-                           kYVTalkListSecondDateString,
-                           kYVTalkListThirdDateString];
-
-    [self.eventDayView setEventDays:eventDays];
+    self.eventDays = @[kYVTalkListFirstDateString,
+                       kYVTalkListSecondDateString,
+                       kYVTalkListThirdDateString];
+    [self.eventDayView setEventDays:self.eventDays];
     self.eventDayView.delegate = self;
 
     UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -74,32 +80,12 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
 
-    if(!self.frController){
-        self.frController = [self _frControllerForQuery:eventDays[0]];
-    }
-
-    NSError *fetchError = nil;
-    if(![self.frController performFetch:&fetchError]){
-        NSLog(@"FETCH ERROR : %@", fetchError);
-    }
+    [self _fetchTalksForDateString:self.eventDays[0]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    YVLoadingView *loadingView;
-    if([[self.frController fetchedObjects] count] == 0){
-        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
-        [loadingView showInSuperView:self.navigationController.view animated:YES];
-    }
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [[YVTalks new] fetchAllTalksWithHandler:^(NSDictionary *dataDict, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [loadingView hideWithAnimated:YES];
-        });
-    }];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,7 +94,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
 {
     if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
         NSAssert([sender isKindOfClass:[YVTalk class]], @"");
@@ -117,6 +104,47 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_fetchTalksForDateString:(NSString *)dateString
+{
+    self.frController = [self _frControllerForQuery:dateString];
+    NSError *fetchError = nil;
+    if(![self.frController performFetch:&fetchError]){
+        YVLog(@"FETCH ERROR : %@", fetchError);
+    }
+
+    [self.tableView reloadData];
+
+    YVLoadingView *loadingView = nil;
+    if([[self.frController fetchedObjects] count] == 0){
+        loadingView = [[YVLoadingView alloc] initWithFrame:self.view.bounds];
+        [loadingView showInSuperView:self.navigationController.view animated:YES];
+    }
+
+    [[YVTalks new] fetchTalksForDate:dateString
+                         withHandler:
+     ^(NSDictionary *dataDict, NSError *error) {
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if(error){
+                 [self _alertError:error];
+             }
+
+             [loadingView hideWithAnimated:YES];
+         });
+     }];
+}
+
+- (void)_alertError:(NSError *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                    message:@"データの取得に失敗しました。"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+
+    [alert show];
 }
 
 - (NSFetchedResultsController *)_frControllerForQuery:(NSString *)query
@@ -142,7 +170,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
     NSArray *items = [self.frController fetchedObjects];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[cd] %@ OR title_en contains[cd] %@", query, query];
+    NSString *predicateString = @"title contains[cd] %@ OR title_en contains[cd] %@";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, query, query];
     items = [items filteredArrayUsingPredicate:predicate];
 
     return items;
@@ -155,14 +184,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)eventDayView:(YVEventDayView *)eventDayView
        dayDidChanged:(NSString *)dayString
 {
-    self.frController = [self _frControllerForQuery:dayString];
-
-    NSError *fetchError = nil;
-    if(![self.frController performFetch:&fetchError]){
-        NSLog(@"FETCH ERROR : %@", fetchError);
-    }
-
-    [self.tableView reloadData];
+    [self _fetchTalksForDateString:dayString];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +200,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     if(self.tableView == tableView){
         id<NSFetchedResultsSectionInfo> sectionInfo;
@@ -275,6 +298,8 @@ viewForHeaderInSection:(NSInteger)section
     }else if(type == NSFetchedResultsChangeDelete){
         [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeMove){
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
     }
 }
 
@@ -286,10 +311,13 @@ viewForHeaderInSection:(NSInteger)section
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
     if(type == NSFetchedResultsChangeInsert) {
         [self.tableView insertSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
+                      withRowAnimation:UITableViewRowAnimationNone];
+    }else if(type == NSFetchedResultsChangeUpdate){
+        [self.tableView reloadSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationNone];
     }else if(type == NSFetchedResultsChangeDelete){
         [self.tableView deleteSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
+                      withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

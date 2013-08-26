@@ -28,6 +28,13 @@
 		C53EF92B17AD02E100EE6F0A /* YAPCViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C53EF92A17AD02E100EE6F0A /* YAPCViewerTests.m */; };
 		C54624DB17AD20FE00B7361B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54624DA17AD20FE00B7361B /* CoreData.framework */; };
 		C54624DF17AD26AD00B7361B /* YVTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C54624DE17AD26AD00B7361B /* YVTalkCell.m */; };
+		C5481FB317C9F5F3003FB928 /* YVUIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481FB217C9F5F3003FB928 /* YVUIThemeManager.m */; };
+		C5481FB617C9F693003FB928 /* YVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481FB517C9F693003FB928 /* YVTabBarController.m */; };
+		C5481FB917C9FA51003FB928 /* YVAPIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481FB817C9FA51003FB928 /* YVAPIEndpoint.m */; };
+		C5481FBC17C9FC6F003FB928 /* YVAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C5481FBB17C9FC6E003FB928 /* YVAPIRequest.m */; };
+		C55A48D617CA0EE900CD759B /* YVVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48D517CA0EE900CD759B /* YVVenue.m */; };
+		C55A48D917CA0F0900CD759B /* YVVenues.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48D817CA0F0900CD759B /* YVVenues.m */; };
+		C55A48DC17CA1BA800CD759B /* YVSpeakers.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48DB17CA1BA800CD759B /* YVSpeakers.m */; };
 		C5A8DDF417AE19BB00EDB97D /* YVDateFormatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */; };
 		C5A8DDFB17AE2D1B00EDB97D /* YVEventDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFA17AE2D1B00EDB97D /* YVEventDayView.m */; };
 		C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDFD17AE387D00EDB97D /* YVSectionHeader.m */; };
@@ -89,6 +96,20 @@
 		C54624DC17AD235D00B7361B /* YVModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YVModels.h; path = YAPCViewer/Classes/Models/YVModels.h; sourceTree = "<group>"; };
 		C54624DD17AD26AD00B7361B /* YVTalkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkCell.h; path = Classes/Views/YVTalkCell.h; sourceTree = "<group>"; };
 		C54624DE17AD26AD00B7361B /* YVTalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkCell.m; path = Classes/Views/YVTalkCell.m; sourceTree = "<group>"; };
+		C5481FB117C9F5F3003FB928 /* YVUIThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVUIThemeManager.h; path = Classes/Others/YVUIThemeManager.h; sourceTree = "<group>"; };
+		C5481FB217C9F5F3003FB928 /* YVUIThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVUIThemeManager.m; path = Classes/Others/YVUIThemeManager.m; sourceTree = "<group>"; };
+		C5481FB417C9F693003FB928 /* YVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTabBarController.h; path = Classes/ViewControlleres/YVTabBarController.h; sourceTree = "<group>"; };
+		C5481FB517C9F693003FB928 /* YVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTabBarController.m; path = Classes/ViewControlleres/YVTabBarController.m; sourceTree = "<group>"; };
+		C5481FB717C9FA51003FB928 /* YVAPIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVAPIEndpoint.h; path = Classes/Others/YVAPIEndpoint.h; sourceTree = "<group>"; };
+		C5481FB817C9FA51003FB928 /* YVAPIEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVAPIEndpoint.m; path = Classes/Others/YVAPIEndpoint.m; sourceTree = "<group>"; };
+		C5481FBA17C9FC6E003FB928 /* YVAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVAPIRequest.h; path = Classes/Others/YVAPIRequest.h; sourceTree = "<group>"; };
+		C5481FBB17C9FC6E003FB928 /* YVAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVAPIRequest.m; path = Classes/Others/YVAPIRequest.m; sourceTree = "<group>"; };
+		C55A48D417CA0EE800CD759B /* YVVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVVenue.h; path = YAPCViewer/Classes/Models/YVVenue.h; sourceTree = "<group>"; };
+		C55A48D517CA0EE900CD759B /* YVVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVVenue.m; path = YAPCViewer/Classes/Models/YVVenue.m; sourceTree = "<group>"; };
+		C55A48D717CA0F0900CD759B /* YVVenues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVVenues.h; path = YAPCViewer/Classes/Models/YVVenues.h; sourceTree = "<group>"; };
+		C55A48D817CA0F0900CD759B /* YVVenues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVVenues.m; path = YAPCViewer/Classes/Models/YVVenues.m; sourceTree = "<group>"; };
+		C55A48DA17CA1BA800CD759B /* YVSpeakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVSpeakers.h; path = YAPCViewer/Classes/Models/YVSpeakers.h; sourceTree = "<group>"; };
+		C55A48DB17CA1BA800CD759B /* YVSpeakers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVSpeakers.m; path = YAPCViewer/Classes/Models/YVSpeakers.m; sourceTree = "<group>"; };
 		C5A8DDF217AE19BB00EDB97D /* YVDateFormatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVDateFormatManager.h; path = Classes/Others/YVDateFormatManager.h; sourceTree = "<group>"; };
 		C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVDateFormatManager.m; path = Classes/Others/YVDateFormatManager.m; sourceTree = "<group>"; };
 		C5A8DDF917AE2D1B00EDB97D /* YVEventDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVEventDayView.h; path = Classes/Views/YVEventDayView.h; sourceTree = "<group>"; };
@@ -164,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				C54624DC17AD235D00B7361B /* YVModels.h */,
+				C55A48D417CA0EE800CD759B /* YVVenue.h */,
+				C55A48D517CA0EE900CD759B /* YVVenue.m */,
 				C5F2CE1017AD066C00EAD980 /* YVTalk.h */,
 				C5F2CE1117AD066C00EAD980 /* YVTalk.m */,
 				C5F2CE0D17AD064E00EAD980 /* YVSpeaker.h */,
@@ -257,6 +280,12 @@
 		C5A8DDF517AE19BF00EDB97D /* Othres */ = {
 			isa = PBXGroup;
 			children = (
+				C5481FB717C9FA51003FB928 /* YVAPIEndpoint.h */,
+				C5481FB817C9FA51003FB928 /* YVAPIEndpoint.m */,
+				C5481FBA17C9FC6E003FB928 /* YVAPIRequest.h */,
+				C5481FBB17C9FC6E003FB928 /* YVAPIRequest.m */,
+				C5481FB117C9F5F3003FB928 /* YVUIThemeManager.h */,
+				C5481FB217C9F5F3003FB928 /* YVUIThemeManager.m */,
 				C5A8DDF217AE19BB00EDB97D /* YVDateFormatManager.h */,
 				C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */,
 			);
@@ -276,6 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				2300E78417AE7F7D008F3585 /* Views */,
+				C5481FB417C9F693003FB928 /* YVTabBarController.h */,
+				C5481FB517C9F693003FB928 /* YVTabBarController.m */,
 				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
 				C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */,
@@ -306,6 +337,10 @@
 				C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */,
 				C518A04F17AD08C100B0E4B7 /* YVTalks.h */,
 				C518A05017AD08C100B0E4B7 /* YVTalks.m */,
+				C55A48DA17CA1BA800CD759B /* YVSpeakers.h */,
+				C55A48DB17CA1BA800CD759B /* YVSpeakers.m */,
+				C55A48D717CA0F0900CD759B /* YVVenues.h */,
+				C55A48D817CA0F0900CD759B /* YVVenues.m */,
 				C518A04E17AD089A00B0E4B7 /* ManagedObjects */,
 			);
 			name = Models;
@@ -516,6 +551,13 @@
 				2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */,
 				23733D1917AE9A8200244F01 /* YVMapsViewController.m in Sources */,
 				23733D1E17AE9C0600244F01 /* YVMiscViewController.m in Sources */,
+				C5481FB317C9F5F3003FB928 /* YVUIThemeManager.m in Sources */,
+				C5481FB617C9F693003FB928 /* YVTabBarController.m in Sources */,
+				C5481FB917C9FA51003FB928 /* YVAPIEndpoint.m in Sources */,
+				C5481FBC17C9FC6F003FB928 /* YVAPIRequest.m in Sources */,
+				C55A48D617CA0EE900CD759B /* YVVenue.m in Sources */,
+				C55A48D917CA0F0900CD759B /* YVVenues.m in Sources */,
+				C55A48DC17CA1BA800CD759B /* YVSpeakers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

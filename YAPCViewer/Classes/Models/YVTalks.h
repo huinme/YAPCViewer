@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const YVTalksSerivceErrorDomain;
+@class YVTalk;
 
 typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 
 @interface YVTalks : NSObject
 
 + (NSFetchRequest *)allTalksFetchRequest;
++ (YVTalk *)emptyTalkInMoc:(NSManagedObjectContext *)moc;
+- (YVTalk *)talkForID:(NSString *)talkID
+                inMoc:(NSManagedObjectContext *)moc;
+
 + (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate;
 
-- (void)fetchAllTalksWithHandler:(YVTalksHandler)handler;
+- (void)fetchTalksForDate:(NSString *)dateString
+              withHandler:(YVTalksHandler)handler;
 
 @end
