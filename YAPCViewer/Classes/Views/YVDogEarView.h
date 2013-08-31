@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class YVTalk;
+
+@protocol YVDogEarViewDelegate
+
+- (void)tappedFavorite:(UITapGestureRecognizer *)sender;
+
+@end
+
 @interface YVDogEarView : UIView
 
+- (void)loadDataFromTalk:(YVTalk *)talk;
+
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
+@property (nonatomic, weak) NSObject<YVDogEarViewDelegate> *delegate;
+@property (nonatomic, strong) NSString *talkId;
 
 @end

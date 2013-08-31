@@ -36,4 +36,6 @@
 @dynamic start_time;
 @dynamic end_time;
 
+@dynamic favorite;
+
 @end

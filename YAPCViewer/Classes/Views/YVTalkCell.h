@@ -10,11 +10,20 @@
 
 @class YVTalk;
 
+@protocol YVTalkCellDelegate
+
+- (void)tappedFavorite:(UITapGestureRecognizer *)sender;
+
+@end
+
 @interface YVTalkCell : UITableViewCell
 
 + (CGFloat)cellHeight;
 + (UIColor *)backgroundColor;
 
 - (void)loadDataFromTalk:(YVTalk *)talk;
+- (NSString *)talkId;
+
+@property (nonatomic, weak) NSObject<YVTalkCellDelegate> *delegate;
 
 @end

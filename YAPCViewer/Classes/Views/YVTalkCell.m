@@ -22,10 +22,12 @@ static NSString *const kYVTalkCellTimeNormalTextColor           = @"#5f5f5f";
 static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
 
 @interface YVTalkCell()
+<YVDogEarViewDelegate>
 
 @property (nonatomic, strong) YVDogEarView *dogEarView;
 
 - (void)_setupViews;
+- (void)tapped:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -71,6 +73,8 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
     CGRect earFrame = CGRectMake(CGRectGetWidth(self.bounds)-32.0f, 0.0f,
                                  32.0f, 32.0f);
     self.dogEarView = [[YVDogEarView alloc] initWithFrame:earFrame];
+    self.dogEarView.delegate = self;
+
     [self insertSubview:self.dogEarView aboveSubview:self.contentView];
 }
 
@@ -83,6 +87,31 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
     }
 
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", talk.start_time, talk.end_time];
+
+    NSParameterAssert(talk);
+    [self.dogEarView loadDataFromTalk:talk];
+
+    if (talk.favorite) {
+        [self.dogEarView setEnabled:YES];
+    } else {
+        [self.dogEarView setEnabled:NO];
+    }
+}
+
+- (NSString *)talkId
+{
+    return self.dogEarView.talkId;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVDogEarDelegate
+////////////////////////////////////////////////////////////////////////////////
+- (void)tappedFavorite:(UITapGestureRecognizer *)sender
+{
+    if(self.delegate
+       && [self.delegate respondsToSelector:@selector(tappedFavorite:)]){
+        [self.delegate tappedFavorite:sender];
+    }
 }
 
 @end

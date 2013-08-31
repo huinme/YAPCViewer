@@ -14,9 +14,11 @@
 #import "YVDateFormatManager.h"
 #import "TTTAttributedLabel.h"
 #import "YVDogEarView.h"
+#import "HIDataStoreManager.h"
 
 @interface YVTalkDetailViewController ()
-<TTTAttributedLabelDelegate>
+<TTTAttributedLabelDelegate,
+ YVDogEarViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
@@ -116,6 +118,16 @@
                             + CGRectGetHeight(self.abstractLabel.frame)
                             + 20.0f;
     self.scrollView.contentSize = contentSize;
+
+    NSParameterAssert(talk);
+    self.dogYearView.delegate = self;
+    [self.dogYearView loadDataFromTalk:talk];
+
+    if (talk.favorite) {
+        [self.dogYearView setEnabled:YES];
+    } else {
+        [self.dogYearView setEnabled:NO];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +139,30 @@
 {
     if([[UIApplication sharedApplication] canOpenURL:url]){
         [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVDogEarViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+- (void)tappedFavorite:(UITapGestureRecognizer *)sender
+{
+    NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+
+    if (self.talk.favorite) {
+        self.talk.favorite = nil;
+    } else {
+        self.talk.favorite = [NSNumber numberWithBool:YES];
+    }
+
+    NSError *saveError = nil;
+    [[HIDataStoreManager sharedManager]  saveContext:moc
+                                               error:&saveError];
+
+    if (self.talk.favorite) {
+        [self.dogYearView setEnabled:YES];
+    } else {
+        [self.dogYearView setEnabled:NO];
     }
 }
 
