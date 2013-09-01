@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>StringsTable</key>
+        <string>Acknowledgements</string>
+        <key>PreferenceSpecifiers</key>
+        <array>
+                <dict>
+                        <key>Type</key>
+                        <string>PSGroupSpecifier</string>
+                        <key>Title</key>
+                        <string>- MCUIColorUtils
+  (https://github.com/mirego/MCUIColorUtils)
+
+- TTTAttributedLabel
+  (https://github.com/mattt/TTTAttributedLabel)
+
+- HIDataStoreManager
+  (https://github.com/kshuin/HIDataStoreManager)
+  
+- SDWebImage
+  (https://github.com/rs/SDWebImage)</string>
+                </dict>
+        </array>
+</dict>
+</plist>

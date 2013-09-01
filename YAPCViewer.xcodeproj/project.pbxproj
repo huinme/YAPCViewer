@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0516940217D3264D0088EDE0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0516940117D3264D0088EDE0 /* Settings.bundle */; };
 		226CE144FE1C43B0A98C919B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD4B92538743D6A39888F7 /* libPods.a */; };
 		2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2300E78217AE7F78008F3585 /* YVLoadingView.m */; };
 		23733D1617AE998000244F01 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23733D1517AE998000244F01 /* MapKit.framework */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0516940117D3264D0088EDE0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Resources/Settings.bundle; sourceTree = "<group>"; };
 		2300E78117AE7F78008F3585 /* YVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVLoadingView.h; path = Classes/Views/YVLoadingView.h; sourceTree = "<group>"; };
 		2300E78217AE7F78008F3585 /* YVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVLoadingView.m; path = Classes/Views/YVLoadingView.m; sourceTree = "<group>"; };
 		23733D1517AE998000244F01 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -326,6 +328,7 @@
 				C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */,
 				C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */,
 				23733D1A17AE9B6600244F01 /* Acknowledgement.txt */,
+				0516940117D3264D0088EDE0 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				C5F2CE0817AD046800EAD980 /* Default.png in Resources */,
 				C5F2CE0917AD046800EAD980 /* Default@2x.png in Resources */,
 				23733D1B17AE9B6600244F01 /* Acknowledgement.txt in Resources */,
+				0516940217D3264D0088EDE0 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
