@@ -9,21 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class YVTalk;
-
-@protocol YVTalkCellDelegate
-
-- (void)tappedFavorite:(UITapGestureRecognizer *)sender;
-
-@end
+@class YVDogEarView;
 
 @interface YVTalkCell : UITableViewCell
+
+@property (nonatomic, strong) YVDogEarView *dogEarView;
 
 + (CGFloat)cellHeight;
 + (UIColor *)backgroundColor;
 
 - (void)loadDataFromTalk:(YVTalk *)talk;
-- (NSString *)talkId;
-
-@property (nonatomic, weak) NSObject<YVTalkCellDelegate> *delegate;
 
 @end

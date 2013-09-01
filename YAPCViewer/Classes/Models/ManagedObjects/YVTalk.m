@@ -38,4 +38,9 @@
 
 @dynamic favorite;
 
+- (BOOL)isFavorited
+{
+    return [self.favorite boolValue];
+}
+
 @end

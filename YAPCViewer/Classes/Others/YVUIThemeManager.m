@@ -46,8 +46,6 @@
           UITextAttributeTextShadowColor : [UIColor whiteColor],
          UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]}
                                  forState:UIControlStateHighlighted];
-
-    UISegmentedControl *scAppearance = [UISegmentedControl appearance];
 }
 
 @end

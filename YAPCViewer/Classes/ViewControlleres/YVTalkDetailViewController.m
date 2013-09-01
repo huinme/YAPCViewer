@@ -121,13 +121,7 @@
 
     NSParameterAssert(talk);
     self.dogYearView.delegate = self;
-    [self.dogYearView loadDataFromTalk:talk];
-
-    if (talk.favorite) {
-        [self.dogYearView setEnabled:YES];
-    } else {
-        [self.dogYearView setEnabled:NO];
-    }
+    self.dogYearView.enabled = talk.isFavorited;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -145,25 +139,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - YVDogEarViewDelegate
 ////////////////////////////////////////////////////////////////////////////////
-- (void)tappedFavorite:(UITapGestureRecognizer *)sender
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
 {
     NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+    YVTalk *talk = (YVTalk *)[moc objectWithID:self.talk.objectID];
 
-    if (self.talk.favorite) {
-        self.talk.favorite = nil;
-    } else {
-        self.talk.favorite = [NSNumber numberWithBool:YES];
-    }
+    talk.favorite = @(enabled);
+    [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
 
-    NSError *saveError = nil;
-    [[HIDataStoreManager sharedManager]  saveContext:moc
-                                               error:&saveError];
-
-    if (self.talk.favorite) {
-        [self.dogYearView setEnabled:YES];
-    } else {
-        [self.dogYearView setEnabled:NO];
-    }
+    self.talk = talk;
+    [self _loadDataFromTalk:talk];
 }
 
 @end

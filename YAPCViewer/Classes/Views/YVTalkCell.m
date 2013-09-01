@@ -22,12 +22,8 @@ static NSString *const kYVTalkCellTimeNormalTextColor           = @"#5f5f5f";
 static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
 
 @interface YVTalkCell()
-<YVDogEarViewDelegate>
-
-@property (nonatomic, strong) YVDogEarView *dogEarView;
 
 - (void)_setupViews;
-- (void)tapped:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -46,7 +42,9 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
 - (id)initWithStyle:(UITableViewCellStyle)style
     reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle
+                reuseIdentifier:reuseIdentifier];
+    
     if (self) {
         [self _setupViews];
     }
@@ -65,16 +63,25 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
     [self bringSubviewToFront:self.dogEarView];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect textFrame = self.textLabel.frame;
+    textFrame.size.width = 270.0f;
+    self.textLabel.frame = textFrame;
+}
+
 - (void)_setupViews
 {
+    self.textLabel.backgroundColor = [UIColor redColor];
+    
     self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.backgroundView.backgroundColor = [[self class] backgroundColor];
 
-    CGRect earFrame = CGRectMake(CGRectGetWidth(self.bounds)-32.0f, 0.0f,
-                                 32.0f, 32.0f);
+    CGRect earFrame = CGRectMake(CGRectGetWidth(self.bounds)-44.0f, 0.0f,
+                                 44.0f, 44.0f);
     self.dogEarView = [[YVDogEarView alloc] initWithFrame:earFrame];
-    self.dogEarView.delegate = self;
-
     [self insertSubview:self.dogEarView aboveSubview:self.contentView];
 }
 
@@ -89,29 +96,18 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", talk.start_time, talk.end_time];
 
     NSParameterAssert(talk);
-    [self.dogEarView loadDataFromTalk:talk];
-
-    if (talk.favorite) {
-        [self.dogEarView setEnabled:YES];
-    } else {
-        [self.dogEarView setEnabled:NO];
-    }
+    self.dogEarView.enabled = talk.isFavorited;
 }
 
-- (NSString *)talkId
+- (void)touchesBegan:(NSSet *)touches
+           withEvent:(UIEvent *)event
 {
-    return self.dogEarView.talkId;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-#pragma mark - YVDogEarDelegate
-////////////////////////////////////////////////////////////////////////////////
-- (void)tappedFavorite:(UITapGestureRecognizer *)sender
-{
-    if(self.delegate
-       && [self.delegate respondsToSelector:@selector(tappedFavorite:)]){
-        [self.delegate tappedFavorite:sender];
+    UITouch *touch = [touches anyObject];
+    if (self.dogEarView == touch.view) {
+        return;
     }
+
+    [super touchesBegan:touches withEvent:event];
 }
 
 @end

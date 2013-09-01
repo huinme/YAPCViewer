@@ -18,6 +18,7 @@
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 #import "YVLoadingView.h"
+#import "YVDogEarView.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
@@ -32,7 +33,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 < NSFetchedResultsControllerDelegate,
   UISearchDisplayDelegate,
   YVEventDayViewDelegate,
-  YVTalkCellDelegate>
+  YVDogEarViewDelegate>
 
 @property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
@@ -100,6 +101,12 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
         NSAssert([sender isKindOfClass:[YVTalk class]], @"");
+
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Talks"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.navigationController
+                                                                      action:@selector(popNavigationItemAnimated:)];
+        self.navigationItem.backBarButtonItem = backButton;
 
         YVTalkDetailViewController *vc;
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
@@ -186,6 +193,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
        dayDidChanged:(NSString *)dayString
 {
     [self _fetchTalksForDateString:dayString];
+    [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -221,8 +229,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     if(nil == cell){
         cell = [[YVTalkCell alloc] initWithStyle:UITableViewCellStyleDefault
                                  reuseIdentifier:kYVTalkListTalkCellIdentifier];
+        cell.dogEarView.delegate = self;
     }
-    cell.delegate = self;
 
     YVTalk *talk = nil;
     if(self.tableView == tableView){
@@ -349,41 +357,26 @@ viewForHeaderInSection:(NSInteger)section
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - YVTalkCellDelegate
 ////////////////////////////////////////////////////////////////////////////////
-- (void)tappedFavorite:(UITapGestureRecognizer *)sender
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
 {
-    [NSFetchedResultsController deleteCacheWithName:kYVTalkListTalksCacheName];
+    YVTalkCell *talkCell = (YVTalkCell *)dogEarView.superview;
+    NSAssert([talkCell isKindOfClass:[YVTalkCell class]], @"");
 
-    NSFetchRequest *fr = [YVTalks talkRequestForId:[(YVTalkCell *)sender.view talkId]];
-    NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:talkCell];
+    YVTalk *talk = (YVTalk *)[self.frController objectAtIndexPath:indexPath];
 
-    NSFetchedResultsController *frController = nil;
-    frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
-                                                       managedObjectContext:moc
-                                                         sectionNameKeyPath:nil
-                                                                  cacheName:kYVTalkListTalksCacheName];
+    talk.favorite = @(enabled);
 
-    frController.delegate = self;
-
-    NSError *error;
-    if (![frController performFetch:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-
-    NSArray *fetchedObject = frController.fetchedObjects;
-
-    YVTalk *talk = [fetchedObject lastObject];
-
-    if (talk.favorite) {
-        talk.favorite = nil;
-    } else {
-        talk.favorite = [NSNumber numberWithBool:YES];
-    }
-
+    NSManagedObjectContext *moc = self.frController.managedObjectContext;
     NSError *saveError = nil;
-    [[HIDataStoreManager sharedManager]  saveContext:moc
-                                               error:&saveError];
-}
 
+    [[HIDataStoreManager sharedManager] saveContext:moc
+                                              error:&saveError];
+    if(saveError){
+        NSLog(@"SAVE ERROR : %@", [saveError description]);
+    }
+}
 
 @end

@@ -37,4 +37,6 @@
 
 @property (nonatomic, retain) NSNumber *favorite;
 
+- (BOOL)isFavorited;
+
 @end
