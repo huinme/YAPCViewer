@@ -83,7 +83,7 @@
         id venueID = venueDict[@"id"];
 
         if (![venueID isKindOfClass:[NSNumber class]]) {
-            return ;
+            venueID = @([venueID intValue]);
         }
 
         YVVenue *venue = [self venueForID:venueID inMoc:moc];

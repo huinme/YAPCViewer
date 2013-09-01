@@ -169,6 +169,9 @@
          NSError *saveError = nil;
          [[HIDataStoreManager sharedManager]  saveContext:moc
                                                     error:&saveError];
+         if (saveError) {
+             NSLog(@"SAVE ERROR : %@", saveError.description);
+         }
          
          handler ? handler(dataDict, nil) : nil;
      }];
@@ -230,7 +233,6 @@
         }
 
         YVAbstract *abstract = [[self class] emptyAbstractInMoc:moc];
-
         abstract.abstract = abstractValue;
 
         talk.abstract = abstract;
