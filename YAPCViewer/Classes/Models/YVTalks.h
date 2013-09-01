@@ -22,6 +22,7 @@ typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 
 + (NSFetchRequest *)talkRequestForId:(NSString *)talkId;
 + (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate;
++ (NSFetchRequest *)favoriteTalksRequest;
 
 - (void)fetchTalksForDate:(NSString *)dateString
               withHandler:(YVTalksHandler)handler;

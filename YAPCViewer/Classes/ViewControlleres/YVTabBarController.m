@@ -20,7 +20,7 @@
 {
     self.tabBar.clipsToBounds = YES;
 
-    NSArray *icons = @[FAKIconMicrophone, FAKIconMapMarker, FAKIconComment, FAKIconInfo];
+    NSArray *icons = @[FAKIconMicrophone, FAKIconStar, FAKIconMapMarker, FAKIconComment];
     NSDictionary *shadowAttr = @{FAKShadowAttributeColor : [UIColor whiteColor],
                                  FAKShadowAttributeOffset : [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)],
                                  FAKShadowAttributeBlur : [NSNumber numberWithFloat:1.0f]};

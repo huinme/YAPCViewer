@@ -41,10 +41,9 @@ NSString *const YVDateFormatManagerJapaneseDateFormat = @"M月d日(EEEE)";
         dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Tokyo"];
         dateFormatter.calendar = self.defaultCalendar;
         dateFormatter.locale   = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
-        dateFormatter.dateFormat = YVDateFormatManagerDefaultDateFormat;
     }
-    
-    [dateFormatter setDateFormat:YVDateFormatManagerDefaultDateFormat];
+
+    dateFormatter.dateFormat = YVDateFormatManagerDefaultDateFormat;
     return dateFormatter;
 }
 
@@ -57,9 +56,9 @@ NSString *const YVDateFormatManagerJapaneseDateFormat = @"M月d日(EEEE)";
         dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Tokyo"];
         dateFormatter.calendar = self.defaultCalendar;
         dateFormatter.locale   = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
-        [dateFormatter setDateFormat:YVDateFormatManagerJapaneseDateFormat];
     }
 
+    dateFormatter.dateFormat = YVDateFormatManagerJapaneseDateFormat;
     return dateFormatter;
 }
 

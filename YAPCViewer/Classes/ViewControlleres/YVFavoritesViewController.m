@@ -1,0 +1,251 @@
+//
+//  YVFavoritesViewController.m
+//  YAPCViewer
+//
+//  Created by Koichi Sakata on 9/1/13.
+//  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
+//
+
+#import "YVFavoritesViewController.h"
+
+#import "HIDataStoreManager.h"
+#import "YVModels.h"
+
+#import "YVTalks.h"
+#import "YVTalkCell.h"
+#import "YVSectionHeader.h"
+#import "YVDogEarView.h"
+
+#import "YVTalkDetailViewController.h"
+
+static NSString *const kYVFavoritesTalkCellIdentifier = @"kYVFavoritesTalkCellIdentifier";
+static NSString *const kYVFavoritesTalkCacheName = @"kYVFavoritesTalkCacheName";
+
+static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavoriteToTalkDetailView";
+
+@interface YVFavoritesViewController ()
+<UITableViewDataSource,
+ UITableViewDelegate,
+ NSFetchedResultsControllerDelegate,
+ YVDogEarViewDelegate>
+
+@property (nonatomic, strong) NSFetchedResultsController *frController;
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@end
+
+@implementation YVFavoritesViewController
+
+- (void)awakeFromNib
+{
+    self.view.backgroundColor = [YVTalkCell backgroundColor];
+    
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundColor = [YVTalkCell backgroundColor];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    if (!self.frController) {
+        [NSFetchedResultsController deleteCacheWithName:kYVFavoritesTalkCacheName];
+        
+        NSFetchRequest *fr = [YVTalks favoriteTalksRequest];
+        NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+        self.frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
+                                                                managedObjectContext:moc
+                                                                  sectionNameKeyPath:@"start_date"
+                                                                           cacheName:kYVFavoritesTalkCacheName];
+        self.frController.delegate = self;
+    }
+
+    NSError *fetchError = nil;
+    if (![self.frController performFetch:&fetchError]) {
+        NSLog(@"FETCH ERROR : %@", fetchError.description);
+    }
+    [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.tableView.frame = self.view.bounds;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    if([segue.identifier isEqualToString:kYVFavoritesPushToDetailSegueIdentifier]){
+        NSAssert([sender isKindOfClass:[YVTalk class]], @"");
+
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Talks"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.navigationController
+                                                                      action:@selector(popNavigationItemAnimated:)];
+        self.navigationItem.backBarButtonItem = backButton;
+
+        YVTalkDetailViewController *vc;
+        vc = (YVTalkDetailViewController *)segue.destinationViewController;
+        vc.talk = (YVTalk *)sender;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDataSsource
+////////////////////////////////////////////////////////////////////////////////
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[self.frController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.frController.sections[section];
+
+    return [[sectionInfo objects] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YVTalkCell *cell;
+    cell = (YVTalkCell *)[tableView dequeueReusableCellWithIdentifier:kYVFavoritesTalkCellIdentifier];
+    if (!cell) {
+        cell = [[YVTalkCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                 reuseIdentifier:kYVFavoritesTalkCellIdentifier];
+        cell.dogEarView.delegate = self;
+    }
+
+    YVTalk *talk = [self.frController objectAtIndexPath:indexPath];
+    NSAssert(talk, @"");
+
+    [cell loadDataFromTalk:talk];
+
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section
+{
+    id<NSFetchedResultsSectionInfo> sectionInfo;
+    sectionInfo = self.frController.sections[section];
+
+    YVSectionHeader *header = [[YVSectionHeader alloc] initWithFrame:CGRectZero];
+    header.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 23.0f);
+
+    [header setSectionTitle:[sectionInfo name]];
+    return header;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    YVTalk *talk = [self.frController objectAtIndexPath:indexPath];
+    NSAssert(talk, @"");
+    [self performSegueWithIdentifier:kYVFavoritesPushToDetailSegueIdentifier
+                              sender:talk];
+
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [YVTalkCell cellHeight];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSFetchedResultsControllerDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    if(type == NSFetchedResultsChangeInsert){
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeUpdate){
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeDelete){
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }else if(type == NSFetchedResultsChangeMove){
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
+    if (type == NSFetchedResultsChangeInsert) {
+        [self.tableView insertSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationFade];
+    }else if (type == NSFetchedResultsChangeUpdate) {
+        [self.tableView reloadSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationFade];
+    }else if (type == NSFetchedResultsChangeDelete) {
+        [self.tableView deleteSections:indexSet
+                      withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVDogEarViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
+{
+    YVTalkCell *talkCell = (YVTalkCell *)dogEarView.superview;
+    NSAssert([talkCell isKindOfClass:[YVTalkCell class]], @"");
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:talkCell];
+    YVTalk *talk = (YVTalk *)[self.frController objectAtIndexPath:indexPath];
+
+    talk.favorite = @(enabled);
+
+    NSManagedObjectContext *moc = self.frController.managedObjectContext;
+    NSError *saveError = nil;
+
+    [[HIDataStoreManager sharedManager] saveContext:moc
+                                              error:&saveError];
+    if(saveError){
+        NSLog(@"SAVE ERROR : %@", [saveError description]);
+    }
+}
+
+@end
