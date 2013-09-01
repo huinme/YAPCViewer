@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E3067" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="YVAbstract" representedClassName="YVAbstract" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="talk" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="abstract" inverseEntity="YVTalk" syncable="YES"/>
@@ -22,7 +22,7 @@
         <attribute name="material_level" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="slide_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="start_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_on" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitles" optional="YES" attributeType="String" syncable="YES"/>

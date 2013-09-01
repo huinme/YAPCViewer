@@ -1,6 +1,6 @@
 PODS:
   - FontAwesomeKit (HEAD based on 1.1.3)
-  - HIDataStoreManager (1.1.2)
+  - HIDataStoreManager (1.1.3)
   - Kiwi (2.2.1):
     - Kiwi/ARC
     - Kiwi/NonARC
@@ -39,7 +39,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FontAwesomeKit: 4c839de6549fabe8dd50db00fc7e3dd177ac98a9
-  HIDataStoreManager: 907945ec6b57a6cc39a8b868fc06f9c33c15b5f5
+  HIDataStoreManager: d1738dc25e0d5aee50e2c3e5e058f4ded45da5e1
   Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
   libwebp: 40517fa1fd3716eded73b4696c45fc0b66e4b414
   MCUIColorUtils: 339761b4aedb0c2cfaf8ce1cd441bcceee115ea1

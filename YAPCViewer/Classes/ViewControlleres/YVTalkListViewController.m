@@ -261,7 +261,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         talk = [self.filteredItems objectAtIndex:indexPath.row];
     }
 
-    [self performSegueWithIdentifier:@"PushToTalkDetailView"
+    [self performSegueWithIdentifier:kYVTalkListPushToDetailSegueIdentifier
                               sender:talk];
 }
 
