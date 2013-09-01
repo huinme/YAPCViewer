@@ -31,7 +31,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 @interface YVTalkListViewController ()
 < NSFetchedResultsControllerDelegate,
   UISearchDisplayDelegate,
-  YVEventDayViewDelegate>
+  YVEventDayViewDelegate,
+  YVTalkCellDelegate>
 
 @property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
@@ -221,6 +222,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         cell = [[YVTalkCell alloc] initWithStyle:UITableViewCellStyleDefault
                                  reuseIdentifier:kYVTalkListTalkCellIdentifier];
     }
+    cell.delegate = self;
 
     YVTalk *talk = nil;
     if(self.tableView == tableView){
@@ -343,5 +345,45 @@ viewForHeaderInSection:(NSInteger)section
     self.filteredItems = [self _filteredItemForQuery:query];
     return YES;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVTalkCellDelegate
+////////////////////////////////////////////////////////////////////////////////
+- (void)tappedFavorite:(UITapGestureRecognizer *)sender
+{
+    [NSFetchedResultsController deleteCacheWithName:kYVTalkListTalksCacheName];
+
+    NSFetchRequest *fr = [YVTalks talkRequestForId:[(YVTalkCell *)sender.view talkId]];
+    NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+
+    NSFetchedResultsController *frController = nil;
+    frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
+                                                       managedObjectContext:moc
+                                                         sectionNameKeyPath:nil
+                                                                  cacheName:kYVTalkListTalksCacheName];
+
+    frController.delegate = self;
+
+    NSError *error;
+    if (![frController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    NSArray *fetchedObject = frController.fetchedObjects;
+
+    YVTalk *talk = [fetchedObject lastObject];
+
+    if (talk.favorite) {
+        talk.favorite = nil;
+    } else {
+        talk.favorite = [NSNumber numberWithBool:YES];
+    }
+
+    NSError *saveError = nil;
+    [[HIDataStoreManager sharedManager]  saveContext:moc
+                                               error:&saveError];
+}
+
 
 @end
