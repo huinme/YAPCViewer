@@ -20,6 +20,7 @@ typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 - (YVTalk *)talkForID:(NSString *)talkID
                 inMoc:(NSManagedObjectContext *)moc;
 
++ (NSFetchRequest *)talkRequestForId:(NSString *)talkId;
 + (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate;
 
 - (void)fetchTalksForDate:(NSString *)dateString

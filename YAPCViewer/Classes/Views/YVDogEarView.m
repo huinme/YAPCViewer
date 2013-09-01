@@ -8,6 +8,8 @@
 
 #import "YVDogEarView.h"
 
+#import "YVModels.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <FontAwesomeKit/FontAwesomeKit.h>
 
@@ -47,6 +49,19 @@
 - (void)setEnabled:(BOOL)enabled
 {
     self.starIconView.hidden = !enabled;
+}
+
+- (void)loadDataFromTalk:(YVTalk *)talk
+{
+    self.talkId = talk.id;
+
+    if(self.delegate
+       && [self.delegate respondsToSelector:@selector(tappedFavorite:)]){
+        UITapGestureRecognizer *tapGesture =
+        [[UITapGestureRecognizer alloc]initWithTarget:self.delegate action:@selector(tappedFavorite:)];
+        tapGesture.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tapGesture];
+    }
 }
 
 - (void)_setupViews
