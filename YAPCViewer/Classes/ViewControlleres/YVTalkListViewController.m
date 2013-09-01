@@ -18,6 +18,7 @@
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 #import "YVLoadingView.h"
+#import "YVDogEarView.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
@@ -31,7 +32,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 @interface YVTalkListViewController ()
 < NSFetchedResultsControllerDelegate,
   UISearchDisplayDelegate,
-  YVEventDayViewDelegate>
+  YVEventDayViewDelegate,
+  YVDogEarViewDelegate>
 
 @property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
@@ -99,6 +101,12 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
         NSAssert([sender isKindOfClass:[YVTalk class]], @"");
+
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Talks"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.navigationController
+                                                                      action:@selector(popNavigationItemAnimated:)];
+        self.navigationItem.backBarButtonItem = backButton;
 
         YVTalkDetailViewController *vc;
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
@@ -185,6 +193,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
        dayDidChanged:(NSString *)dayString
 {
     [self _fetchTalksForDateString:dayString];
+    [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +229,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     if(nil == cell){
         cell = [[YVTalkCell alloc] initWithStyle:UITableViewCellStyleDefault
                                  reuseIdentifier:kYVTalkListTalkCellIdentifier];
+        cell.dogEarView.delegate = self;
     }
 
     YVTalk *talk = nil;
@@ -342,6 +352,31 @@ viewForHeaderInSection:(NSInteger)section
 
     self.filteredItems = [self _filteredItemForQuery:query];
     return YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVTalkCellDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
+{
+    YVTalkCell *talkCell = (YVTalkCell *)dogEarView.superview;
+    NSAssert([talkCell isKindOfClass:[YVTalkCell class]], @"");
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:talkCell];
+    YVTalk *talk = (YVTalk *)[self.frController objectAtIndexPath:indexPath];
+
+    talk.favorite = @(enabled);
+
+    NSManagedObjectContext *moc = self.frController.managedObjectContext;
+    NSError *saveError = nil;
+
+    [[HIDataStoreManager sharedManager] saveContext:moc
+                                              error:&saveError];
+    if(saveError){
+        NSLog(@"SAVE ERROR : %@", [saveError description]);
+    }
 }
 
 @end

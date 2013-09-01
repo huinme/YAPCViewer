@@ -35,4 +35,8 @@
 @property (nonatomic, retain) NSString *start_time;
 @property (nonatomic, retain) NSString *end_time;
 
+@property (nonatomic, retain) NSNumber *favorite;
+
+- (BOOL)isFavorited;
+
 @end

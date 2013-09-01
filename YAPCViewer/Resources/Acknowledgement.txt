@@ -9,3 +9,6 @@
   
 - SDWebImage
   (https://github.com/rs/SDWebImage)
+  
+- FontAwsesomeKit
+  (https://github.com/PrideChung/FontAwesomeKit)

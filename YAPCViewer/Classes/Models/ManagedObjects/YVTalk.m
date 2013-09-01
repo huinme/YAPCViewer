@@ -36,4 +36,11 @@
 @dynamic start_time;
 @dynamic end_time;
 
+@dynamic favorite;
+
+- (BOOL)isFavorited
+{
+    return [self.favorite boolValue];
+}
+
 @end

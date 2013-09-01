@@ -42,6 +42,18 @@
     return fr;
 }
 
++ (NSFetchRequest *)talkRequestForId:(NSString *)talkId
+{
+    NSParameterAssert(talkId);
+
+    NSFetchRequest *fr = [self _defaultYVTalkFetchRequest];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id = %@", talkId];
+    [fr setPredicate:predicate];
+
+    return fr;
+}
+
 + (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate
 {
     NSParameterAssert(eventDate);
