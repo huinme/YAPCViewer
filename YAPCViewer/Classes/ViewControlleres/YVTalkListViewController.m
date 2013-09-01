@@ -178,9 +178,15 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
     NSArray *items = [self.frController fetchedObjects];
 
-    NSString *predicateString = @"title contains[cd] %@ OR title_en contains[cd] %@";
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, query, query];
-    items = [items filteredArrayUsingPredicate:predicate];
+    NSArray *predicateProperties = @[@"title", @"title_en", @"abstract.abstract"];
+    NSMutableArray *predicates = @[].mutableCopy;
+    [predicateProperties enumerateObjectsUsingBlock:^(NSString *property, NSUInteger idx, BOOL *stop) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@", property, query];
+        [predicates addObject:predicate];
+    }];
+
+    NSPredicate *finalPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+    items = [items filteredArrayUsingPredicate:finalPredicate];
 
     return items;
 }
