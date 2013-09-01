@@ -78,7 +78,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"favorite == %@", @(YES)];
     [fr setPredicate:predicate];
 
-    NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"event_date" ascending:YES];
+    NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:YES];
     NSSortDescriptor *titleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     NSSortDescriptor *enTitleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title_en" ascending:YES];
     [fr setSortDescriptors:@[dateSorter, titleSorter, enTitleSorter]];

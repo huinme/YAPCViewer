@@ -17,6 +17,7 @@
 #import "YVDogEarView.h"
 
 #import "YVTalkDetailViewController.h"
+#import "YVDateFormatManager.h"
 
 static NSString *const kYVFavoritesTalkCellIdentifier = @"kYVFavoritesTalkCellIdentifier";
 static NSString *const kYVFavoritesTalkCacheName = @"kYVFavoritesTalkCacheName";
@@ -51,7 +52,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
 
     if (!self.frController) {
         [NSFetchedResultsController deleteCacheWithName:kYVFavoritesTalkCacheName];
-        
+
         NSFetchRequest *fr = [YVTalks favoriteTalksRequest];
         NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
         self.frController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr
@@ -98,7 +99,6 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
         vc.talk = (YVTalk *)sender;
     }
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSsource
@@ -175,52 +175,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - NSFetchedResultsControllerDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath
-     forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    if(type == NSFetchedResultsChangeInsert){
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeUpdate){
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeDelete){
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeMove){
-        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
-{
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
-    if (type == NSFetchedResultsChangeInsert) {
-        [self.tableView insertSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
-    }else if (type == NSFetchedResultsChangeUpdate) {
-        [self.tableView reloadSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
-    }else if (type == NSFetchedResultsChangeDelete) {
-        [self.tableView deleteSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    NSError *fetchError = nil;
+    if (![self.frController performFetch:&fetchError]) {
+        NSLog(@"FETCH ERROR : %@", fetchError.localizedDescription);
+        return;
+    }
+    [self.tableView reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
