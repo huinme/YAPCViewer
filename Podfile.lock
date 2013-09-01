@@ -1,7 +1,11 @@
 PODS:
   - FontAwesomeKit (HEAD based on 1.1.3)
-  - HIDataStoreManager (1.0.2)
-  - Kiwi (2.2)
+  - HIDataStoreManager (1.1.2)
+  - Kiwi (2.2.1):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - Kiwi/ARC (2.2.1)
+  - Kiwi/NonARC (2.2.1)
   - libwebp (0.3.0-rc7):
     - libwebp/dec
     - libwebp/dsp
@@ -12,7 +16,7 @@ PODS:
   - libwebp/utils (0.3.0-rc7)
   - libwebp/webp (0.3.0-rc7)
   - MCUIColorUtils (1.0.0)
-  - Nocilla (0.6)
+  - Nocilla (0.7.1)
   - SDWebImage (HEAD based on 3.4):
     - libwebp
     - SDWebImage/MapKit
@@ -35,12 +39,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FontAwesomeKit: 4c839de6549fabe8dd50db00fc7e3dd177ac98a9
-  HIDataStoreManager: 754852422c6f324b909a93b5541e1d93a4f67f3b
-  Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
+  HIDataStoreManager: 907945ec6b57a6cc39a8b868fc06f9c33c15b5f5
+  Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
   libwebp: 40517fa1fd3716eded73b4696c45fc0b66e4b414
   MCUIColorUtils: 339761b4aedb0c2cfaf8ce1cd441bcceee115ea1
-  Nocilla: 8eb1de5a53f8567ca529d144880525448c6e713c
+  Nocilla: 79bf72b15b7e6589d3d37ffa7540d7271fb75121
   SDWebImage: f13f791e411c632489824aa7f129e230b52bf5c4
   TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
 
-COCOAPODS: 0.23.0.rc1
+COCOAPODS: 0.23.0

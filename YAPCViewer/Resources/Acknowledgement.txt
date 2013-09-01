@@ -1,14 +1,14 @@
-- MCUIColorUtils
-  (https://github.com/mirego/MCUIColorUtils)
+MCUIColorUtils
+(https://github.com/mirego/MCUIColorUtils)
 
-- TTTAttributedLabel
-  (https://github.com/mattt/TTTAttributedLabel)
+TTTAttributedLabel
+(https://github.com/mattt/TTTAttributedLabel)
 
-- HIDataStoreManager
-  (https://github.com/kshuin/HIDataStoreManager)
+HIDataStoreManager
+(https://github.com/kshuin/HIDataStoreManager)
   
-- SDWebImage
-  (https://github.com/rs/SDWebImage)
+SDWebImage
+(https://github.com/rs/SDWebImage)
   
-- FontAwsesomeKit
-  (https://github.com/PrideChung/FontAwesomeKit)
+FontAwsesomeKit
+(https://github.com/PrideChung/FontAwesomeKit)
