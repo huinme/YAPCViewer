@@ -93,7 +93,10 @@ static NSString *const kYVTalkCellTimeSelectedTextColor         = @"#ffffff";
         self.textLabel.text = talk.title_en;
     }
 
-    self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", talk.start_time, talk.end_time];
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ - %@",
+                                                           talk.venue.name,
+                                                           talk.start_time,
+                                                           talk.end_time];
 
     NSParameterAssert(talk);
     self.dogEarView.enabled = talk.isFavorited;
