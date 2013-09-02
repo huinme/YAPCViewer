@@ -277,6 +277,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return [YVTalkCell cellHeight];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForHeaderInSection:(NSInteger)section
+{
+    return [YVSectionHeader defaultHeaderHeight];
+}
+
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section
 {

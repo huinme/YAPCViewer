@@ -31,6 +31,7 @@
 		23BBB29F17D4954D00F2E200 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A117D4954D00F2E200 /* iPhone.storyboard */; };
 		23BBB2A617D4980F00F2E200 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A417D4980F00F2E200 /* map.png */; };
 		23BBB2A717D4980F00F2E200 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A517D4980F00F2E200 /* map@2x.png */; };
+		23BBB2AA17D4A2CA00F2E200 /* YVNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BBB2A917D4A2CA00F2E200 /* YVNewsViewController.m */; };
 		C50153A417D3436D00FCCAF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50153A317D3436D00FCCAF4 /* Settings.bundle */; };
 		C5122FA817CB2EA200E44552 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5122FA717CB2EA200E44552 /* CoreText.framework */; };
 		C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5122FAA17CB38D900E44552 /* YVDogEarView.m */; };
@@ -107,6 +108,8 @@
 		23BBB2A317D495C200F2E200 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		23BBB2A417D4980F00F2E200 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		23BBB2A517D4980F00F2E200 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
+		23BBB2A817D4A2CA00F2E200 /* YVNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVNewsViewController.h; path = Classes/ViewControlleres/YVNewsViewController.h; sourceTree = "<group>"; };
+		23BBB2A917D4A2CA00F2E200 /* YVNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVNewsViewController.m; path = Classes/ViewControlleres/YVNewsViewController.m; sourceTree = "<group>"; };
 		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,6 +399,8 @@
 				C5A6CCC517D34CB00057FB30 /* YVFavoritesViewController.m */,
 				23733D1717AE9A8200244F01 /* YVMapViewController.h */,
 				23733D1817AE9A8200244F01 /* YVMapViewController.m */,
+				23BBB2A817D4A2CA00F2E200 /* YVNewsViewController.h */,
+				23BBB2A917D4A2CA00F2E200 /* YVNewsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				C55A48DC17CA1BA800CD759B /* YVSpeakers.m in Sources */,
 				C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */,
 				C5A6CCC617D34CB00057FB30 /* YVFavoritesViewController.m in Sources */,
+				23BBB2AA17D4A2CA00F2E200 /* YVNewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

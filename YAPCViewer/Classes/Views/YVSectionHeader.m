@@ -10,6 +10,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+static const CGFloat kYVSectionHeaderDefaultHeight = 23.0f;
+
 @interface YVSectionHeader()
 
 @property (nonatomic, strong) UILabel *sectionTitleLabel;
@@ -19,6 +21,11 @@
 @end
 
 @implementation YVSectionHeader
+
++ (CGFloat)defaultHeaderHeight
+{
+    return kYVSectionHeaderDefaultHeight;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

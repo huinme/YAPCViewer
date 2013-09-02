@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) NSString *sectionTitle;
 
++ (CGFloat)defaultHeaderHeight;
+
 @end
