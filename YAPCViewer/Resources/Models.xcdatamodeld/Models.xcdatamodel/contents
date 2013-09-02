@@ -16,12 +16,13 @@
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="end_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="material_level" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="slide_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="start_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_on" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitles" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,9 +40,9 @@
         <relationship name="talks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YVTalk" inverseName="venue" inverseEntity="YVTalk" syncable="YES"/>
     </entity>
     <elements>
-        <element name="YVAbstract" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="YVSpeaker" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="YVTalk" positionX="160" positionY="192" width="128" height="345"/>
-        <element name="YVVenue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="YVAbstract" positionX="117" positionY="117" width="128" height="75"/>
+        <element name="YVSpeaker" positionX="187" positionY="234" width="128" height="120"/>
+        <element name="YVTalk" positionX="-63" positionY="198" width="128" height="360"/>
+        <element name="YVVenue" positionX="205" positionY="378" width="128" height="90"/>
     </elements>
 </model>

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class YVTalk;
+@class YVDogEarView;
 
 @interface YVTalkCell : UITableViewCell
+
+@property (nonatomic, strong) YVDogEarView *dogEarView;
 
 + (CGFloat)cellHeight;
 + (UIColor *)backgroundColor;

@@ -42,6 +42,18 @@
     return fr;
 }
 
++ (NSFetchRequest *)talkRequestForId:(NSString *)talkId
+{
+    NSParameterAssert(talkId);
+
+    NSFetchRequest *fr = [self _defaultYVTalkFetchRequest];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id = %@", talkId];
+    [fr setPredicate:predicate];
+
+    return fr;
+}
+
 + (NSFetchRequest *)talksRequestForDate:(NSString *)eventDate
 {
     NSParameterAssert(eventDate);
@@ -52,6 +64,21 @@
     [fr setPredicate:predicate];
 
     NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"event_date" ascending:YES];
+    NSSortDescriptor *titleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    NSSortDescriptor *enTitleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title_en" ascending:YES];
+    [fr setSortDescriptors:@[dateSorter, titleSorter, enTitleSorter]];
+
+    return fr;
+}
+
++ (NSFetchRequest *)favoriteTalksRequest
+{
+    NSFetchRequest *fr = [self _defaultYVTalkFetchRequest];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"favorite == %@", @(YES)];
+    [fr setPredicate:predicate];
+
+    NSSortDescriptor *dateSorter = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:YES];
     NSSortDescriptor *titleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     NSSortDescriptor *enTitleSorter = [NSSortDescriptor sortDescriptorWithKey:@"title_en" ascending:YES];
     [fr setSortDescriptors:@[dateSorter, titleSorter, enTitleSorter]];
@@ -142,6 +169,9 @@
          NSError *saveError = nil;
          [[HIDataStoreManager sharedManager]  saveContext:moc
                                                     error:&saveError];
+         if (saveError) {
+             NSLog(@"SAVE ERROR : %@", saveError.description);
+         }
          
          handler ? handler(dataDict, nil) : nil;
      }];
@@ -203,7 +233,6 @@
         }
 
         YVAbstract *abstract = [[self class] emptyAbstractInMoc:moc];
-
         abstract.abstract = abstractValue;
 
         talk.abstract = abstract;
@@ -218,10 +247,13 @@
 
     if(talk.start_on){
         NSDateFormatter *df = [YVDateFormatManager sharedManager].defaultFormatter;
-        NSRange range = [YVDateFormatManager sharedManager].HHmmRange;
+        NSRange yyyyMMddRange = [YVDateFormatManager sharedManager].yyyyMMddRange;
+        NSRange HHmmRange = [YVDateFormatManager sharedManager].HHmmRange;
 
         talk.event_date = [df dateFromString:talk.start_on];
-        talk.start_time = [talk.start_on substringWithRange:range];
+        
+        talk.start_date = [talk.start_on substringWithRange:yyyyMMddRange];
+        talk.start_time = [talk.start_on substringWithRange:HHmmRange];
 
         NSCalendarUnit unit = (NSHourCalendarUnit|NSMinuteCalendarUnit);
         NSCalendar *calendar = [YVDateFormatManager sharedManager].defaultCalendar;
@@ -230,7 +262,7 @@
 
         components.minute += [talk.duration intValue];
         NSDate *endDate = [calendar dateFromComponents:components];
-        talk.end_time = [[df stringFromDate:endDate] substringWithRange:range];
+        talk.end_time = [[df stringFromDate:endDate] substringWithRange:HHmmRange];
     }
     
     return talk;
