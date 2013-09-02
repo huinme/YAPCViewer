@@ -34,6 +34,8 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+- (void)_updateTableView;
+
 @end
 
 @implementation YVFavoritesViewController
@@ -43,7 +45,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     self.view.backgroundColor = [YVTalkCell backgroundColor];
     
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.tableView.backgroundColor = [YVTalkCell backgroundColor];
+    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 }
 
 - (void)viewDidLoad
@@ -66,7 +68,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     if (![self.frController performFetch:&fetchError]) {
         NSLog(@"FETCH ERROR : %@", fetchError.description);
     }
-    [self.tableView reloadData];
+    [self _updateTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,6 +100,11 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_updateTableView
+{
+    [self.tableView reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +189,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         NSLog(@"FETCH ERROR : %@", fetchError.localizedDescription);
         return;
     }
-    [self.tableView reloadData];
+    [self _updateTableView];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

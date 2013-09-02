@@ -23,9 +23,14 @@
 		2330871717D48BE1004FAD88 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2330870D17D48BE1004FAD88 /* iTunesArtwork.png */; };
 		2330871817D48BE1004FAD88 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2330870E17D48BE1004FAD88 /* iTunesArtwork@2x.png */; };
 		23733D1617AE998000244F01 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23733D1517AE998000244F01 /* MapKit.framework */; };
-		23733D1917AE9A8200244F01 /* YVMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23733D1817AE9A8200244F01 /* YVMapsViewController.m */; };
+		23733D1917AE9A8200244F01 /* YVMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23733D1817AE9A8200244F01 /* YVMapViewController.m */; };
 		23733D1B17AE9B6600244F01 /* Acknowledgement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23733D1A17AE9B6600244F01 /* Acknowledgement.txt */; };
 		23B07E1F361248CC919F3DA4 /* libPods-YAPCViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */; };
+		23BBB29D17D493BE00F2E200 /* default_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB29B17D493BE00F2E200 /* default_background.png */; };
+		23BBB29E17D493BE00F2E200 /* default_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB29C17D493BE00F2E200 /* default_background@2x.png */; };
+		23BBB29F17D4954D00F2E200 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A117D4954D00F2E200 /* iPhone.storyboard */; };
+		23BBB2A617D4980F00F2E200 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A417D4980F00F2E200 /* map.png */; };
+		23BBB2A717D4980F00F2E200 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23BBB2A517D4980F00F2E200 /* map@2x.png */; };
 		C50153A417D3436D00FCCAF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50153A317D3436D00FCCAF4 /* Settings.bundle */; };
 		C5122FA817CB2EA200E44552 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5122FA717CB2EA200E44552 /* CoreText.framework */; };
 		C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5122FAA17CB38D900E44552 /* YVDogEarView.m */; };
@@ -59,7 +64,6 @@
 		C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */; };
 		C5BC910717AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */; };
 		C5BC910A17AD1F05003E11E2 /* YVTalkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */; };
-		C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */; };
 		C5F2CE0217AD042E00EAD980 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */; };
 		C5F2CE0C17AD063400EAD980 /* YVAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0B17AD063400EAD980 /* YVAbstract.m */; };
 		C5F2CE0F17AD064E00EAD980 /* YVSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F2CE0E17AD064E00EAD980 /* YVSpeaker.m */; };
@@ -95,9 +99,14 @@
 		2358E83E17D49178007BACA9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2358E83F17D49178007BACA9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23733D1517AE998000244F01 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		23733D1717AE9A8200244F01 /* YVMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVMapsViewController.h; path = Classes/ViewControlleres/YVMapsViewController.h; sourceTree = "<group>"; };
-		23733D1817AE9A8200244F01 /* YVMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVMapsViewController.m; path = Classes/ViewControlleres/YVMapsViewController.m; sourceTree = "<group>"; };
+		23733D1717AE9A8200244F01 /* YVMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVMapViewController.h; path = Classes/ViewControlleres/YVMapViewController.h; sourceTree = "<group>"; };
+		23733D1817AE9A8200244F01 /* YVMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVMapViewController.m; path = Classes/ViewControlleres/YVMapViewController.m; sourceTree = "<group>"; };
 		23733D1A17AE9B6600244F01 /* Acknowledgement.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Acknowledgement.txt; path = Resources/Acknowledgement.txt; sourceTree = "<group>"; };
+		23BBB29B17D493BE00F2E200 /* default_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_background.png; sourceTree = "<group>"; };
+		23BBB29C17D493BE00F2E200 /* default_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_background@2x.png"; sourceTree = "<group>"; };
+		23BBB2A317D495C200F2E200 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
+		23BBB2A417D4980F00F2E200 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		23BBB2A517D4980F00F2E200 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		2D119D3C234F4B56B8203B95 /* Pods-YAPCViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAPCViewerTests.xcconfig"; path = "Pods/Pods-YAPCViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		590113AC28FC478184EF218E /* libPods-YAPCViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YAPCViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +166,6 @@
 		C5BC910617AD1AA8003E11E2 /* NSManagedObject+SafetyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+SafetyMapping.m"; path = "YAPCViewer/Classes/Models/NSManagedObject+SafetyMapping.m"; sourceTree = "<group>"; };
 		C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVTalkListViewController.h; path = Classes/ViewControlleres/YVTalkListViewController.h; sourceTree = "<group>"; };
 		C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVTalkListViewController.m; path = Classes/ViewControlleres/YVTalkListViewController.m; sourceTree = "<group>"; };
-		C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPhone.storyboard; path = Resources/iPhone.storyboard; sourceTree = "<group>"; };
 		C5F2CE0117AD042E00EAD980 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
 		C5F2CE0A17AD063400EAD980 /* YVAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVAbstract.h; path = YAPCViewer/Classes/Models/ManagedObjects/YVAbstract.h; sourceTree = "<group>"; };
 		C5F2CE0B17AD063400EAD980 /* YVAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVAbstract.m; path = YAPCViewer/Classes/Models/ManagedObjects/YVAbstract.m; sourceTree = "<group>"; };
@@ -382,12 +390,12 @@
 				C5481FB517C9F693003FB928 /* YVTabBarController.m */,
 				C5BC910817AD1F05003E11E2 /* YVTalkListViewController.h */,
 				C5BC910917AD1F05003E11E2 /* YVTalkListViewController.m */,
-				C5A6CCC417D34CB00057FB30 /* YVFavoritesViewController.h */,
-				C5A6CCC517D34CB00057FB30 /* YVFavoritesViewController.m */,
 				C5A8DE0117AE5D4500EDB97D /* YVTalkDetailViewController.h */,
 				C5A8DE0217AE5D4500EDB97D /* YVTalkDetailViewController.m */,
-				23733D1717AE9A8200244F01 /* YVMapsViewController.h */,
-				23733D1817AE9A8200244F01 /* YVMapsViewController.m */,
+				C5A6CCC417D34CB00057FB30 /* YVFavoritesViewController.h */,
+				C5A6CCC517D34CB00057FB30 /* YVFavoritesViewController.m */,
+				23733D1717AE9A8200244F01 /* YVMapViewController.h */,
+				23733D1817AE9A8200244F01 /* YVMapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -395,13 +403,13 @@
 		C5F2CDFC17AD038D00EAD980 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C50153A317D3436D00FCCAF4 /* Settings.bundle */,
 				2330870417D48BE1004FAD88 /* Icons */,
 				233086FD17D48AE8004FAD88 /* Launch */,
-				C50153A317D3436D00FCCAF4 /* Settings.bundle */,
 				C57F9DCB17CB261E0026D1A7 /* fonts */,
 				C5F2CE0317AD046800EAD980 /* images */,
 				C5F2CE0017AD042E00EAD980 /* Models.xcdatamodeld */,
-				C5F2CDFE17AD03F400EAD980 /* iPhone.storyboard */,
+				23BBB2A117D4954D00F2E200 /* iPhone.storyboard */,
 				23733D1A17AE9B6600244F01 /* Acknowledgement.txt */,
 			);
 			name = Resources;
@@ -427,6 +435,10 @@
 		C5F2CE0317AD046800EAD980 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				23BBB2A417D4980F00F2E200 /* map.png */,
+				23BBB2A517D4980F00F2E200 /* map@2x.png */,
+				23BBB29B17D493BE00F2E200 /* default_background.png */,
+				23BBB29C17D493BE00F2E200 /* default_background@2x.png */,
 			);
 			name = images;
 			path = Resources/images;
@@ -510,7 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C53EF90A17AD02E100EE6F0A /* InfoPlist.strings in Resources */,
-				C5F2CDFF17AD03F400EAD980 /* iPhone.storyboard in Resources */,
+				23BBB29F17D4954D00F2E200 /* iPhone.storyboard in Resources */,
 				23733D1B17AE9B6600244F01 /* Acknowledgement.txt in Resources */,
 				2330870117D48AE8004FAD88 /* Default-568h@2x.png in Resources */,
 				2330870217D48AE8004FAD88 /* Default.png in Resources */,
@@ -527,6 +539,10 @@
 				2330871817D48BE1004FAD88 /* iTunesArtwork@2x.png in Resources */,
 				C57F9DCD17CB261E0026D1A7 /* FontAwesome.ttf in Resources */,
 				C50153A417D3436D00FCCAF4 /* Settings.bundle in Resources */,
+				23BBB29D17D493BE00F2E200 /* default_background.png in Resources */,
+				23BBB29E17D493BE00F2E200 /* default_background@2x.png in Resources */,
+				23BBB2A617D4980F00F2E200 /* map.png in Resources */,
+				23BBB2A717D4980F00F2E200 /* map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +652,7 @@
 				C5A8DDFE17AE387D00EDB97D /* YVSectionHeader.m in Sources */,
 				C5A8DE0317AE5D4500EDB97D /* YVTalkDetailViewController.m in Sources */,
 				2300E78317AE7F78008F3585 /* YVLoadingView.m in Sources */,
-				23733D1917AE9A8200244F01 /* YVMapsViewController.m in Sources */,
+				23733D1917AE9A8200244F01 /* YVMapViewController.m in Sources */,
 				C5481FB317C9F5F3003FB928 /* YVUIThemeManager.m in Sources */,
 				C5481FB617C9F693003FB928 /* YVTabBarController.m in Sources */,
 				C5481FB917C9FA51003FB928 /* YVAPIEndpoint.m in Sources */,
@@ -668,6 +684,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		23BBB2A117D4954D00F2E200 /* iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23BBB2A317D495C200F2E200 /* en */,
+			);
+			name = iPhone.storyboard;
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C53EF90817AD02E100EE6F0A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
