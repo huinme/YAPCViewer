@@ -69,6 +69,16 @@ static NSString *const kYVEventDayViewShadowLineColor = @"#aeaeae";
     [self _updateButtonStateForIndex:self.currentEventDaysIndex];
 }
 
+- (void)setEventDayIndex:(NSInteger)index
+{
+    NSAssert(index >= 0, @"should be greater equal than 0.");
+    NSAssert(index <= (_eventDays.count - 1), @"should be less equal than number of _eventDays.");
+
+    self.currentEventDaysIndex = index;
+
+    [self _displayDateForCurrentIndex];
+}
+
 - (void)_setupViews
 {
     self.backgroundColor = [UIColor colorForHex:kYVEventDayViewBackgroundColor];

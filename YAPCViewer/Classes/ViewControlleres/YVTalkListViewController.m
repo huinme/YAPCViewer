@@ -20,6 +20,8 @@
 #import "YVLoadingView.h"
 #import "YVDogEarView.h"
 
+#import "YVEventScroller.h"
+
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
 
@@ -42,6 +44,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
+
+- (void)_scrollToCurrentTalk;
 
 - (void)_fetchTalksForDateString:(NSString *)dateString;
 - (void)_alertError:(NSError *)error;
@@ -82,12 +86,29 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
 
-    [self _fetchTalksForDateString:self.eventDays[0]];
+    YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
+    NSInteger indexToGo = [scroller eventIndexForCurrentDate];
+    if (NSNotFound == indexToGo) {
+        indexToGo = 0;
+    }
+
+    [self.eventDayView setEventDayIndex:indexToGo];
+    [self _scrollToCurrentTalk];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +133,25 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_scrollToCurrentTalk
+{
+    YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
+    NSInteger indexToGo = [scroller eventIndexForCurrentDate];
+    if (NSNotFound == indexToGo || indexToGo != self.eventDayView.currentEventDaysIndex) {
+        return;
+    }
+
+    NSInteger sectionIndex = [scroller sectionIndexForCurrentTimeWithSections:self.frController.sections];
+    if (NSNotFound == sectionIndex) {
+        return;
+    }
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionIndex];
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
 }
 
 - (void)_fetchTalksForDateString:(NSString *)dateString
@@ -200,6 +240,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
        dayDidChanged:(NSString *)dayString
 {
     [self _fetchTalksForDateString:dayString];
+
     [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
 }
 

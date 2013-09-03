@@ -24,4 +24,7 @@
 
 @property (nonatomic, strong) NSArray *eventDays;
 
+- (void)setEventDayIndex:(NSInteger)index;
+- (NSInteger)currentEventDaysIndex;
+
 @end
