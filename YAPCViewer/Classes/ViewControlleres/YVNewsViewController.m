@@ -43,6 +43,13 @@ static NSString *const kYVNewsViewInfoPagePath = @"/2013/info/";
     [self.webView loadRequest:request];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.webView stopLoading];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,7 +68,25 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [[UIApplication sharedApplication] openURL:request.URL];
         return NO;
     }
+
     return YES;
 }
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)webView:(UIWebView *)webView
+didFailLoadWithError:(NSError *)error
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 @end
