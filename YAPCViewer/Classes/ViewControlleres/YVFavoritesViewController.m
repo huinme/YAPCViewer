@@ -15,6 +15,7 @@
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 #import "YVDogEarView.h"
+#import "YVFavoriteEmptyView.h"
 
 #import "YVTalkDetailViewController.h"
 #import "YVDateFormatManager.h"
@@ -35,6 +36,8 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 - (void)_updateTableView;
+
+- (void)_showEmptyView:(BOOL)show;
 
 @end
 
@@ -104,7 +107,28 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
 
 - (void)_updateTableView
 {
+    NSInteger objectCount = self.frController.fetchedObjects.count;
+    [self _showEmptyView: (0 == objectCount) ? YES : NO];
     [self.tableView reloadData];
+}
+
+- (void)_showEmptyView:(BOOL)show
+{
+    YVFavoriteEmptyView *emptyView = (YVFavoriteEmptyView *)[self.view viewWithTag:YVFavoriteEmptyViewTag];
+
+    if (!show) {
+        [emptyView removeFromSuperview];
+        self.tableView.hidden = show;
+        return;
+    }
+
+    
+    if (!emptyView) {
+        emptyView = [[YVFavoriteEmptyView alloc] initWithFrame:self.view.bounds];
+        emptyView.tag = YVFavoriteEmptyViewTag;
+    }
+
+    [self.view addSubview:emptyView];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
