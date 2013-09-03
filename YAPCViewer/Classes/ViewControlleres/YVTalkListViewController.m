@@ -92,7 +92,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         indexToGo = 0;
     }
 
-    [self.eventDayView setEventDayIndex:1];
+    [self.eventDayView setEventDayIndex:indexToGo];
+    [self _scrollToCurrentTalk];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -103,8 +104,6 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    [self _scrollToCurrentTalk];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -140,7 +139,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 {
     YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
     NSInteger indexToGo = [scroller eventIndexForCurrentDate];
-    if (NSNotFound == indexToGo) {
+    if (NSNotFound == indexToGo || indexToGo != self.eventDayView.currentEventDaysIndex) {
         return;
     }
 
