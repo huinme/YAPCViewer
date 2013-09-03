@@ -55,10 +55,10 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 - (void)awakeFromNib
 {
-  self.view.backgroundColor = [YVTalkCell backgroundColor];
+    self.view.backgroundColor = [YVTalkCell backgroundColor];
 
-  self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-  self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 }
 
 - (void)viewDidLoad
