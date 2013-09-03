@@ -311,16 +311,16 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    if(type == NSFetchedResultsChangeInsert){
+    if (type == NSFetchedResultsChangeInsert) {
         [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeUpdate){
+    }else if (type == NSFetchedResultsChangeUpdate) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeDelete){
+    }else if (type == NSFetchedResultsChangeDelete) {
         [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeMove){
+    }else if (type == NSFetchedResultsChangeMove) {
         [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
     }
 }
@@ -331,13 +331,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
 {
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
-    if(type == NSFetchedResultsChangeInsert) {
+    if (type == NSFetchedResultsChangeInsert) {
         [self.tableView insertSections:indexSet
                       withRowAnimation:UITableViewRowAnimationNone];
-    }else if(type == NSFetchedResultsChangeUpdate){
+    }else if (type == NSFetchedResultsChangeUpdate){
         [self.tableView reloadSections:indexSet
                       withRowAnimation:UITableViewRowAnimationNone];
-    }else if(type == NSFetchedResultsChangeDelete){
+    }else if (type == NSFetchedResultsChangeDelete){
         [self.tableView deleteSections:indexSet
                       withRowAnimation:UITableViewRowAnimationNone];
     }
