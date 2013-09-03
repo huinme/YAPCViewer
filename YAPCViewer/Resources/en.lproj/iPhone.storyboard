@@ -238,7 +238,7 @@
             </objects>
             <point key="canvasLocation" x="429" y="1052"/>
         </scene>
-        <!--Talk List View Controller - YAPC::Asia-->
+        <!--Talk List View Controller - YAPC::Asia 2013-->
         <scene sceneID="Ble-kQ-jiQ">
             <objects>
                 <viewController id="XRZ-iU-N5x" customClass="YVTalkListViewController" sceneMemberID="viewController">
@@ -305,7 +305,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="YAPC::Asia" id="gIg-zH-6jd"/>
+                    <navigationItem key="navigationItem" title="YAPC::Asia 2013" id="gIg-zH-6jd"/>
                     <connections>
                         <outlet property="eventDayView" destination="vQr-Uy-Wwv" id="IHt-TP-rpN"/>
                         <outlet property="tableView" destination="GCj-4a-eYp" id="R2h-tJ-TtM"/>

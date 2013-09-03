@@ -117,6 +117,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 - (void)_fetchTalksForDateString:(NSString *)dateString
 {
     self.frController = [self _frControllerForQuery:dateString];
+
     NSError *fetchError = nil;
     if(![self.frController performFetch:&fetchError]){
         YVLog(@"FETCH ERROR : %@", fetchError);
@@ -300,52 +301,53 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - NSFethedResultsControllerDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath
-     forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    if (type == NSFetchedResultsChangeInsert) {
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if (type == NSFetchedResultsChangeUpdate) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if (type == NSFetchedResultsChangeDelete) {
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if (type == NSFetchedResultsChangeMove) {
-        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
-{
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
-    if (type == NSFetchedResultsChangeInsert) {
-        [self.tableView insertSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }else if (type == NSFetchedResultsChangeUpdate){
-        [self.tableView reloadSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }else if (type == NSFetchedResultsChangeDelete){
-        [self.tableView deleteSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
+//- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+//{
+//    [self.tableView beginUpdates];
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller
+//   didChangeObject:(id)anObject
+//       atIndexPath:(NSIndexPath *)indexPath
+//     forChangeType:(NSFetchedResultsChangeType)type
+//      newIndexPath:(NSIndexPath *)newIndexPath
+//{
+//    if (type == NSFetchedResultsChangeInsert) {
+//        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeUpdate) {
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeDelete) {
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeMove) {
+//        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+//    }
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller
+//  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+//           atIndex:(NSUInteger)sectionIndex
+//     forChangeType:(NSFetchedResultsChangeType)type
+//{
+//    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
+//    if (type == NSFetchedResultsChangeInsert) {
+//        [self.tableView insertSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }else if (type == NSFetchedResultsChangeUpdate){
+//        [self.tableView reloadSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }else if (type == NSFetchedResultsChangeDelete){
+//        [self.tableView deleteSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }
+//}
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    [self.tableView reloadData];
+//    [self.tableView endUpdates];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
