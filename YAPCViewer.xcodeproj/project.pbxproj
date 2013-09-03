@@ -56,6 +56,7 @@
 		C55A48D617CA0EE900CD759B /* YVVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48D517CA0EE900CD759B /* YVVenue.m */; };
 		C55A48D917CA0F0900CD759B /* YVVenues.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48D817CA0F0900CD759B /* YVVenues.m */; };
 		C55A48DC17CA1BA800CD759B /* YVSpeakers.m in Sources */ = {isa = PBXBuildFile; fileRef = C55A48DB17CA1BA800CD759B /* YVSpeakers.m */; };
+		C56FE07117D617DF0082A6BD /* YVEventScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = C56FE07017D617DF0082A6BD /* YVEventScroller.m */; };
 		C57F9DCD17CB261E0026D1A7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C57F9DCC17CB261E0026D1A7 /* FontAwesome.ttf */; };
 		C5A6CCC617D34CB00057FB30 /* YVFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A6CCC517D34CB00057FB30 /* YVFavoritesViewController.m */; };
 		C5A8DDF417AE19BB00EDB97D /* YVDateFormatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8DDF317AE19BB00EDB97D /* YVDateFormatManager.m */; };
@@ -153,6 +154,8 @@
 		C55A48D817CA0F0900CD759B /* YVVenues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVVenues.m; path = YAPCViewer/Classes/Models/YVVenues.m; sourceTree = "<group>"; };
 		C55A48DA17CA1BA800CD759B /* YVSpeakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVSpeakers.h; path = YAPCViewer/Classes/Models/YVSpeakers.h; sourceTree = "<group>"; };
 		C55A48DB17CA1BA800CD759B /* YVSpeakers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVSpeakers.m; path = YAPCViewer/Classes/Models/YVSpeakers.m; sourceTree = "<group>"; };
+		C56FE06F17D617DF0082A6BD /* YVEventScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVEventScroller.h; path = Classes/Others/YVEventScroller.h; sourceTree = "<group>"; };
+		C56FE07017D617DF0082A6BD /* YVEventScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVEventScroller.m; path = Classes/Others/YVEventScroller.m; sourceTree = "<group>"; };
 		C57F9DCC17CB261E0026D1A7 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		C5A6CCC417D34CB00057FB30 /* YVFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YVFavoritesViewController.h; path = Classes/ViewControlleres/YVFavoritesViewController.h; sourceTree = "<group>"; };
 		C5A6CCC517D34CB00057FB30 /* YVFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YVFavoritesViewController.m; path = Classes/ViewControlleres/YVFavoritesViewController.m; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 		C5A8DDF517AE19BF00EDB97D /* Othres */ = {
 			isa = PBXGroup;
 			children = (
+				C56FE06F17D617DF0082A6BD /* YVEventScroller.h */,
+				C56FE07017D617DF0082A6BD /* YVEventScroller.m */,
 				C5481FB717C9FA51003FB928 /* YVAPIEndpoint.h */,
 				C5481FB817C9FA51003FB928 /* YVAPIEndpoint.m */,
 				C5481FBA17C9FC6E003FB928 /* YVAPIRequest.h */,
@@ -668,6 +673,7 @@
 				C5122FAB17CB38D900E44552 /* YVDogEarView.m in Sources */,
 				C5A6CCC617D34CB00057FB30 /* YVFavoritesViewController.m in Sources */,
 				23BBB2AA17D4A2CA00F2E200 /* YVNewsViewController.m in Sources */,
+				C56FE07117D617DF0082A6BD /* YVEventScroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
