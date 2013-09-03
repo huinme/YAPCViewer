@@ -840,15 +840,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: KOICHI SAKATA (UNFCPFW4M8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Koichi Sakata (92229B38SS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Koichi Sakata (92229B38SS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E8B047A-6A09-4FB5-8DEC-EEAA2D6795E9";
+				PROVISIONING_PROFILE = "6978F561-1C25-4CB3-9F14-5C4D0950C04E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6978F561-1C25-4CB3-9F14-5C4D0950C04E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

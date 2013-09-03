@@ -27,4 +27,7 @@ typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 - (void)fetchTalksForDate:(NSString *)dateString
               withHandler:(YVTalksHandler)handler;
 
+- (void)updateTalks:(NSArray *)talks
+              inMoc:(NSManagedObjectContext *)moc;
+
 @end

@@ -284,7 +284,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (UIView *)tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section
+    viewForHeaderInSection:(NSInteger)section
 {
     id<NSFetchedResultsSectionInfo> sectionInfo;
     sectionInfo = self.frController.sections[section];

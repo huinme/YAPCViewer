@@ -28,7 +28,7 @@ NSString *const YVTalksSerivceErrorDomain = @"YVTalksSerivceErrorDomain";
      ^(NSURLResponse *response, NSData *data, NSError *error) {
          if(error){
              handler ? handler(nil, error) : nil;
-             return ;
+             return;
          }
 
          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;

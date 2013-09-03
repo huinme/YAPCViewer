@@ -95,10 +95,8 @@
     }];
 
     NSError *saveError = nil;
-    [[HIDataStoreManager sharedManager] saveContext:moc
-                                              error:&saveError];
-    if(saveError){
-        YVLog(@"SAVE ERROR : %@", saveError);
+    if (![moc save:&saveError]) {
+        NSLog(@"%@", saveError.description);
     }
 }
 
