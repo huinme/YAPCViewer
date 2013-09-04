@@ -240,8 +240,13 @@
             YVAbstract *abstract = [[self class] emptyAbstractInMoc:moc];
             talk.abstract = abstract;
             abstract.talk = talk;
-        }        
-        talk.abstract.abstract = abstractValue;
+        }
+
+        NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"\\[([^\\]]+)\\]\\([^\\)]+\\)" options:0 error:nil];
+        NSString *replacedAbstractValue = [regexp
+                             stringByReplacingMatchesInString:abstractValue options:0 range:NSMakeRange(0, [(NSString *)abstractValue length]) withTemplate:@"$1"];
+
+        talk.abstract.abstract = replacedAbstractValue;
     }
 
     NSNumber *venueID = @([dict[@"venue_id"] intValue]);
