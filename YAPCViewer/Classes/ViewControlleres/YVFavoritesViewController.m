@@ -71,7 +71,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     if (![self.frController performFetch:&fetchError]) {
         NSLog(@"FETCH ERROR : %@", fetchError.description);
     }
-    [self _updateTableView];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,6 +79,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     [super viewWillAppear:animated];
 
     self.tableView.frame = self.view.bounds;
+    [self _updateTableView];
 }
 
 - (void)didReceiveMemoryWarning
