@@ -87,12 +87,12 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDelegate = self;
 
     YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
-    NSInteger indexToGo = [scroller eventIndexForCurrentDate];
-    if (NSNotFound == indexToGo) {
-        indexToGo = 0;
+    NSInteger indexOfDate = [scroller eventIndexForCurrentDate];
+    if (NSNotFound == indexOfDate) {
+        indexOfDate = 0;
     }
 
-    [self.eventDayView setEventDayIndex:indexToGo];
+    [self.eventDayView setEventDayIndex:indexOfDate];
     [self _scrollToCurrentTalk];
 }
 
