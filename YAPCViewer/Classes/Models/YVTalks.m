@@ -2,7 +2,7 @@
 //  YVTalks.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/3/13.
+//  Created by kshuin on 8/3/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -153,8 +153,7 @@
          NSManagedObjectContext *moc = [[HIDataStoreManager sharedManager] subThreadMOC];
          
          NSArray *venuesArray = dataDict[@"venues"];
-         [[YVVenues new] updateVenues:venuesArray
-                                inMoc:moc];
+         [[YVVenues new] updateVenues:venuesArray inMoc:moc];
 
          NSMutableArray *talksArray = [NSMutableArray array];
          [dataDict[@"talks_by_venue"] enumerateObjectsUsingBlock:^(NSArray *talksInVenue, NSUInteger idx, BOOL *stop) {
@@ -162,19 +161,29 @@
              [talksArray addObjectsFromArray:talksInVenue];
          }];
 
-         [talksArray enumerateObjectsUsingBlock:^(NSDictionary *talkDict, NSUInteger idx, BOOL *stop) {
-             [self _updateTalkWithDict:talkDict inMoc:moc];
-         }];
+         [self updateTalks:talksArray inMoc:moc];
 
          NSError *saveError = nil;
-         [[HIDataStoreManager sharedManager]  saveContext:moc
-                                                    error:&saveError];
+         [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
          if (saveError) {
-             NSLog(@"SAVE ERROR : %@", saveError.description);
+             NSLog(@"SAVE ERROR : %@", saveError.localizedDescription);
          }
-         
+
          handler ? handler(dataDict, nil) : nil;
      }];
+}
+
+- (void)updateTalks:(NSArray *)talks
+              inMoc:(NSManagedObjectContext *)moc
+{
+    [talks enumerateObjectsUsingBlock:^(NSDictionary *talkDict, NSUInteger idx, BOOL *stop) {
+        [self _updateTalkWithDict:talkDict inMoc:moc];
+    }];
+
+    NSError *saveError = nil;
+    if (![moc save:&saveError]) {
+        NSLog(@"SAVE ERROR : %@", saveError.localizedDescription);
+    }
 }
 
 - (YVTalk *)talkForID:(NSString *)talkID
@@ -209,14 +218,13 @@
     if(!talk){
         talk = [[self class] emptyTalkInMoc:moc];
     }
-    
     [talk setAttriutesWithDict:dict];
 
     NSDictionary *speakerDict = dict[@"speaker"];
-    if(speakerDict && ![speakerDict isEqual:[NSNull null]]){
+    if (speakerDict && ![speakerDict isEqual:[NSNull null]]) {
         YVSpeaker *speaker = [[YVSpeakers new] speakerForID:[speakerDict valueForKey:@"id"]
                                                       inMoc:moc];
-        if(!speaker){
+        if (!speaker) {
             speaker = [YVSpeakers emptySpeakerInMoc:moc];
         }
         
@@ -227,25 +235,27 @@
     }
 
     id abstractValue = dict[@"abstract"];
-    if(abstractValue && ![abstractValue isEqual:[NSNull null]]) {
-        if(talk.abstract){
-            [moc deleteObject:talk.abstract];
+    if (abstractValue && ![abstractValue isEqual:[NSNull null]]) {
+        if(!talk.abstract){
+            YVAbstract *abstract = [[self class] emptyAbstractInMoc:moc];
+            talk.abstract = abstract;
+            abstract.talk = talk;
         }
 
-        YVAbstract *abstract = [[self class] emptyAbstractInMoc:moc];
-        abstract.abstract = abstractValue;
+        NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"\\[([^\\]]+)\\]\\([^\\)]+\\)" options:0 error:nil];
+        NSString *replacedAbstractValue = [regexp
+                             stringByReplacingMatchesInString:abstractValue options:0 range:NSMakeRange(0, [(NSString *)abstractValue length]) withTemplate:@"$1"];
 
-        talk.abstract = abstract;
-        abstract.talk = talk;
+        talk.abstract.abstract = replacedAbstractValue;
     }
 
     NSNumber *venueID = @([dict[@"venue_id"] intValue]);
     YVVenue *venue = [[YVVenues new] venueForID:venueID inMoc:moc];
-    if(venue){
+    if (venue) {
         talk.venue = venue;
     }
 
-    if(talk.start_on){
+    if (talk.start_on) {
         NSDateFormatter *df = [YVDateFormatManager sharedManager].defaultFormatter;
         NSRange yyyyMMddRange = [YVDateFormatManager sharedManager].yyyyMMddRange;
         NSRange HHmmRange = [YVDateFormatManager sharedManager].HHmmRange;

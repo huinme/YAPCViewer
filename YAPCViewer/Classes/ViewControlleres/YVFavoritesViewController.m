@@ -2,7 +2,7 @@
 //  YVFavoritesViewController.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 9/1/13.
+//  Created by kshuin on 9/1/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 #import "YVDogEarView.h"
+#import "YVFavoriteEmptyView.h"
 
 #import "YVTalkDetailViewController.h"
 #import "YVDateFormatManager.h"
@@ -34,6 +35,10 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+- (void)_updateTableView;
+
+- (void)_showEmptyView:(BOOL)show;
+
 @end
 
 @implementation YVFavoritesViewController
@@ -43,7 +48,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     self.view.backgroundColor = [YVTalkCell backgroundColor];
     
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.tableView.backgroundColor = [YVTalkCell backgroundColor];
+    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 }
 
 - (void)viewDidLoad
@@ -66,7 +71,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     if (![self.frController performFetch:&fetchError]) {
         NSLog(@"FETCH ERROR : %@", fetchError.description);
     }
-    [self.tableView reloadData];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,6 +79,7 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
     [super viewWillAppear:animated];
 
     self.tableView.frame = self.view.bounds;
+    [self _updateTableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,6 +104,32 @@ static NSString *const kYVFavoritesPushToDetailSegueIdentifier = @"PushFromFavor
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
+}
+
+- (void)_updateTableView
+{
+    NSInteger objectCount = self.frController.fetchedObjects.count;
+    [self _showEmptyView: (0 == objectCount) ? YES : NO];
+    [self.tableView reloadData];
+}
+
+- (void)_showEmptyView:(BOOL)show
+{
+    YVFavoriteEmptyView *emptyView = (YVFavoriteEmptyView *)[self.view viewWithTag:YVFavoriteEmptyViewTag];
+
+    if (!show) {
+        [emptyView removeFromSuperview];
+        self.tableView.hidden = show;
+        return;
+    }
+
+    
+    if (!emptyView) {
+        emptyView = [[YVFavoriteEmptyView alloc] initWithFrame:self.view.bounds];
+        emptyView.tag = YVFavoriteEmptyViewTag;
+    }
+
+    [self.view addSubview:emptyView];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +214,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         NSLog(@"FETCH ERROR : %@", fetchError.localizedDescription);
         return;
     }
-    [self.tableView reloadData];
+    [self _updateTableView];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

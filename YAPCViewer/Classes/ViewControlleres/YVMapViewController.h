@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YVMapsViewController : UIViewController
+@interface YVMapViewController : UIViewController
 
 @end

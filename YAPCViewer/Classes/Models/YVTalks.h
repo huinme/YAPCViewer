@@ -2,7 +2,7 @@
 //  YVTalks.h
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/3/13.
+//  Created by kshuin on 8/3/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -26,5 +26,8 @@ typedef void (^YVTalksHandler)(NSDictionary *dataDict, NSError *error);
 
 - (void)fetchTalksForDate:(NSString *)dateString
               withHandler:(YVTalksHandler)handler;
+
+- (void)updateTalks:(NSArray *)talks
+              inMoc:(NSManagedObjectContext *)moc;
 
 @end

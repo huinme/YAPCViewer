@@ -2,7 +2,7 @@
 //  YVVenues.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/25/13.
+//  Created by kshuin on 8/25/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -95,10 +95,8 @@
     }];
 
     NSError *saveError = nil;
-    [[HIDataStoreManager sharedManager] saveContext:moc
-                                              error:&saveError];
-    if(saveError){
-        YVLog(@"SAVE ERROR : %@", saveError);
+    if (![moc save:&saveError]) {
+        NSLog(@"%@", saveError.description);
     }
 }
 
