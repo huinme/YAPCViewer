@@ -770,14 +770,14 @@
 			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KOICHI SAKATA";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3F69780-BA32-4BC3-99A6-5E4A0F21C6C5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;
@@ -860,15 +860,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: KOICHI SAKATA (UNFCPFW4M8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: KOICHI SAKATA (UNFCPFW4M8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E8B047A-6A09-4FB5-8DEC-EEAA2D6795E9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E8B047A-6A09-4FB5-8DEC-EEAA2D6795E9";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -878,14 +878,14 @@
 			baseConfigurationReference = 39C981EEFBA34CC791FEE5AA /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KOICHI SAKATA";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAPCViewer/YAPCViewer-Prefix.pch";
 				INFOPLIST_FILE = "YAPCViewer/YAPCViewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3674C6AA-DC63-402A-81D3-7D2B5B5BE56C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
