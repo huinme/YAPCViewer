@@ -2,7 +2,7 @@
 //  YVEventScroller.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 9/3/13.
+//  Created by kshuin on 9/3/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
