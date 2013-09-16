@@ -2,7 +2,7 @@
 //  YVTalkDetailViewController.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/4/13.
+//  Created by kshuin on 8/4/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -13,11 +13,16 @@
 #import "UIImageView+WebCache.h"
 #import "YVDateFormatManager.h"
 #import "TTTAttributedLabel.h"
+#import "YVDogEarView.h"
+#import "HIDataStoreManager.h"
 
 @interface YVTalkDetailViewController ()
-<TTTAttributedLabelDelegate>
+<TTTAttributedLabelDelegate,
+ YVDogEarViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, weak) IBOutlet YVDogEarView *dogYearView;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
@@ -51,6 +56,13 @@
         line.layer.shadowOpacity = 0.5f;
         line.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     }];
+
+    CGRect dogYearFrame = self.dogYearView.frame;
+    self.dogYearView.frame = CGRectMake(CGRectGetWidth(self.view.bounds)
+                                         - CGRectGetWidth(dogYearFrame),
+                                        0.0f,
+                                        CGRectGetWidth(dogYearFrame),
+                                        CGRectGetHeight(dogYearFrame));
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -106,6 +118,10 @@
                             + CGRectGetHeight(self.abstractLabel.frame)
                             + 20.0f;
     self.scrollView.contentSize = contentSize;
+
+    NSParameterAssert(talk);
+    self.dogYearView.delegate = self;
+    self.dogYearView.enabled = talk.isFavorited;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +134,23 @@
     if([[UIApplication sharedApplication] canOpenURL:url]){
         [[UIApplication sharedApplication] openURL:url];
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVDogEarViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
+{
+    NSManagedObjectContext *moc = [HIDataStoreManager sharedManager].mainThreadMOC;
+    YVTalk *talk = (YVTalk *)[moc objectWithID:self.talk.objectID];
+
+    talk.favorite = @(enabled);
+    [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
+
+    self.talk = talk;
+    [self _loadDataFromTalk:talk];
 }
 
 @end

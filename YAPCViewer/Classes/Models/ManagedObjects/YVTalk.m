@@ -2,7 +2,7 @@
 //  YVTalk.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/3/13.
+//  Created by kshuin on 8/3/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -35,5 +35,12 @@
 @dynamic start_date;
 @dynamic start_time;
 @dynamic end_time;
+
+@dynamic favorite;
+
+- (BOOL)isFavorited
+{
+    return [self.favorite boolValue];
+}
 
 @end

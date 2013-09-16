@@ -2,7 +2,7 @@
 //  YVTalkListViewController.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/3/13.
+//  Created by kshuin on 8/3/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -18,6 +18,9 @@
 #import "YVTalkCell.h"
 #import "YVSectionHeader.h"
 #import "YVLoadingView.h"
+#import "YVDogEarView.h"
+
+#import "YVEventScroller.h"
 
 static NSString *const kYVTalkListTalkCellIdentifier = @"kYVTalkListTalkCellIdentifier";
 static NSString *const kYVTalkListTalksCacheName = @"kYVTalkListTalksCacheName";
@@ -31,7 +34,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 @interface YVTalkListViewController ()
 < NSFetchedResultsControllerDelegate,
   UISearchDisplayDelegate,
-  YVEventDayViewDelegate>
+  YVEventDayViewDelegate,
+  YVDogEarViewDelegate>
 
 @property (nonatomic, strong) NSArray *eventDays;
 @property (nonatomic, strong) NSFetchedResultsController *frController;
@@ -40,6 +44,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet YVEventDayView *eventDayView;
+
+- (void)_scrollToCurrentTalk;
 
 - (void)_fetchTalksForDateString:(NSString *)dateString;
 - (void)_alertError:(NSError *)error;
@@ -53,10 +59,10 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
 - (void)awakeFromNib
 {
-  self.view.backgroundColor = [YVTalkCell backgroundColor];
+    self.view.backgroundColor = [YVTalkCell backgroundColor];
 
-  self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-  self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [YVTalkCell backgroundColor];
 }
 
 - (void)viewDidLoad
@@ -80,12 +86,29 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
 
-    [self _fetchTalksForDateString:self.eventDays[0]];
+    YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
+    NSInteger indexOfDate = [scroller eventIndexForCurrentDate];
+    if (NSNotFound == indexOfDate) {
+        indexOfDate = 0;
+    }
+
+    [self.eventDayView setEventDayIndex:indexOfDate];
+    [self _scrollToCurrentTalk];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,15 +123,41 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     if([segue.identifier isEqualToString:kYVTalkListPushToDetailSegueIdentifier]){
         NSAssert([sender isKindOfClass:[YVTalk class]], @"");
 
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Talks"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self.navigationController
+                                                                      action:@selector(popNavigationItemAnimated:)];
+        self.navigationItem.backBarButtonItem = backButton;
+
         YVTalkDetailViewController *vc;
         vc = (YVTalkDetailViewController *)segue.destinationViewController;
         vc.talk = (YVTalk *)sender;
     }
 }
 
+- (void)_scrollToCurrentTalk
+{
+    YVEventScroller *scroller = [[YVEventScroller alloc] initWitnEventDays:self.eventDays];
+    NSInteger indexToGo = [scroller eventIndexForCurrentDate];
+    if (NSNotFound == indexToGo || indexToGo != self.eventDayView.currentEventDaysIndex) {
+        return;
+    }
+
+    NSInteger sectionIndex = [scroller sectionIndexForCurrentTimeWithSections:self.frController.sections];
+    if (NSNotFound == sectionIndex) {
+        return;
+    }
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionIndex];
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
+}
+
 - (void)_fetchTalksForDateString:(NSString *)dateString
 {
     self.frController = [self _frControllerForQuery:dateString];
+
     NSError *fetchError = nil;
     if(![self.frController performFetch:&fetchError]){
         YVLog(@"FETCH ERROR : %@", fetchError);
@@ -170,9 +219,15 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
 
     NSArray *items = [self.frController fetchedObjects];
 
-    NSString *predicateString = @"title contains[cd] %@ OR title_en contains[cd] %@";
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString, query, query];
-    items = [items filteredArrayUsingPredicate:predicate];
+    NSArray *predicateProperties = @[@"title", @"title_en", @"abstract.abstract"];
+    NSMutableArray *predicates = @[].mutableCopy;
+    [predicateProperties enumerateObjectsUsingBlock:^(NSString *property, NSUInteger idx, BOOL *stop) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K contains[cd] %@", property, query];
+        [predicates addObject:predicate];
+    }];
+
+    NSPredicate *finalPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+    items = [items filteredArrayUsingPredicate:finalPredicate];
 
     return items;
 }
@@ -185,6 +240,8 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
        dayDidChanged:(NSString *)dayString
 {
     [self _fetchTalksForDateString:dayString];
+
+    [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +277,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
     if(nil == cell){
         cell = [[YVTalkCell alloc] initWithStyle:UITableViewCellStyleDefault
                                  reuseIdentifier:kYVTalkListTalkCellIdentifier];
+        cell.dogEarView.delegate = self;
     }
 
     YVTalk *talk = nil;
@@ -251,7 +309,7 @@ static NSString *const kYVTalkListThirdDateString   = @"2013-09-21";
         talk = [self.filteredItems objectAtIndex:indexPath.row];
     }
 
-    [self performSegueWithIdentifier:@"PushToTalkDetailView"
+    [self performSegueWithIdentifier:kYVTalkListPushToDetailSegueIdentifier
                               sender:talk];
 }
 
@@ -261,8 +319,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return [YVTalkCell cellHeight];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForHeaderInSection:(NSInteger)section
+{
+    return [YVSectionHeader defaultHeaderHeight];
+}
+
 - (UIView *)tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section
+    viewForHeaderInSection:(NSInteger)section
 {
     id<NSFetchedResultsSectionInfo> sectionInfo;
     sectionInfo = self.frController.sections[section];
@@ -278,52 +342,53 @@ viewForHeaderInSection:(NSInteger)section
 #pragma mark - NSFethedResultsControllerDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath
-     forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    if(type == NSFetchedResultsChangeInsert){
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeUpdate){
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeDelete){
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }else if(type == NSFetchedResultsChangeMove){
-        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
-{
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
-    if(type == NSFetchedResultsChangeInsert) {
-        [self.tableView insertSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }else if(type == NSFetchedResultsChangeUpdate){
-        [self.tableView reloadSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }else if(type == NSFetchedResultsChangeDelete){
-        [self.tableView deleteSections:indexSet
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
+//- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+//{
+//    [self.tableView beginUpdates];
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller
+//   didChangeObject:(id)anObject
+//       atIndexPath:(NSIndexPath *)indexPath
+//     forChangeType:(NSFetchedResultsChangeType)type
+//      newIndexPath:(NSIndexPath *)newIndexPath
+//{
+//    if (type == NSFetchedResultsChangeInsert) {
+//        [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeUpdate) {
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeDelete) {
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }else if (type == NSFetchedResultsChangeMove) {
+//        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+//    }
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller
+//  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+//           atIndex:(NSUInteger)sectionIndex
+//     forChangeType:(NSFetchedResultsChangeType)type
+//{
+//    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
+//    if (type == NSFetchedResultsChangeInsert) {
+//        [self.tableView insertSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }else if (type == NSFetchedResultsChangeUpdate){
+//        [self.tableView reloadSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }else if (type == NSFetchedResultsChangeDelete){
+//        [self.tableView deleteSections:indexSet
+//                      withRowAnimation:UITableViewRowAnimationNone];
+//    }
+//}
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    [self.tableView reloadData];
+//    [self.tableView endUpdates];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -342,6 +407,31 @@ viewForHeaderInSection:(NSInteger)section
 
     self.filteredItems = [self _filteredItemForQuery:query];
     return YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YVTalkCellDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)dogEarView:(YVDogEarView *)dogEarView
+    didChangeState:(BOOL)enabled
+{
+    YVTalkCell *talkCell = (YVTalkCell *)dogEarView.superview;
+    NSAssert([talkCell isKindOfClass:[YVTalkCell class]], @"");
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:talkCell];
+    YVTalk *talk = (YVTalk *)[self.frController objectAtIndexPath:indexPath];
+
+    talk.favorite = @(enabled);
+
+    NSManagedObjectContext *moc = self.frController.managedObjectContext;
+    NSError *saveError = nil;
+
+    [[HIDataStoreManager sharedManager] saveContext:moc
+                                              error:&saveError];
+    if(saveError){
+        NSLog(@"SAVE ERROR : %@", [saveError description]);
+    }
 }
 
 @end

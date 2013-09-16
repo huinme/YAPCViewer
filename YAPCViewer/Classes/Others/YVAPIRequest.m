@@ -2,7 +2,7 @@
 //  YVAPIRequest.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/25/13.
+//  Created by kshuin on 8/25/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -28,7 +28,7 @@ NSString *const YVTalksSerivceErrorDomain = @"YVTalksSerivceErrorDomain";
      ^(NSURLResponse *response, NSData *data, NSError *error) {
          if(error){
              handler ? handler(nil, error) : nil;
-             return ;
+             return;
          }
 
          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;

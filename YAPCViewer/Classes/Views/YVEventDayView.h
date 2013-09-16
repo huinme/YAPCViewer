@@ -2,7 +2,7 @@
 //  YVEventDayView.h
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/4/13.
+//  Created by kshuin on 8/4/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -23,5 +23,8 @@
 @property (nonatomic, weak) NSObject<YVEventDayViewDelegate> *delegate;
 
 @property (nonatomic, strong) NSArray *eventDays;
+
+- (void)setEventDayIndex:(NSInteger)index;
+- (NSInteger)currentEventDaysIndex;
 
 @end

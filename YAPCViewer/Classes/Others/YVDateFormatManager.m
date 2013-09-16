@@ -2,7 +2,7 @@
 //  YVDateFormatManager.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/4/13.
+//  Created by kshuin 8/4/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
@@ -42,8 +42,8 @@ NSString *const YVDateFormatManagerJapaneseDateFormat = @"M月d日(EEEE)";
         dateFormatter.calendar = self.defaultCalendar;
         dateFormatter.locale   = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
     }
-    
-    [dateFormatter setDateFormat:YVDateFormatManagerDefaultDateFormat];
+
+    dateFormatter.dateFormat = YVDateFormatManagerDefaultDateFormat;
     return dateFormatter;
 }
 
@@ -56,9 +56,9 @@ NSString *const YVDateFormatManagerJapaneseDateFormat = @"M月d日(EEEE)";
         dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Tokyo"];
         dateFormatter.calendar = self.defaultCalendar;
         dateFormatter.locale   = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
-        [dateFormatter setDateFormat:YVDateFormatManagerJapaneseDateFormat];
     }
 
+    dateFormatter.dateFormat = YVDateFormatManagerJapaneseDateFormat;
     return dateFormatter;
 }
 

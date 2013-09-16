@@ -2,13 +2,15 @@
 //  YVSectionHeader.m
 //  YAPCViewer
 //
-//  Created by Koichi Sakata on 8/4/13.
+//  Created by kshuin on 8/4/13.
 //  Copyright (c) 2013 www.huin-lab.com. All rights reserved.
 //
 
 #import "YVSectionHeader.h"
 
 #import <QuartzCore/QuartzCore.h>
+
+static const CGFloat kYVSectionHeaderDefaultHeight = 23.0f;
 
 @interface YVSectionHeader()
 
@@ -19,6 +21,11 @@
 @end
 
 @implementation YVSectionHeader
+
++ (CGFloat)defaultHeaderHeight
+{
+    return kYVSectionHeaderDefaultHeight;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
