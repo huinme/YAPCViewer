@@ -164,7 +164,7 @@
          [self updateTalks:talksArray inMoc:moc];
 
          NSError *saveError = nil;
-         [[HIDataStoreManager sharedManager] saveContext:moc error:nil];
+         [[HIDataStoreManager sharedManager] saveContext:moc error:&saveError];
          if (saveError) {
              NSLog(@"SAVE ERROR : %@", saveError.localizedDescription);
          }
