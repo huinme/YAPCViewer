@@ -7,7 +7,7 @@ pod 'HIDataStoreManager', :git => 'https://github.com/kshuin/HIDataStoreManager.
 pod 'MCUIColorUtils'
 pod 'TTTAttributedLabel'
 pod 'SDWebImage', :head
-pod 'FontAwesomeKit', :head
+pod 'FontAwesomeKit', '1.1.4'
 
 target :YAPCViewerTests, :exclusive => true do
     pod 'Kiwi'
