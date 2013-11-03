@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "pod update">
+               scriptText = "cd ${SRCROOT} &amp;&amp; pod update">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
